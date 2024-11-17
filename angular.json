@@ -3,5 +3,56 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "pm-cdk": {
+      "projectType": "library",
+      "root": "projects/pm-cdk",
+      "sourceRoot": "projects/pm-cdk/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/pm-cdk/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/pm-cdk/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/pm-cdk/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/pm-cdk/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/pm-cdk/.storybook",
+            "browserTarget": "pm-cdk:build",
+            "compodoc": false,
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/pm-cdk/.storybook",
+            "browserTarget": "pm-cdk:build",
+            "compodoc": false,
+            "outputDir": "storybook-static"
+          }
+        }
+      }
+    }
   }
 }
