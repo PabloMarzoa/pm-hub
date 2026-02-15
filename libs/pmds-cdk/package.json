@@ -1,0 +1,17 @@
+{
+	"name": "@pmhub/pmds-cdk",
+	"version": "20.1.5",
+	"peerDependencies": {
+		"@angular/common": "^20.0.0",
+		"@angular/core": "^20.0.0"
+	},
+	"dependencies": {
+		"@pmhub/pmds-cdk": "20.1.0",
+		"tslib": "^2.3.0"
+	},
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/PabloMarzoa/pm-hub.git"
+	}
+}

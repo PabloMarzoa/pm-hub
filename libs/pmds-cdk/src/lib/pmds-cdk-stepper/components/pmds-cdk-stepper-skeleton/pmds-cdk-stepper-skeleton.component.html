@@ -1,0 +1,25 @@
+
+<!-- SKELETON -->
+<section 
+	[attr.data-qa-id]="dataQA + '-skeleton'"
+	class="h-20 flex py-4 desktop:px-7 tablet:px-8 mobile:p-4 justify-center items-center overflow-scroll">
+	@for (item of steps; track item) {
+	
+	<div class="flex items-end mr-1 relative w-[146px] last:w-[20px] mobile:w-[66px] h-12 mobile:h-6">
+		<!-- STEP TITLE -->
+		<section
+			class="h-5 w-5 top-0 flex items-center justify-center whitespace-nowrap mobile:hidden absolute">
+			<pmds-cdk-skeleton [style]="'w-[72px] h-3'" />
+		</section>
+		<!-- END STEP TITLE -->
+		<!-- STEPS -->
+		<div class="h-6 flex items-center pr-0.5 gap-2">
+			<pmds-cdk-skeleton [style]="'size-5 !rounded-full'" />
+			@if (!$last) {
+				<pmds-cdk-skeleton [style]="'h-[1px] w-[110px] mobile:w-[36px]'" />
+			}
+		</div>
+		<!-- END STEPS -->
+	</div>
+}
+</section>

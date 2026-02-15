@@ -1,0 +1,141 @@
+@if (skeleton) {
+	<pmds-cdk-cards-selector-skeleton [dataQA]="dataQA + componentSelector" [additionalContent]="skeletonAdditionalContent" />
+} @else {
+	<section class="md:min-w-[514px] w-full shadow-floating bg-color-surface-primary rounded-t-pmds"
+		 (click)="disabled ? '' : clicked()"
+		 [ngClass]="{'rounded-pmds': !content.children.length,
+					'min-h-[72px]': literals.value?.length,
+					'mobile:min-h-24': literals.helperText?.length,
+					'cursor-pointer': !disabled}">
+
+		<!-- MAIN OPTION -->
+		<div class="flex flex-row items-center justify-between px-6 py-6 h-full mobile:flex-col mobile:p-4"
+			 [ngClass]="{'border-b border-b-color-border-default': content.children.length}">
+			<!-- CHECKBOX & LABEL & HELPER TEXT -->
+			<div class="flex flex-row items-center h-full max-w-full mobile:w-full">
+
+				<!-- CHECKBOX -->
+				<div class="h-6 w-6 shrink-0">
+					@if (disabled && isSelected) {
+						<input aria-label="checkbox card selector disable selected"
+							   [attr.data-qa-id]="dataQA + componentSelector + 'input-radio-disabled'"
+							   type="radio"
+							   class="w-6 h-6 accent-color-action-on-disabled pointer-events-none"
+							   [checked]="isSelected"
+						>
+					}
+					@if (disabled && !isSelected) {
+						<div class="h-6 w-6 rounded-full bg-color-action-disabled border border-color-border-disabled">
+						</div>
+					}
+					@if (!disabled) {
+						<input aria-label="checkbox card selector"
+							   [attr.data-qa-id]="dataQA + componentSelector + 'input-radio'"
+							   type="radio"
+							   class="w-6 h-6 accent-color-action-alternative-default"
+							   [ngClass]="{'accent-color-action-disabled': disabled && isSelected}"
+							   [checked]="isSelected"
+						>
+					}
+				</div>
+				<!-- END CHECKBOX -->
+
+				<div class="flex flex-col ml-2 shrink">
+					<!-- LABEL -->
+					<div class="grid grid-rows-1 grid-flow-col items-center">
+						@if (!!literals.icon) {
+							<span [class]="'mr-1 text-2xl text-color-icon-info row-span-1 ' + literals.icon"></span>
+						}
+
+						<!-- LABEL -->
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'label'"
+							  class="font-body-m-regular text-color-text-primary row-span-1" pmdsTitle>
+							{{ literals.label }}
+						</span>
+						<!-- END LABEL -->
+
+						<!-- LABEL TOOLTIP -->
+						<div class="row-span-1 flex items-center">
+							@if (tooltip) {
+								<span [pmdsTooltip]="tooltip.content"
+									  [pmdsTooltipTitle]="tooltip.title || ''"
+									  [pmdsTooltipPosition]="tooltip.position || 'bottom-center'"
+									  [ngClass]="{'text-2xl' : !literals.helperText?.length}"
+									  class="pmicons-info-circle ml-2 text-color-icon-info">
+								</span>
+							}
+						</div>
+						<!-- END LABEL TOOLTIP -->
+
+						<!-- LABEL IMAGES -->
+						@if (labelImages) {
+							<div class="flex flex-row ml-2 items-center mobile:hidden">
+								@for (image of labelImages.images; track image) {
+									<div>
+										<img [class]="'mr-2'"
+											 aria-label="card selector label image"
+											 [ngClass]="[!!labelImages.heightStyle ? labelImages.heightStyle: 'h-5' , !!labelImages.widthStyle ? labelImages.widthStyle : 'w-5']"
+											 [src]="image"/>
+									</div>
+								}
+							</div>
+						}
+						<!-- END LABEL IMAGES -->
+					</div>
+					<!-- END LABEL -->
+
+					<!-- HELPER TEXT -->
+					@if (literals.helperText?.length) {
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'helper-text'"
+							  class="font-body-s-regular text-color-text-tertiary mobile:hidden"
+							  [ngClass]="{'mobile:hidden': literals.value?.length}"> {{ literals.helperText }}
+						</span>
+					}
+					<!-- END HELPER TEXT -->
+				</div>
+			</div>
+			<!-- END CHECKBOX & LABEL -->
+
+			<!-- LABEL IMAGES -->
+			@if (labelImages) {
+				<div class="hidden w-full mobile:flex flex-start mt-4">
+					<div class="flex flex-row items-center">
+						@for (image of labelImages.images; track image) {
+							<div>
+								<img [class]="'mr-2'"
+									 aria-label="card selector label image"
+									 [ngClass]="[labelImages.heightStyle ? labelImages.heightStyle: 'h-5' , labelImages.widthStyle ? labelImages.widthStyle : 'w-5']"
+									 [src]="image"/>
+							</div>
+						}
+					</div>
+				</div>
+			}
+			<!-- END LABEL IMAGES -->
+
+			<!-- ADDITIONAL TEXT -->
+			@if (literals.value?.length) {
+				<div class="flex flex-col items-end mobile:w-full"
+					 [ngClass]="{'ml-4 mobile:ml-0 mobile:mt-4' : literals.value?.length}">
+					<span [attr.data-qa-id]="dataQA + componentSelector + 'value'"
+						  class="font-body-m-bold text-color-text-primary whitespace-nowrap"> {{ literals.value }} </span>
+					@if (literals.helperValue?.length) {
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'helper-value'"
+							  class="font-body-s-regular text-color-text-tertiary"> {{ literals.helperValue }} </span>
+					}
+				</div>
+			}
+			<!-- END ADDITIONAL TEXT -->
+		</div>
+		<!-- END MAIN OPTION -->
+
+		<!-- ADDITIONAL CONTENT -->
+		<div [hidden]="!content.children.length" class="bg-color-surface-primary rounded-b-pmds"
+			 [ngClass]="{'p-6 mobile:p-4' : content.children.length}">
+			<div #content class="items-center justify-center">
+				<ng-content></ng-content>
+			</div>
+		</div>
+		<!-- END ADDITIONAL CONTENT -->
+	</section>
+}

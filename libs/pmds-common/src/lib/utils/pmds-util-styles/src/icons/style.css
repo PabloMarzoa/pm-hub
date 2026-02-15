@@ -1,0 +1,2881 @@
+@font-face {
+	font-family: 'nxt-icons';
+	src: url('fonts/nxt-icons.eot?2zqi9m');
+	src: url('fonts/nxt-icons.eot?2zqi9m#iefix') format('embedded-opentype'),
+		url('fonts/nxt-icons.ttf?2zqi9m') format('truetype'),
+		url('fonts/nxt-icons.woff?2zqi9m') format('woff'),
+		url('fonts/nxt-icons.svg?2zqi9m#nxt-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^='pmicons-'],
+[class*=' pmicons-'] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'nxt-icons' !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.pmicons-close-filled:before {
+	content: '\ec56';
+}
+.pmicons-help-us-to-improve-down:before {
+	content: '\ec90';
+}
+.pmicons-metical-mozambique:before {
+	content: '\ec54';
+}
+.pmicons-change-account-associate-pound:before {
+	content: '\ec55';
+}
+.pmicons-Libras:before {
+	content: '\ec55';
+}
+.pmicons-Esterlinas:before {
+	content: '\ec55';
+}
+.pmicons-currency1:before {
+	content: '\ec55';
+}
+.pmicons-Moneda:before {
+	content: '\ec55';
+}
+.pmicons-Divisa:before {
+	content: '\ec55';
+}
+.pmicons-Money:before {
+	content: '\ec55';
+}
+.pmicons-Dinero:before {
+	content: '\ec55';
+}
+.pmicons-Move:before {
+	content: '\ec55';
+}
+.pmicons-mover:before {
+	content: '\ec55';
+}
+.pmicons-transfer:before {
+	content: '\ec55';
+}
+.pmicons-transferir:before {
+	content: '\ec55';
+}
+.pmicons-transferencia:before {
+	content: '\ec55';
+}
+.pmicons-change:before {
+	content: '\ec55';
+}
+.pmicons-cambiar:before {
+	content: '\ec55';
+}
+.pmicons-intercambiar:before {
+	content: '\ec55';
+}
+.pmicons-exchange:before {
+	content: '\ec55';
+}
+.pmicons-ngultrum-bhutan:before {
+	content: '\ec57';
+}
+.pmicons-dollar-timor-leste:before {
+	content: '\ec58';
+}
+.pmicons-rupiah-indonesia:before {
+	content: '\ec59';
+}
+.pmicons-pound-lebanon:before {
+	content: '\ec5a';
+}
+.pmicons-dinar-tunisia:before {
+	content: '\ec5b';
+}
+.pmicons-dollar-guyana:before {
+	content: '\ec5c';
+}
+.pmicons-riyal-saudi-rupee-seychelles:before {
+	content: '\ec5d';
+}
+.pmicons-kip:before {
+	content: '\ec5e';
+}
+.pmicons-ringgit-malaysia:before {
+	content: '\ec5f';
+}
+.pmicons-baht-thailand:before {
+	content: '\ec60';
+}
+.pmicons-franc-guinea:before {
+	content: '\ec61';
+}
+.pmicons-franc-rwanda:before {
+	content: '\ec62';
+}
+.pmicons-tenge-kazakhstan:before {
+	content: '\ec63';
+}
+.pmicons-dollar-brunei-bahamian:before {
+	content: '\ec64';
+}
+.pmicons-dinar-bahrain:before {
+	content: '\ec65';
+}
+.pmicons-dalasi-gambia:before {
+	content: '\ec66';
+}
+.pmicons-riyal-qatar:before {
+	content: '\ec67';
+}
+.pmicons-dinar-kuwait:before {
+	content: '\ec68';
+}
+.pmicons-ouguiya:before {
+	content: '\ec69';
+}
+.pmicons-pound-syria:before {
+	content: '\ec6a';
+}
+.pmicons-rupee-pakistan:before {
+	content: '\ec6b';
+}
+.pmicons-lev-bulgaria:before {
+	content: '\ec6c';
+}
+.pmicons-franc-comoros:before {
+	content: '\ec6d';
+}
+.pmicons-togrog:before {
+	content: '\ec6e';
+}
+.pmicons-taka:before {
+	content: '\ec6f';
+}
+.pmicons-kyat-kwacha:before {
+	content: '\ec70';
+}
+.pmicons-peso-philippines:before {
+	content: '\ec71';
+}
+.pmicons-dobra-sao-tome:before {
+	content: '\ec72';
+}
+.pmicons-pound-egypt:before {
+	content: '\ec73';
+}
+.pmicons-ariary-madagascar:before {
+	content: '\ec74';
+}
+.pmicons-rial-oman:before {
+	content: '\ec75';
+}
+.pmicons-rial-iran:before {
+	content: '\ec76';
+}
+.pmicons-shilling-somalia:before {
+	content: '\ec77';
+}
+.pmicons-dinar-algeria:before {
+	content: '\ec78';
+}
+.pmicons-rupee-nepal:before {
+	content: '\ec79';
+}
+.pmicons-dinar-iraq:before {
+	content: '\ec7a';
+}
+.pmicons-kwanza:before {
+	content: '\ec7b';
+}
+.pmicons-leone:before {
+	content: '\ec7c';
+}
+.pmicons-dollar-jamaica:before {
+	content: '\ec7d';
+}
+.pmicons-franc-congo:before {
+	content: '\ec7e';
+}
+.pmicons-rand:before {
+	content: '\ec7f';
+}
+.pmicons-naira-nigeria:before {
+	content: '\ec80';
+}
+.pmicons-rupee-india:before {
+	content: '\ec81';
+}
+.pmicons-dollar-singapore:before {
+	content: '\ec82';
+}
+.pmicons-florin-guilder:before {
+	content: '\ec83';
+}
+.pmicons-dong-vietnam:before {
+	content: '\ec84';
+}
+.pmicons-dinar-libya:before {
+	content: '\ec85';
+}
+.pmicons-pula-botswana:before {
+	content: '\ec86';
+}
+.pmicons-new-shekel-israel:before {
+	content: '\ec87';
+}
+.pmicons-dollar-liberia:before {
+	content: '\ec88';
+}
+.pmicons-dollar-namibia:before {
+	content: '\ec89';
+}
+.pmicons-pound-sudan:before {
+	content: '\ec8a';
+}
+.pmicons-peso-uruguay:before {
+	content: '\ec8b';
+}
+.pmicons-dirham:before {
+	content: '\ec8c';
+}
+.pmicons-compare-wallets:before {
+	content: '\ec8d';
+}
+.pmicons-delete-account:before {
+	content: '\ec8e';
+}
+.pmicons-check:before {
+	content: '\ec8f';
+}
+.pmicons-automatic-savings-fill:before {
+	content: '\ec92';
+}
+.pmicons-check-previous-transfers:before {
+	content: '\ec94';
+}
+.pmicons-renting:before {
+	content: '\ec95';
+}
+.pmicons-e-card-fill:before {
+	content: '\ec96';
+}
+.pmicons-change-contributions:before {
+	content: '\ec97';
+}
+.pmicons-BC231-sign-up-1:before {
+	content: '\ec98';
+}
+.pmicons-sign-up-2:before {
+	content: '\ec99';
+}
+.pmicons-trash-bin:before {
+	content: '\ec9a';
+}
+.pmicons-close:before {
+	content: '\ec9b';
+}
+.pmicons-menu:before {
+	content: '\ec9c';
+}
+.pmicons-star-filled:before {
+	content: '\ec9d';
+}
+.pmicons-now:before {
+	content: '\ec9e';
+}
+.pmicons-E:before {
+	content: '\ec9f';
+}
+.pmicons-grid-view:before {
+	content: '\eca0';
+}
+.pmicons-list-view:before {
+	content: '\eca1';
+}
+.pmicons-table-view:before {
+	content: '\eca2';
+}
+.pmicons-user-crow:before {
+	content: '\eca3';
+}
+.pmicons-cursor .path1:before {
+	content: '\eca4';
+	color: rgb(48, 62, 92);
+}
+.pmicons-cursor .path2:before {
+	content: '\eca5';
+	margin-left: -0.8798828125em;
+	color: rgb(255, 255, 255);
+}
+.pmicons-factory:before {
+	content: '\eca6';
+}
+.pmicons-remote-work:before {
+	content: '\eca7';
+}
+.pmicons-dots3-horizontal:before {
+	content: '\e900';
+}
+.pmicons-dots3-vertical:before {
+	content: '\e901';
+}
+.pmicons-h24:before {
+	content: '\e902';
+}
+.pmicons-academy:before {
+	content: '\e903';
+}
+.pmicons-accelerator:before {
+	content: '\e904';
+}
+.pmicons-accessibility:before {
+	content: '\e905';
+}
+.pmicons-account-american-dollar-iso:before {
+	content: '\e906';
+}
+.pmicons-account-australia-dollar-iso:before {
+	content: '\e907';
+}
+.pmicons-account-australia-dollar:before {
+	content: '\e908';
+}
+.pmicons-account-balboa:before {
+	content: '\e909';
+}
+.pmicons-account-bolivar-soberano-iso:before {
+	content: '\e90a';
+}
+.pmicons-account-bolivar:before {
+	content: '\e90b';
+}
+.pmicons-account-boliviano-iso:before {
+	content: '\e90c';
+}
+.pmicons-account-boliviano:before {
+	content: '\e90d';
+}
+.pmicons-account-bonus-dollar:before {
+	content: '\e90e';
+}
+.pmicons-account-bonus-euro:before {
+	content: '\e90f';
+}
+.pmicons-account-bonus-pound:before {
+	content: '\e910';
+}
+.pmicons-account-chilean-peso-iso:before {
+	content: '\e911';
+}
+.pmicons-account-chilean-uf-iso:before {
+	content: '\e912';
+}
+.pmicons-account-chilean-unidad-de-fomento-iso:before {
+	content: '\e913';
+}
+.pmicons-account-colombian-peso-iso:before {
+	content: '\e914';
+}
+.pmicons-account-colon:before {
+	content: '\e915';
+}
+.pmicons-account-cordoba:before {
+	content: '\e916';
+}
+.pmicons-account-czech-republic-koruna-iso:before {
+	content: '\e917';
+}
+.pmicons-account-czech-republic-koruna:before {
+	content: '\e918';
+}
+.pmicons-account-denar:before {
+	content: '\e919';
+}
+.pmicons-account-denmark-krone-iso:before {
+	content: '\e91a';
+}
+.pmicons-account-dinar:before {
+	content: '\e91b';
+}
+.pmicons-account-dollar:before {
+	content: '\e91c';
+}
+.pmicons-account-dram:before {
+	content: '\e91d';
+}
+.pmicons-account-euro-iso:before {
+	content: '\e91e';
+}
+.pmicons-account-euro:before {
+	content: '\e91f';
+}
+.pmicons-account-forint:before {
+	content: '\e920';
+}
+.pmicons-account-gourde:before {
+	content: '\e921';
+}
+.pmicons-account-group-dollar:before {
+	content: '\e922';
+}
+.pmicons-account-group-euro:before {
+	content: '\e923';
+}
+.pmicons-account-group-pound:before {
+	content: '\e924';
+}
+.pmicons-account-guarani:before {
+	content: '\e925';
+}
+.pmicons-account-hryvnia:before {
+	content: '\e926';
+}
+.pmicons-account-iceland-krona-iso:before {
+	content: '\e927';
+}
+.pmicons-account-krone-krona:before {
+	content: '\e928';
+}
+.pmicons-account-kuna:before {
+	content: '\e929';
+}
+.pmicons-account-lari:before {
+	content: '\e92a';
+}
+.pmicons-account-lempira:before {
+	content: '\e92b';
+}
+.pmicons-account-lev:before {
+	content: '\e92c';
+}
+.pmicons-account-lira:before {
+	content: '\e92d';
+}
+.pmicons-account-management-dollar:before {
+	content: '\e92e';
+}
+.pmicons-account-management-euro:before {
+	content: '\e92f';
+}
+.pmicons-account-management-pound:before {
+	content: '\e930';
+}
+.pmicons-account-mark:before {
+	content: '\e931';
+}
+.pmicons-account-norway-krone-iso:before {
+	content: '\e932';
+}
+.pmicons-account-people:before {
+	content: '\e933';
+}
+.pmicons-account-peso-argentino-iso:before {
+	content: '\e934';
+}
+.pmicons-account-poland-zloty-iso:before {
+	content: '\e935';
+}
+.pmicons-account-poland-zloty:before {
+	content: '\e936';
+}
+.pmicons-account-pound-iso:before {
+	content: '\e937';
+}
+.pmicons-account-pound:before {
+	content: '\e938';
+}
+.pmicons-account-quetzal:before {
+	content: '\e939';
+}
+.pmicons-account-real-iso:before {
+	content: '\e93a';
+}
+.pmicons-account-real:before {
+	content: '\e93b';
+}
+.pmicons-account-ruble-belarus:before {
+	content: '\e93c';
+}
+.pmicons-account-ruble-russia:before {
+	content: '\e93d';
+}
+.pmicons-account-search-dollar:before {
+	content: '\e93e';
+}
+.pmicons-account-search-euro:before {
+	content: '\e93f';
+}
+.pmicons-account-search-pound:before {
+	content: '\e940';
+}
+.pmicons-account-sol-iso:before {
+	content: '\e941';
+}
+.pmicons-account-sol:before {
+	content: '\e942';
+}
+.pmicons-account-sweden-krona-iso:before {
+	content: '\e943';
+}
+.pmicons-account-uruguayan-peso-iso:before {
+	content: '\e944';
+}
+.pmicons-account-user:before {
+	content: '\e945';
+}
+.pmicons-account-won:before {
+	content: '\e946';
+}
+.pmicons-account-yen-iso:before {
+	content: '\e947';
+}
+.pmicons-account-yen:before {
+	content: '\e948';
+}
+.pmicons-account-yuan-iso:before {
+	content: '\e949';
+}
+.pmicons-account-yuan:before {
+	content: '\e94a';
+}
+.pmicons-add-circle:before {
+	content: '\e94b';
+}
+.pmicons-add-photo:before {
+	content: '\e94c';
+}
+.pmicons-add-to-calendar:before {
+	content: '\e94d';
+}
+.pmicons-aesthetics:before {
+	content: '\e94e';
+}
+.pmicons-agile-coach-2:before {
+	content: '\e94f';
+}
+.pmicons-agile-coach:before {
+	content: '\e950';
+}
+.pmicons-agile:before {
+	content: '\e951';
+}
+.pmicons-agribusiness:before {
+	content: '\e952';
+}
+.pmicons-agriculture-workers:before {
+	content: '\e953';
+}
+.pmicons-alphabetical-order:before {
+	content: '\e954';
+}
+.pmicons-ambulance:before {
+	content: '\e955';
+}
+.pmicons-american:before {
+	content: '\e956';
+}
+.pmicons-analysis:before {
+	content: '\e957';
+}
+.pmicons-ant:before {
+	content: '\e958';
+}
+.pmicons-antenna:before {
+	content: '\e959';
+}
+.pmicons-app-pm:before {
+	content: '\e95a';
+}
+.pmicons-appliances:before {
+	content: '\e95b';
+}
+.pmicons-appointments:before {
+	content: '\e95c';
+}
+.pmicons-arrow-down-2px:before {
+	content: '\e95d';
+}
+.pmicons-arrow-down-right:before {
+	content: '\e95e';
+}
+.pmicons-arrow-down:before {
+	content: '\e95f';
+}
+.pmicons-arrow-left-2px:before {
+	content: '\e960';
+}
+.pmicons-arrow-left:before {
+	content: '\e961';
+}
+.pmicons-arrow-right-2px:before {
+	content: '\e962';
+}
+.pmicons-arrow-right:before {
+	content: '\e963';
+}
+.pmicons-arrow-up-2px:before {
+	content: '\e964';
+}
+.pmicons-arrow-up-left:before {
+	content: '\e965';
+}
+.pmicons-arrow-up:before {
+	content: '\e966';
+}
+.pmicons-assisted-navigation:before {
+	content: '\e967';
+}
+.pmicons-associations:before {
+	content: '\e968';
+}
+.pmicons-at:before {
+	content: '\e969';
+}
+.pmicons-atm-dollar:before {
+	content: '\e96a';
+}
+.pmicons-atm-euro:before {
+	content: '\e96b';
+}
+.pmicons-atm-pound:before {
+	content: '\e96c';
+}
+.pmicons-atm:before {
+	content: '\e96d';
+}
+.pmicons-atom:before {
+	content: '\e96e';
+}
+.pmicons-attach-document:before {
+	content: '\e96f';
+}
+.pmicons-attachment:before {
+	content: '\e970';
+}
+.pmicons-auction:before {
+	content: '\e971';
+}
+.pmicons-audio-off:before {
+	content: '\e972';
+}
+.pmicons-audio-on:before {
+	content: '\e973';
+}
+.pmicons-authentication:before {
+	content: '\e974';
+}
+.pmicons-automatic-savings:before {
+	content: '\e975';
+}
+.pmicons-awards:before {
+	content: '\e976';
+}
+.pmicons-backlog:before {
+	content: '\e977';
+}
+.pmicons-backspace-fill:before {
+	content: '\e978';
+}
+.pmicons-backspace:before {
+	content: '\e979';
+}
+.pmicons-bag-of-money-dollar:before {
+	content: '\e97a';
+}
+.pmicons-bag-of-money-euro:before {
+	content: '\e97b';
+}
+.pmicons-bag-of-money-pound:before {
+	content: '\e97c';
+}
+.pmicons-bank-fees:before {
+	content: '\e97d';
+}
+.pmicons-museum:before {
+	content: '\e97e';
+}
+.pmicons-bar-chart:before {
+	content: '\e97f';
+}
+.pmicons-barcode:before {
+	content: '\e980';
+}
+.pmicons-basket:before {
+	content: '\e981';
+}
+.pmicons-bath:before {
+	content: '\e982';
+}
+.pmicons-bathroom-alt:before {
+	content: '\e983';
+}
+.pmicons-bathroom:before {
+	content: '\e984';
+}
+.pmicons-bbq:before {
+	content: '\e985';
+}
+.pmicons-beach:before {
+	content: '\e986';
+}
+.pmicons-become-new-client:before {
+	content: '\e987';
+}
+.pmicons-bed:before {
+	content: '\e988';
+}
+.pmicons-bell:before {
+	content: '\e989';
+}
+.pmicons-benefitiary:before {
+	content: '\e98a';
+}
+.pmicons-bike:before {
+	content: '\e98b';
+}
+.pmicons-bill-recycler:before {
+	content: '\e98c';
+}
+.pmicons-block-in-a-circle:before {
+	content: '\e98d';
+}
+.pmicons-boat-trip:before {
+	content: '\e98e';
+}
+.pmicons-bodybuilding:before {
+	content: '\e98f';
+}
+.pmicons-bolt:before {
+	content: '\e990';
+}
+.pmicons-book:before {
+	content: '\e991';
+}
+.pmicons-booklet-atm-enter:before {
+	content: '\e992';
+}
+.pmicons-booklet-atm-withdraw:before {
+	content: '\e993';
+}
+.pmicons-bookmark:before {
+	content: '\e994';
+}
+.pmicons-boosts-1:before {
+	content: '\e995';
+}
+.pmicons-boosts:before {
+	content: '\e996';
+}
+.pmicons-broker-plataform:before {
+	content: '\e997';
+}
+.pmicons-brush:before {
+	content: '\e998';
+}
+.pmicons-bug:before {
+	content: '\e999';
+}
+.pmicons-building1:before {
+	content: '\e99a';
+}
+.pmicons-burger-menu-1px:before {
+	content: '\e99b';
+}
+.pmicons-burger-menu-asymmetrical-1px:before {
+	content: '\e99c';
+}
+.pmicons-burger-menu-asymmetrical:before {
+	content: '\e99d';
+}
+.pmicons-burger-menu:before {
+	content: '\e99e';
+}
+.pmicons-burndowncharct:before {
+	content: '\e99f';
+}
+.pmicons-burndownchart2:before {
+	content: '\e9a0';
+}
+.pmicons-business-alert:before {
+	content: '\e9a1';
+}
+.pmicons-business-store:before {
+	content: '\e9a2';
+}
+.pmicons-business-support-1:before {
+	content: '\e9a3';
+}
+.pmicons-business-support:before {
+	content: '\e9a4';
+}
+.pmicons-calculator:before {
+	content: '\e9a5';
+}
+.pmicons-calendar:before {
+	content: '\e9a6';
+}
+.pmicons-call-center-db:before {
+	content: '\e9a7';
+}
+.pmicons-call-support:before {
+	content: '\e9a8';
+}
+.pmicons-camera:before {
+	content: '\e9a9';
+}
+.pmicons-camping-gas:before {
+	content: '\e9aa';
+}
+.pmicons-cancel-appointments:before {
+	content: '\e9ab';
+}
+.pmicons-cancel-check:before {
+	content: '\e9ac';
+}
+.pmicons-cancel-checkbook:before {
+	content: '\e9ad';
+}
+.pmicons-cancel-next-receipt:before {
+	content: '\e9ae';
+}
+.pmicons-cancer:before {
+	content: '\e9af';
+}
+.pmicons-candlestick-chart:before {
+	content: '\e9b0';
+}
+.pmicons-capitalization:before {
+	content: '\e9b1';
+}
+.pmicons-card-block:before {
+	content: '\e9b2';
+}
+.pmicons-card-configuration:before {
+	content: '\e9b3';
+}
+.pmicons-card-enter-e-cash:before {
+	content: '\e9b4';
+}
+.pmicons-card-extract:before {
+	content: '\e9b5';
+}
+.pmicons-card-insert:before {
+	content: '\e9b6';
+}
+.pmicons-card-invoice:before {
+	content: '\e9b7';
+}
+.pmicons-card-machine:before {
+	content: '\e9b8';
+}
+.pmicons-card-postpone-liquidation:before {
+	content: '\e9b9';
+}
+.pmicons-card:before {
+	content: '\e9ba';
+}
+.pmicons-cardboard-box:before {
+	content: '\e9bb';
+}
+.pmicons-cards:before {
+	content: '\e9bc';
+}
+.pmicons-carnivorous-food:before {
+	content: '\e9bd';
+}
+.pmicons-center-position:before {
+	content: '\e9be';
+}
+.pmicons-champions-league:before {
+	content: '\e9bf';
+}
+.pmicons-change-account-associate-dollar:before {
+	content: '\e9c0';
+}
+.pmicons-change-account-associate-euro:before {
+	content: '\e9c1';
+}
+.pmicons-change-account-associate-poland-zloty:before {
+	content: '\e9c2';
+}
+.pmicons-change-account-associate-pound1:before {
+	content: '\e9c3';
+}
+.pmicons-change-beneficiary:before {
+	content: '\e9c4';
+}
+.pmicons-chat-bot:before {
+	content: '\e9c5';
+}
+.pmicons-chat:before {
+	content: '\e9c6';
+}
+.pmicons-check-asigment:before {
+	content: '\e9c7';
+}
+.pmicons-check-scanner:before {
+	content: '\e9c8';
+}
+.pmicons-check-ticket:before {
+	content: '\e9c9';
+}
+.pmicons-check-upcoming-transfers:before {
+	content: '\e9ca';
+}
+.pmicons-checkbook:before {
+	content: '\e9cb';
+}
+.pmicons-checking-account-change:before {
+	content: '\e9cc';
+}
+.pmicons-checking-account-closing:before {
+	content: '\e9cd';
+}
+.pmicons-checking-account-open:before {
+	content: '\e9ce';
+}
+.pmicons-checking-account:before {
+	content: '\e9cf';
+}
+.pmicons-checklist:before {
+	content: '\e9d0';
+}
+.pmicons-checkmark:before {
+	content: '\e9d1';
+}
+.pmicons-chevron-left-bold:before {
+	content: '\e9d2';
+}
+.pmicons-chemistry:before {
+	content: '\e9d3';
+}
+.pmicons-chevron-down-1px:before {
+	content: '\e9d4';
+}
+.pmicons-chevron-down-bold:before {
+	content: '\e9d5';
+}
+.pmicons-chevron-down-small-1px:before {
+	content: '\e9d6';
+}
+.pmicons-chevron-down-small-bold:before {
+	content: '\e9d7';
+}
+.pmicons-chevron-left-small-1px:before {
+	content: '\e9d8';
+}
+.pmicons-chevron-left-small:before {
+	content: '\e9d9';
+}
+.pmicons-chevron-left:before {
+	content: '\e9da';
+}
+.pmicons-chevron-right-1px:before {
+	content: '\e9db';
+}
+.pmicons-chevron-right-bold:before {
+	content: '\e9dc';
+}
+.pmicons-chevron-right-small-1px:before {
+	content: '\e9dd';
+}
+.pmicons-chevron-right-small-bold:before {
+	content: '\e9de';
+}
+.pmicons-chevron-up-1px:before {
+	content: '\e9df';
+}
+.pmicons-chevron-up-bold:before {
+	content: '\e9e0';
+}
+.pmicons-chevron-up-small-1px:before {
+	content: '\e9e1';
+}
+.pmicons-chevron-up-small-bold:before {
+	content: '\e9e2';
+}
+.pmicons-chevrons-up-down:before {
+	content: '\e9e3';
+}
+.pmicons-children:before {
+	content: '\e9e4';
+}
+.pmicons-cinema:before {
+	content: '\e9e5';
+}
+.pmicons-circle-account-add-user:before {
+	content: '\e9e6';
+}
+.pmicons-circle-account-user:before {
+	content: '\e9e7';
+}
+.pmicons-circuit:before {
+	content: '\e9e8';
+}
+.pmicons-circular-economy:before {
+	content: '\e9e9';
+}
+.pmicons-city:before {
+	content: '\e9ea';
+}
+.pmicons-civil-liability:before {
+	content: '\e9eb';
+}
+.pmicons-clean:before {
+	content: '\e9ec';
+}
+.pmicons-clients:before {
+	content: '\e9ed';
+}
+.pmicons-climate-change:before {
+	content: '\e9ee';
+}
+.pmicons-clip:before {
+	content: '\e9ef';
+}
+.pmicons-clipboard:before {
+	content: '\e9f0';
+}
+.pmicons-clock-out:before {
+	content: '\e9f1';
+}
+.pmicons-clock-restart:before {
+	content: '\e9f2';
+}
+.pmicons-close-bold:before {
+	content: '\e9f3';
+}
+.pmicons-close1:before {
+	content: '\e9f4';
+}
+.pmicons-cloud:before {
+	content: '\e9f5';
+}
+.pmicons-cloudy:before {
+	content: '\e9f6';
+}
+.pmicons-cms:before {
+	content: '\e9f7';
+}
+.pmicons-code-window:before {
+	content: '\e9f8';
+}
+.pmicons-collapse-keyboard:before {
+	content: '\e9f9';
+}
+.pmicons-commerce:before {
+	content: '\e9fa';
+}
+.pmicons-commodities:before {
+	content: '\e9fb';
+}
+.pmicons-communication-announcement:before {
+	content: '\e9fc';
+}
+.pmicons-communication-message:before {
+	content: '\e9fd';
+}
+.pmicons-company-radar:before {
+	content: '\e9fe';
+}
+.pmicons-confirming-advances-dollar:before {
+	content: '\e9ff';
+}
+.pmicons-confirming-advances-euro:before {
+	content: '\ea00';
+}
+.pmicons-confirming-advances-pound:before {
+	content: '\ea01';
+}
+.pmicons-contacless:before {
+	content: '\ea02';
+}
+.pmicons-contacts:before {
+	content: '\ea03';
+}
+.pmicons-control:before {
+	content: '\ea04';
+}
+.pmicons-coordinates-card:before {
+	content: '\ea05';
+}
+.pmicons-copy-document:before {
+	content: '\ea06';
+}
+.pmicons-correct:before {
+	content: '\ea07';
+}
+.pmicons-countryside:before {
+	content: '\ea08';
+}
+.pmicons-credit-card:before {
+	content: '\ea09';
+}
+.pmicons-credit:before {
+	content: '\ea0a';
+}
+.pmicons-cvv-number:before {
+	content: '\ea0b';
+}
+.pmicons-daily:before {
+	content: '\ea0c';
+}
+.pmicons-day--time-change:before {
+	content: '\ea0d';
+}
+.pmicons-deal-handshake:before {
+	content: '\ea0e';
+}
+.pmicons-dealership:before {
+	content: '\ea0f';
+}
+.pmicons-death:before {
+	content: '\ea10';
+}
+.pmicons-debt:before {
+	content: '\ea11';
+}
+.pmicons-deferred-transfer:before {
+	content: '\ea12';
+}
+.pmicons-definition-of-ready:before {
+	content: '\ea13';
+}
+.pmicons-delivery:before {
+	content: '\ea14';
+}
+.pmicons-deposit-check:before {
+	content: '\ea15';
+}
+.pmicons-deposits:before {
+	content: '\ea16';
+}
+.pmicons-desktop:before {
+	content: '\ea17';
+}
+.pmicons-details:before {
+	content: '\ea18';
+}
+.pmicons-diamond:before {
+	content: '\ea19';
+}
+.pmicons-dice:before {
+	content: '\ea1a';
+}
+.pmicons-digital-channels:before {
+	content: '\ea1b';
+}
+.pmicons-digital-subscriptions-cards:before {
+	content: '\ea1c';
+}
+.pmicons-digital-subscriptions-contactless:before {
+	content: '\ea1d';
+}
+.pmicons-digital-subscriptions:before {
+	content: '\ea1e';
+}
+.pmicons-direct-money:before {
+	content: '\ea1f';
+}
+.pmicons-dirty:before {
+	content: '\ea20';
+}
+.pmicons-disable-user:before {
+	content: '\ea21';
+}
+.pmicons-discount-card:before {
+	content: '\ea22';
+}
+.pmicons-discount:before {
+	content: '\ea23';
+}
+.pmicons-dna:before {
+	content: '\ea24';
+}
+.pmicons-doctor:before {
+	content: '\ea25';
+}
+.pmicons-document-bdr:before {
+	content: '\ea26';
+}
+.pmicons-document-cv:before {
+	content: '\ea27';
+}
+.pmicons-document-doc:before {
+	content: '\ea28';
+}
+.pmicons-document-etf:before {
+	content: '\ea29';
+}
+.pmicons-document-pdf:before {
+	content: '\ea2a';
+}
+.pmicons-document-png:before {
+	content: '\ea2b';
+}
+.pmicons-document-ppt:before {
+	content: '\ea2c';
+}
+.pmicons-document-sketch:before {
+	content: '\ea2d';
+}
+.pmicons-document-svg:before {
+	content: '\ea2e';
+}
+.pmicons-document-txt:before {
+	content: '\ea2f';
+}
+.pmicons-document-xls:before {
+	content: '\ea30';
+}
+.pmicons-dollar-bill:before {
+	content: '\ea31';
+}
+.pmicons-dollar-symbol:before {
+	content: '\ea32';
+}
+.pmicons-domestic-service:before {
+	content: '\ea33';
+}
+.pmicons-double-arrow:before {
+	content: '\ea34';
+}
+.pmicons-double-tap:before {
+	content: '\ea35';
+}
+.pmicons-download-from-cloud:before {
+	content: '\ea36';
+}
+.pmicons-download-incomplete:before {
+	content: '\ea37';
+}
+.pmicons-download:before {
+	content: '\ea38';
+}
+.pmicons-dragndrop:before {
+	content: '\ea39';
+}
+.pmicons-duplicated-receipt:before {
+	content: '\ea3a';
+}
+.pmicons-dynamics:before {
+	content: '\ea3b';
+}
+.pmicons-e:before {
+	content: '\ea3c';
+}
+.pmicons-e-card:before {
+	content: '\ea3d';
+}
+.pmicons-edit-transfer:before {
+	content: '\ea3e';
+}
+.pmicons-edit2:before {
+	content: '\ea3f';
+}
+.pmicons-electric-bike:before {
+	content: '\ea40';
+}
+.pmicons-electric-car:before {
+	content: '\ea41';
+}
+.pmicons-email-2px:before {
+	content: '\ea42';
+}
+.pmicons-email-invoice-dollar:before {
+	content: '\ea43';
+}
+.pmicons-email-invoice-euro:before {
+	content: '\ea44';
+}
+.pmicons-email-invoice-pound:before {
+	content: '\ea45';
+}
+.pmicons-email:before {
+	content: '\ea46';
+}
+.pmicons-emoji-angry:before {
+	content: '\ea47';
+}
+.pmicons-emoji-happy:before {
+	content: '\ea48';
+}
+.pmicons-emoji-kiss:before {
+	content: '\ea49';
+}
+.pmicons-emoji-neutral:before {
+	content: '\ea4a';
+}
+.pmicons-emoji-reised-eyebrow:before {
+	content: '\ea4b';
+}
+.pmicons-emoji-sad:before {
+	content: '\ea4c';
+}
+.pmicons-emoji-very-happy:before {
+	content: '\ea4d';
+}
+.pmicons-employees:before {
+	content: '\ea4e';
+}
+.pmicons-energy:before {
+	content: '\ea4f';
+}
+.pmicons-enter-fullscreen:before {
+	content: '\ea50';
+}
+.pmicons-enter-money-atm:before {
+	content: '\ea51';
+}
+.pmicons-enter-pin:before {
+	content: '\ea52';
+}
+.pmicons-entertainment-leisure:before {
+	content: '\ea53';
+}
+.pmicons-entrepreneurship:before {
+	content: '\ea54';
+}
+.pmicons-eolic-energy:before {
+	content: '\ea55';
+}
+.pmicons-epic:before {
+	content: '\ea56';
+}
+.pmicons-equator-principles:before {
+	content: '\ea57';
+}
+.pmicons-error-400-500:before {
+	content: '\ea58';
+}
+.pmicons-error-triangle:before {
+	content: '\ea59';
+}
+.pmicons-error:before {
+	content: '\ea5a';
+}
+.pmicons-esg-funds:before {
+	content: '\ea5b';
+}
+.pmicons-estimation:before {
+	content: '\ea5c';
+}
+.pmicons-euro-bill-note:before {
+	content: '\ea5d';
+}
+.pmicons-Euro-stars-ECB:before {
+	content: '\ea5e';
+}
+.pmicons-euro:before {
+	content: '\ea5f';
+}
+.pmicons-european-chart:before {
+	content: '\ea60';
+}
+.pmicons-exhange:before {
+	content: '\ea61';
+}
+.pmicons-exit-fullscreen:before {
+	content: '\ea62';
+}
+.pmicons-face-id-apple:before {
+	content: '\ea63';
+}
+.pmicons-face-id:before {
+	content: '\ea64';
+}
+.pmicons-factoring-dollar:before {
+	content: '\ea65';
+}
+.pmicons-factoring-euro:before {
+	content: '\ea66';
+}
+.pmicons-factoring-pound:before {
+	content: '\ea67';
+}
+.pmicons-factoring1:before {
+	content: '\ea68';
+}
+.pmicons-factory-net-zero-carbon-emissions:before {
+	content: '\ea69';
+}
+.pmicons-factory1:before {
+	content: '\ea6a';
+}
+.pmicons-family:before {
+	content: '\ea6b';
+}
+.pmicons-faq:before {
+	content: '\ea6c';
+}
+.pmicons-fashion:before {
+	content: '\ea6d';
+}
+.pmicons-fatca:before {
+	content: '\ea6e';
+}
+.pmicons-featured:before {
+	content: '\ea6f';
+}
+.pmicons-file-processing:before {
+	content: '\ea70';
+}
+.pmicons-file-transfer:before {
+	content: '\ea71';
+}
+.pmicons-file1:before {
+	content: '\ea72';
+}
+.pmicons-files:before {
+	content: '\ea73';
+}
+.pmicons-filter-deactivate:before {
+	content: '\ea74';
+}
+.pmicons-filter:before {
+	content: '\ea75';
+}
+.pmicons-finance-purchase-dollar:before {
+	content: '\ea76';
+}
+.pmicons-finance-purchase-euro:before {
+	content: '\ea77';
+}
+.pmicons-finance-purchase-pound:before {
+	content: '\ea78';
+}
+.pmicons-financial-indicator:before {
+	content: '\ea79';
+}
+.pmicons-financial-manager:before {
+	content: '\ea7a';
+}
+.pmicons-financing:before {
+	content: '\ea7b';
+}
+.pmicons-finger:before {
+	content: '\ea7c';
+}
+.pmicons-fire:before {
+	content: '\ea7d';
+}
+.pmicons-firewall:before {
+	content: '\ea7e';
+}
+.pmicons-fishermen:before {
+	content: '\ea7f';
+}
+.pmicons-fixed-expenses:before {
+	content: '\ea80';
+}
+.pmicons-flag:before {
+	content: '\ea81';
+}
+.pmicons-fog:before {
+	content: '\ea82';
+}
+.pmicons-folder:before {
+	content: '\ea83';
+}
+.pmicons-font-adjust:before {
+	content: '\ea84';
+}
+.pmicons-font-size-decrease:before {
+	content: '\ea85';
+}
+.pmicons-font-size-increase:before {
+	content: '\ea86';
+}
+.pmicons-foreign-trade:before {
+	content: '\ea87';
+}
+.pmicons-fragile:before {
+	content: '\ea88';
+}
+.pmicons-franchise:before {
+	content: '\ea89';
+}
+.pmicons-fraud:before {
+	content: '\ea8a';
+}
+.pmicons-free-wi-fi-1:before {
+	content: '\ea8b';
+}
+.pmicons-free-wi-fi:before {
+	content: '\ea8c';
+}
+.pmicons-full-screen-2:before {
+	content: '\ea8d';
+}
+.pmicons-full-screen-exit:before {
+	content: '\ea8e';
+}
+.pmicons-full-screen:before {
+	content: '\ea8f';
+}
+.pmicons-funds-transfer:before {
+	content: '\ea90';
+}
+.pmicons-furniture:before {
+	content: '\ea91';
+}
+.pmicons-gale:before {
+	content: '\ea92';
+}
+.pmicons-gas-station:before {
+	content: '\ea93';
+}
+.pmicons-general-transfers:before {
+	content: '\ea94';
+}
+.pmicons-get-money-atm-code:before {
+	content: '\ea95';
+}
+.pmicons-get-pin-number:before {
+	content: '\ea96';
+}
+.pmicons-get-your-key:before {
+	content: '\ea97';
+}
+.pmicons-ghost-1:before {
+	content: '\ea98';
+}
+.pmicons-ghost:before {
+	content: '\ea99';
+}
+.pmicons-gift-card:before {
+	content: '\ea9a';
+}
+.pmicons-gift-ticket:before {
+	content: '\ea9b';
+}
+.pmicons-gift:before {
+	content: '\ea9c';
+}
+.pmicons-gold:before {
+	content: '\ea9d';
+}
+.pmicons-golf:before {
+	content: '\ea9e';
+}
+.pmicons-green-asset:before {
+	content: '\ea9f';
+}
+.pmicons-green-bond:before {
+	content: '\eaa0';
+}
+.pmicons-hair-stylist:before {
+	content: '\eaa1';
+}
+.pmicons-hammer:before {
+	content: '\eaa2';
+}
+.pmicons-handqr:before {
+	content: '\eaa3';
+}
+.pmicons-hat:before {
+	content: '\eaa4';
+}
+.pmicons-health-check:before {
+	content: '\eaa5';
+}
+.pmicons-health-insurance:before {
+	content: '\eaa6';
+}
+.pmicons-heart:before {
+	content: '\eaa7';
+}
+.pmicons-help-2px:before {
+	content: '\eaa8';
+}
+.pmicons-help-in-a-circle:before {
+	content: '\eaa9';
+}
+.pmicons-help-us-to-improve:before {
+	content: '\eaaa';
+}
+.pmicons-help:before {
+	content: '\eaab';
+}
+.pmicons-hi-contrast:before {
+	content: '\eaac';
+}
+.pmicons-highlighted-services:before {
+	content: '\eaad';
+}
+.pmicons-highway:before {
+	content: '\eaae';
+}
+.pmicons-history:before {
+	content: '\eaaf';
+}
+.pmicons-home:before {
+	content: '\eab0';
+}
+.pmicons-hospital:before {
+	content: '\eab1';
+}
+.pmicons-housing:before {
+	content: '\eab2';
+}
+.pmicons-id-card:before {
+	content: '\eab3';
+}
+.pmicons-idea:before {
+	content: '\eab4';
+}
+.pmicons-image-unavailable:before {
+	content: '\eab5';
+}
+.pmicons-image:before {
+	content: '\eab6';
+}
+.pmicons-inbox:before {
+	content: '\eab7';
+}
+.pmicons-income-expenses:before {
+	content: '\eab8';
+}
+.pmicons-income-tax:before {
+	content: '\eab9';
+}
+.pmicons-income-taxes:before {
+	content: '\eaba';
+}
+.pmicons-increase2:before {
+	content: '\eabb';
+}
+.pmicons-industry-workers:before {
+	content: '\eabc';
+}
+.pmicons-info-circle:before {
+	content: '\eabd';
+}
+.pmicons-information-in-a-circle-2px:before {
+	content: '\eabe';
+}
+.pmicons-infringements:before {
+	content: '\eabf';
+}
+.pmicons-input:before {
+	content: '\eac0';
+}
+.pmicons-inspection:before {
+	content: '\eac1';
+}
+.pmicons-insurance:before {
+	content: '\eac2';
+}
+.pmicons-international-financing:before {
+	content: '\eac3';
+}
+.pmicons-international:before {
+	content: '\eac4';
+}
+.pmicons-invest1:before {
+	content: '\eac5';
+}
+.pmicons-investment-fund:before {
+	content: '\eac6';
+}
+.pmicons-investment-small-caps:before {
+	content: '\eac7';
+}
+.pmicons-investment-team:before {
+	content: '\eac8';
+}
+.pmicons-investment:before {
+	content: '\eac9';
+}
+.pmicons-investor-profile:before {
+	content: '\eaca';
+}
+.pmicons-keep-your-distance:before {
+	content: '\eacb';
+}
+.pmicons-key:before {
+	content: '\eacc';
+}
+.pmicons-king:before {
+	content: '\eacd';
+}
+.pmicons-lake-1:before {
+	content: '\eace';
+}
+.pmicons-lake:before {
+	content: '\eacf';
+}
+.pmicons-lamp:before {
+	content: '\ead0';
+}
+.pmicons-language:before {
+	content: '\ead1';
+}
+.pmicons-laptop:before {
+	content: '\ead2';
+}
+.pmicons-legal-document:before {
+	content: '\ead3';
+}
+.pmicons-levy-received-dollar:before {
+	content: '\ead4';
+}
+.pmicons-levy-received-euro:before {
+	content: '\ead5';
+}
+.pmicons-levy-received-pound:before {
+	content: '\ead6';
+}
+.pmicons-levy-sent-dollar:before {
+	content: '\ead7';
+}
+.pmicons-levy-sent-euro:before {
+	content: '\ead8';
+}
+.pmicons-levy-sent-pound:before {
+	content: '\ead9';
+}
+.pmicons-life-saver:before {
+	content: '\eada';
+}
+.pmicons-life-show:before {
+	content: '\eadb';
+}
+.pmicons-life-to-your-mesure:before {
+	content: '\eadc';
+}
+.pmicons-lightening:before {
+	content: '\eadd';
+}
+.pmicons-lighthouse:before {
+	content: '\eade';
+}
+.pmicons-linear-economy:before {
+	content: '\eadf';
+}
+.pmicons-link:before {
+	content: '\eae0';
+}
+.pmicons-liquidation:before {
+	content: '\eae1';
+}
+.pmicons-list1:before {
+	content: '\eae2';
+}
+.pmicons-loan:before {
+	content: '\eae3';
+}
+.pmicons-local-commerce:before {
+	content: '\eae4';
+}
+.pmicons-location-active:before {
+	content: '\eae5';
+}
+.pmicons-location:before {
+	content: '\eae6';
+}
+.pmicons-lockout:before {
+	content: '\eae7';
+}
+.pmicons-loyalty-card:before {
+	content: '\eae8';
+}
+.pmicons-luggage:before {
+	content: '\eae9';
+}
+.pmicons-magnet:before {
+	content: '\eaea';
+}
+.pmicons-magnifying-glass-bold:before {
+	content: '\eaeb';
+}
+.pmicons-magnifying-glass:before {
+	content: '\eaec';
+}
+.pmicons-maintenance:before {
+	content: '\eaed';
+}
+.pmicons-management-health:before {
+	content: '\eaee';
+}
+.pmicons-management:before {
+	content: '\eaef';
+}
+.pmicons-marternity:before {
+	content: '\eaf0';
+}
+.pmicons-maternity:before {
+	content: '\eaf1';
+}
+.pmicons-medal:before {
+	content: '\eaf2';
+}
+.pmicons-medium-long-term-financing:before {
+	content: '\eaf3';
+}
+.pmicons-message-details:before {
+	content: '\eaf4';
+}
+.pmicons-message-info:before {
+	content: '\eaf5';
+}
+.pmicons-mic-off:before {
+	content: '\eaf6';
+}
+.pmicons-mic-on:before {
+	content: '\eaf7';
+}
+.pmicons-mic:before {
+	content: '\eaf8';
+}
+.pmicons-minimise-1px:before {
+	content: '\eaf9';
+}
+.pmicons-minimise:before {
+	content: '\eafa';
+}
+.pmicons-minus-in-a-circle:before {
+	content: '\eafb';
+}
+.pmicons-miscellaneous:before {
+	content: '\eafc';
+}
+.pmicons-mobile-chart:before {
+	content: '\eafd';
+}
+.pmicons-mobile-landscape:before {
+	content: '\eafe';
+}
+.pmicons-mobile-message:before {
+	content: '\eaff';
+}
+.pmicons-mobile-payment:before {
+	content: '\eb00';
+}
+.pmicons-mobile-top-up:before {
+	content: '\eb01';
+}
+.pmicons-mobile:before {
+	content: '\eb02';
+}
+.pmicons-modify-liquidation-method:before {
+	content: '\eb03';
+}
+.pmicons-money-cash-dollar:before {
+	content: '\eb04';
+}
+.pmicons-money-cash-euro:before {
+	content: '\eb05';
+}
+.pmicons-money-cash-pound:before {
+	content: '\eb06';
+}
+.pmicons-moon--clouds:before {
+	content: '\eb07';
+}
+.pmicons-moon:before {
+	content: '\eb08';
+}
+.pmicons-more-in-a-circle:before {
+	content: '\eb09';
+}
+.pmicons-mortgage:before {
+	content: '\eb0a';
+}
+.pmicons-mortgages-dollar:before {
+	content: '\eb0b';
+}
+.pmicons-mortgages-euro:before {
+	content: '\eb0c';
+}
+.pmicons-mortgages-pound:before {
+	content: '\eb0d';
+}
+.pmicons-motor-sports:before {
+	content: '\eb0e';
+}
+.pmicons-motorbike:before {
+	content: '\eb0f';
+}
+.pmicons-mountains:before {
+	content: '\eb10';
+}
+.pmicons-mouse1:before {
+	content: '\eb11';
+}
+.pmicons-multicars:before {
+	content: '\eb12';
+}
+.pmicons-music:before {
+	content: '\eb13';
+}
+.pmicons-nail:before {
+	content: '\eb14';
+}
+.pmicons-network-share:before {
+	content: '\eb15';
+}
+.pmicons-new-account:before {
+	content: '\eb16';
+}
+.pmicons-newspaper:before {
+	content: '\eb17';
+}
+.pmicons-nfc-bracelet:before {
+	content: '\eb18';
+}
+.pmicons-nfc-sticker:before {
+	content: '\eb19';
+}
+.pmicons-nfc:before {
+	content: '\eb1a';
+}
+.pmicons-no-messages:before {
+	content: '\eb1b';
+}
+.pmicons-no-transactions:before {
+	content: '\eb1c';
+}
+.pmicons-non-supported-browser:before {
+	content: '\eb1d';
+}
+.pmicons-notification-settings:before {
+	content: '\eb1e';
+}
+.pmicons-now-logo:before {
+	content: '\eb1f';
+}
+.pmicons-nut:before {
+	content: '\eb20';
+}
+.pmicons-nutritional:before {
+	content: '\eb21';
+}
+.pmicons-offer-discount:before {
+	content: '\eb22';
+}
+.pmicons-office-workers:before {
+	content: '\eb23';
+}
+.pmicons-old-version:before {
+	content: '\eb24';
+}
+.pmicons-one-time-payment-dollar:before {
+	content: '\eb25';
+}
+.pmicons-one-time-payment-euro:before {
+	content: '\eb26';
+}
+.pmicons-one-time-payment-pound:before {
+	content: '\eb27';
+}
+.pmicons-online-banking:before {
+	content: '\eb28';
+}
+.pmicons-online-trading:before {
+	content: '\eb29';
+}
+.pmicons-online-value-dollar:before {
+	content: '\eb2a';
+}
+.pmicons-online-value-euro:before {
+	content: '\eb2b';
+}
+.pmicons-online-value-pound:before {
+	content: '\eb2c';
+}
+.pmicons-operability-level:before {
+	content: '\eb2d';
+}
+.pmicons-operate-without-card:before {
+	content: '\eb2e';
+}
+.pmicons-orthdontics:before {
+	content: '\eb2f';
+}
+.pmicons-other-expenses:before {
+	content: '\eb30';
+}
+.pmicons-others:before {
+	content: '\eb31';
+}
+.pmicons-overdraft:before {
+	content: '\eb32';
+}
+.pmicons-owl:before {
+	content: '\eb33';
+}
+.pmicons-pacman-1:before {
+	content: '\eb34';
+}
+.pmicons-pacman:before {
+	content: '\eb35';
+}
+.pmicons-paris-agreement:before {
+	content: '\eb36';
+}
+.pmicons-party:before {
+	content: '\eb37';
+}
+.pmicons-passport:before {
+	content: '\eb38';
+}
+.pmicons-password-typing:before {
+	content: '\eb39';
+}
+.pmicons-payment-dollar:before {
+	content: '\eb3a';
+}
+.pmicons-payment-done:before {
+	content: '\eb3b';
+}
+.pmicons-payment-error:before {
+	content: '\eb3c';
+}
+.pmicons-payment-euro:before {
+	content: '\eb3d';
+}
+.pmicons-payment-in-progress-dollar:before {
+	content: '\eb3e';
+}
+.pmicons-payment-in-progress-euro:before {
+	content: '\eb3f';
+}
+.pmicons-payment-in-progress-pound:before {
+	content: '\eb40';
+}
+.pmicons-payment-pound:before {
+	content: '\eb41';
+}
+.pmicons-payment-timeout:before {
+	content: '\eb42';
+}
+.pmicons-paysheet-dollar:before {
+	content: '\eb43';
+}
+.pmicons-paysheet-euro:before {
+	content: '\eb44';
+}
+.pmicons-paysheet-pound:before {
+	content: '\eb45';
+}
+.pmicons-percent:before {
+	content: '\eb46';
+}
+.pmicons-periodic-transfer:before {
+	content: '\eb47';
+}
+.pmicons-periodical-input:before {
+	content: '\eb48';
+}
+.pmicons-personal-manager:before {
+	content: '\eb49';
+}
+.pmicons-personal-protection:before {
+	content: '\eb4a';
+}
+.pmicons-petrol-tower:before {
+	content: '\eb4b';
+}
+.pmicons-petty-cash:before {
+	content: '\eb4c';
+}
+.pmicons-phishing:before {
+	content: '\eb4d';
+}
+.pmicons-phising:before {
+	content: '\eb4e';
+}
+.pmicons-phone-24h:before {
+	content: '\eb4f';
+}
+.pmicons-phone-call:before {
+	content: '\eb50';
+}
+.pmicons-phone-support:before {
+	content: '\eb51';
+}
+.pmicons-phone:before {
+	content: '\eb52';
+}
+.pmicons-pill:before {
+	content: '\eb53';
+}
+.pmicons-pin:before {
+	content: '\eb54';
+}
+.pmicons-pinch:before {
+	content: '\eb55';
+}
+.pmicons-pix:before {
+	content: '\eb56';
+}
+.pmicons-pizza-chart:before {
+	content: '\eb57';
+}
+.pmicons-place:before {
+	content: '\eb58';
+}
+.pmicons-placeholder:before {
+	content: '\eb59';
+}
+.pmicons-plane:before {
+	content: '\eb5a';
+}
+.pmicons-play-button:before {
+	content: '\eb5b';
+}
+.pmicons-plug:before {
+	content: '\eb5c';
+}
+.pmicons-plus-bolder:before {
+	content: '\eb5d';
+}
+.pmicons-plus1:before {
+	content: '\eb5e';
+}
+.pmicons-plusless:before {
+	content: '\eb5f';
+}
+.pmicons-popup:before {
+	content: '\eb60';
+}
+.pmicons-portability:before {
+	content: '\eb61';
+}
+.pmicons-portfolio-alignment:before {
+	content: '\eb62';
+}
+.pmicons-portfolio-of-values-1:before {
+	content: '\eb63';
+}
+.pmicons-portfolio-of-values:before {
+	content: '\eb64';
+}
+.pmicons-position:before {
+	content: '\eb65';
+}
+.pmicons-pound-note:before {
+	content: '\eb66';
+}
+.pmicons-pound-symbol:before {
+	content: '\eb67';
+}
+.pmicons-power:before {
+	content: '\eb68';
+}
+.pmicons-previous-transfers:before {
+	content: '\eb69';
+}
+.pmicons-price:before {
+	content: '\eb6a';
+}
+.pmicons-printer:before {
+	content: '\eb6b';
+}
+.pmicons-product-delivery:before {
+	content: '\eb6c';
+}
+.pmicons-productowner:before {
+	content: '\eb6d';
+}
+.pmicons-protected-home-1:before {
+	content: '\eb6e';
+}
+.pmicons-protected-home:before {
+	content: '\eb6f';
+}
+.pmicons-public-transportation:before {
+	content: '\eb70';
+}
+.pmicons-puzzle:before {
+	content: '\eb71';
+}
+.pmicons-qr-advanced:before {
+	content: '\eb72';
+}
+.pmicons-qr-code:before {
+	content: '\eb73';
+}
+.pmicons-queries:before {
+	content: '\eb74';
+}
+.pmicons-quick-appointment:before {
+	content: '\eb75';
+}
+.pmicons-quotations:before {
+	content: '\eb76';
+}
+.pmicons-rackets-sports:before {
+	content: '\eb77';
+}
+.pmicons-radar:before {
+	content: '\eb78';
+}
+.pmicons-radio-button:before {
+	content: '\eb79';
+}
+.pmicons-radio:before {
+	content: '\eb7a';
+}
+.pmicons-rain-shower:before {
+	content: '\eb7b';
+}
+.pmicons-rain:before {
+	content: '\eb7c';
+}
+.pmicons-reactivate-user:before {
+	content: '\eb7d';
+}
+.pmicons-realestatecredit:before {
+	content: '\eb7e';
+}
+.pmicons-realestatevalue:before {
+	content: '\eb7f';
+}
+.pmicons-receipt--bills:before {
+	content: '\eb80';
+}
+.pmicons-receipt-management:before {
+	content: '\eb81';
+}
+.pmicons-receive-1:before {
+	content: '\eb82';
+}
+.pmicons-receive-copy-3:before {
+	content: '\eb83';
+}
+.pmicons-receive:before {
+	content: '\eb84';
+}
+.pmicons-recover-access-keys:before {
+	content: '\eb85';
+}
+.pmicons-recurrent-payment-dollar:before {
+	content: '\eb86';
+}
+.pmicons-recurrent-payment-euro:before {
+	content: '\eb87';
+}
+.pmicons-recurrent-payment-pound:before {
+	content: '\eb88';
+}
+.pmicons-recycling:before {
+	content: '\eb89';
+}
+.pmicons-redemption-dollar:before {
+	content: '\eb8a';
+}
+.pmicons-redemption-euro:before {
+	content: '\eb8b';
+}
+.pmicons-redemption-pound:before {
+	content: '\eb8c';
+}
+.pmicons-refer-a-friend:before {
+	content: '\eb8d';
+}
+.pmicons-refinement:before {
+	content: '\eb8e';
+}
+.pmicons-reform:before {
+	content: '\eb8f';
+}
+.pmicons-reforms-decorations:before {
+	content: '\eb90';
+}
+.pmicons-refresh-reload-screen:before {
+	content: '\eb91';
+}
+.pmicons-regulation:before {
+	content: '\eb92';
+}
+.pmicons-rejected-receipts:before {
+	content: '\eb93';
+}
+.pmicons-reload:before {
+	content: '\eb94';
+}
+.pmicons-remittances-dollar:before {
+	content: '\eb95';
+}
+.pmicons-remittances-euro:before {
+	content: '\eb96';
+}
+.pmicons-remittances-pound:before {
+	content: '\eb97';
+}
+.pmicons-remove-adding-profile:before {
+	content: '\eb98';
+}
+.pmicons-remove-profile:before {
+	content: '\eb99';
+}
+.pmicons-renegotiate:before {
+	content: '\eb9a';
+}
+.pmicons-renegotiation:before {
+	content: '\eb9b';
+}
+.pmicons-renovation:before {
+	content: '\eb9c';
+}
+.pmicons-renting-car:before {
+	content: '\eb9d';
+}
+.pmicons-renting-home:before {
+	content: '\eb9e';
+}
+.pmicons-reports:before {
+	content: '\eb9f';
+}
+.pmicons-request-appointment:before {
+	content: '\eba0';
+}
+.pmicons-rescue-investment:before {
+	content: '\eba1';
+}
+.pmicons-responsible-investment:before {
+	content: '\eba2';
+}
+.pmicons-responsible-ranking:before {
+	content: '\eba3';
+}
+.pmicons-restaurant-bar:before {
+	content: '\eba4';
+}
+.pmicons-retail:before {
+	content: '\eba5';
+}
+.pmicons-retirement-plan-elderly:before {
+	content: '\eba6';
+}
+.pmicons-retrospective:before {
+	content: '\eba7';
+}
+.pmicons-return-receipt:before {
+	content: '\eba8';
+}
+.pmicons-return:before {
+	content: '\eba9';
+}
+.pmicons-ribbon:before {
+	content: '\ebaa';
+}
+.pmicons-pm-id:before {
+	content: '\ebab';
+}
+.pmicons-pm-plus:before {
+	content: '\ebac';
+}
+.pmicons-pm:before {
+	content: '\ebad';
+}
+.pmicons-saving-account-dollar:before {
+	content: '\ebae';
+}
+.pmicons-saving-account-euro:before {
+	content: '\ebaf';
+}
+.pmicons-saving-account-pound:before {
+	content: '\ebb0';
+}
+.pmicons-saving-investment:before {
+	content: '\ebb1';
+}
+.pmicons-savings:before {
+	content: '\ebb2';
+}
+.pmicons-scales:before {
+	content: '\ebb3';
+}
+.pmicons-scanner-1:before {
+	content: '\ebb4';
+}
+.pmicons-scanner:before {
+	content: '\ebb5';
+}
+.pmicons-schedule-payment-dollar:before {
+	content: '\ebb6';
+}
+.pmicons-schedule-payment-euro:before {
+	content: '\ebb7';
+}
+.pmicons-schedule-payment-pound:before {
+	content: '\ebb8';
+}
+.pmicons-schedule-spending-dollar:before {
+	content: '\ebb9';
+}
+.pmicons-schedule-spending-euro:before {
+	content: '\ebba';
+}
+.pmicons-schedule-spending-pound:before {
+	content: '\ebbb';
+}
+.pmicons-screwdriver:before {
+	content: '\ebbc';
+}
+.pmicons-scroll:before {
+	content: '\ebbd';
+}
+.pmicons-scrum-master:before {
+	content: '\ebbe';
+}
+.pmicons-scrum:before {
+	content: '\ebbf';
+}
+.pmicons-seafood:before {
+	content: '\ebc0';
+}
+.pmicons-security-advice:before {
+	content: '\ebc1';
+}
+.pmicons-security-block:before {
+	content: '\ebc2';
+}
+.pmicons-security-close:before {
+	content: '\ebc3';
+}
+.pmicons-security-configuration:before {
+	content: '\ebc4';
+}
+.pmicons-security-error:before {
+	content: '\ebc5';
+}
+.pmicons-security-open:before {
+	content: '\ebc6';
+}
+.pmicons-security-verified:before {
+	content: '\ebc7';
+}
+.pmicons-security:before {
+	content: '\ebc8';
+}
+.pmicons-securize-payment:before {
+	content: '\ebc9';
+}
+.pmicons-selfie:before {
+	content: '\ebca';
+}
+.pmicons-send:before {
+	content: '\ebcb';
+}
+.pmicons-sepa-transfers:before {
+	content: '\ebcc';
+}
+.pmicons-settings:before {
+	content: '\ebcd';
+}
+.pmicons-share:before {
+	content: '\ebce';
+}
+.pmicons-shareholders:before {
+	content: '\ebcf';
+}
+.pmicons-short-term-financing:before {
+	content: '\ebd0';
+}
+.pmicons-shower:before {
+	content: '\ebd1';
+}
+.pmicons-shuffle:before {
+	content: '\ebd2';
+}
+.pmicons-sign-in:before {
+	content: '\ebd3';
+}
+.pmicons-sign-language:before {
+	content: '\ebd4';
+}
+.pmicons-sign-off:before {
+	content: '\ebd5';
+}
+.pmicons-sign-up:before {
+	content: '\ebd6';
+}
+.pmicons-signature-pending:before {
+	content: '\ebd7';
+}
+.pmicons-sim-chip-insert:before {
+	content: '\ebd8';
+}
+.pmicons-sim-chip:before {
+	content: '\ebd9';
+}
+.pmicons-sinister-car:before {
+	content: '\ebda';
+}
+.pmicons-sitemap:before {
+	content: '\ebdb';
+}
+.pmicons-sky:before {
+	content: '\ebdc';
+}
+.pmicons-smartwatch-payment:before {
+	content: '\ebdd';
+}
+.pmicons-smartwatch:before {
+	content: '\ebde';
+}
+.pmicons-snow:before {
+	content: '\ebdf';
+}
+.pmicons-snowflake:before {
+	content: '\ebe0';
+}
+.pmicons-soap:before {
+	content: '\ebe1';
+}
+.pmicons-soccer:before {
+	content: '\ebe2';
+}
+.pmicons-solar-energy:before {
+	content: '\ebe3';
+}
+.pmicons-solidarity-rounding:before {
+	content: '\ebe4';
+}
+.pmicons-sound-wave:before {
+	content: '\ebe5';
+}
+.pmicons-spa:before {
+	content: '\ebe6';
+}
+.pmicons-speeches:before {
+	content: '\ebe7';
+}
+.pmicons-sports-risk:before {
+	content: '\ebe8';
+}
+.pmicons-sports:before {
+	content: '\ebe9';
+}
+.pmicons-sprint-review:before {
+	content: '\ebea';
+}
+.pmicons-sprint:before {
+	content: '\ebeb';
+}
+.pmicons-sprintplaning:before {
+	content: '\ebec';
+}
+.pmicons-stack:before {
+	content: '\ebed';
+}
+.pmicons-star2:before {
+	content: '\ebee';
+}
+.pmicons-statements-dollar:before {
+	content: '\ebef';
+}
+.pmicons-statements-euro:before {
+	content: '\ebf0';
+}
+.pmicons-statements-pound:before {
+	content: '\ebf1';
+}
+.pmicons-stay-home:before {
+	content: '\ebf2';
+}
+.pmicons-steps:before {
+	content: '\ebf3';
+}
+.pmicons-stock-exchange:before {
+	content: '\ebf4';
+}
+.pmicons-strategy:before {
+	content: '\ebf5';
+}
+.pmicons-student:before {
+	content: '\ebf6';
+}
+.pmicons-subscription-model:before {
+	content: '\ebf7';
+}
+.pmicons-subscription:before {
+	content: '\ebf8';
+}
+.pmicons-subtract-1px:before {
+	content: '\ebf9';
+}
+.pmicons-subtract:before {
+	content: '\ebfa';
+}
+.pmicons-subway:before {
+	content: '\ebfb';
+}
+.pmicons-success-circle:before {
+	content: '\ebfc';
+}
+.pmicons-success:before {
+	content: '\ebfd';
+}
+.pmicons-sun--cloud:before {
+	content: '\ebfe';
+}
+.pmicons-sunny:before {
+	content: '\ebff';
+}
+.pmicons-supermarket-cart:before {
+	content: '\ec00';
+}
+.pmicons-suppliers:before {
+	content: '\ec01';
+}
+.pmicons-sustainable-development-goals:before {
+	content: '\ec02';
+}
+.pmicons-sustainable-services:before {
+	content: '\ec03';
+}
+.pmicons-sustainibility-linked-loans:before {
+	content: '\ec04';
+}
+.pmicons-swift-cards:before {
+	content: '\ec05';
+}
+.pmicons-swipe-down:before {
+	content: '\ec06';
+}
+.pmicons-swipe-left:before {
+	content: '\ec07';
+}
+.pmicons-swipe-right:before {
+	content: '\ec08';
+}
+.pmicons-swipe-up:before {
+	content: '\ec09';
+}
+.pmicons-tailor:before {
+	content: '\ec0a';
+}
+.pmicons-tampon:before {
+	content: '\ec0b';
+}
+.pmicons-tap:before {
+	content: '\ec0c';
+}
+.pmicons-task-force:before {
+	content: '\ec0d';
+}
+.pmicons-taxes:before {
+	content: '\ec0e';
+}
+.pmicons-taxonomy-regulation:before {
+	content: '\ec0f';
+}
+.pmicons-team-interaction:before {
+	content: '\ec10';
+}
+.pmicons-team-managament:before {
+	content: '\ec11';
+}
+.pmicons-team-together:before {
+	content: '\ec12';
+}
+.pmicons-technological-renting:before {
+	content: '\ec13';
+}
+.pmicons-terminal-code:before {
+	content: '\ec14';
+}
+.pmicons-terms-conditions:before {
+	content: '\ec15';
+}
+.pmicons-ticket-movie:before {
+	content: '\ec16';
+}
+.pmicons-time:before {
+	content: '\ec17';
+}
+.pmicons-token-migration:before {
+	content: '\ec18';
+}
+.pmicons-token:before {
+	content: '\ec19';
+}
+.pmicons-torch:before {
+	content: '\ec1a';
+}
+.pmicons-tow-truck:before {
+	content: '\ec1b';
+}
+.pmicons-trade-whatsapp:before {
+	content: '\ec1c';
+}
+.pmicons-train:before {
+	content: '\ec1d';
+}
+.pmicons-training:before {
+	content: '\ec1e';
+}
+.pmicons-transfer-2:before {
+	content: '\ec1f';
+}
+.pmicons-transfer1:before {
+	content: '\ec20';
+}
+.pmicons-transitions:before {
+	content: '\ec21';
+}
+.pmicons-trash:before {
+	content: '\ec22';
+}
+.pmicons-travel:before {
+	content: '\ec23';
+}
+.pmicons-trophy:before {
+	content: '\ec24';
+}
+.pmicons-truck:before {
+	content: '\ec25';
+}
+.pmicons-tutorial:before {
+	content: '\ec26';
+}
+.pmicons-tv:before {
+	content: '\ec27';
+}
+.pmicons-two-double-tap:before {
+	content: '\ec28';
+}
+.pmicons-two-tap:before {
+	content: '\ec29';
+}
+.pmicons-unblock-card:before {
+	content: '\ec2a';
+}
+.pmicons-unicorn:before {
+	content: '\ec2b';
+}
+.pmicons-update1:before {
+	content: '\ec2c';
+}
+.pmicons-upload-to-cloud:before {
+	content: '\ec2d';
+}
+.pmicons-upload:before {
+	content: '\ec2e';
+}
+.pmicons-urgent:before {
+	content: '\ec2f';
+}
+.pmicons-userstory:before {
+	content: '\ec30';
+}
+.pmicons-utilities-services:before {
+	content: '\ec31';
+}
+.pmicons-value-decrease:before {
+	content: '\ec32';
+}
+.pmicons-value-increase:before {
+	content: '\ec33';
+}
+.pmicons-value:before {
+	content: '\ec34';
+}
+.pmicons-vegetarian-food:before {
+	content: '\ec35';
+}
+.pmicons-velocity:before {
+	content: '\ec36';
+}
+.pmicons-veterinary:before {
+	content: '\ec37';
+}
+.pmicons-videochat:before {
+	content: '\ec38';
+}
+.pmicons-videoconference:before {
+	content: '\ec39';
+}
+.pmicons-videogames-switch:before {
+	content: '\ec3a';
+}
+.pmicons-videogames:before {
+	content: '\ec3b';
+}
+.pmicons-visibility-off:before {
+	content: '\ec3c';
+}
+.pmicons-visibility-on:before {
+	content: '\ec3d';
+}
+.pmicons-wait-outside-the-branch:before {
+	content: '\ec3e';
+}
+.pmicons-wallet2:before {
+	content: '\ec3f';
+}
+.pmicons-warning-circle:before {
+	content: '\ec40';
+}
+.pmicons-warning:before {
+	content: '\ec41';
+}
+.pmicons-wash-your-hands:before {
+	content: '\ec42';
+}
+.pmicons-water-drop:before {
+	content: '\ec43';
+}
+.pmicons-wear-a-face-mask:before {
+	content: '\ec44';
+}
+.pmicons-webmotors:before {
+	content: '\ec45';
+}
+.pmicons-whatsapp:before {
+	content: '\ec46';
+}
+.pmicons-wheelchair-accessibility:before {
+	content: '\ec47';
+}
+.pmicons-wi-fi:before {
+	content: '\ec48';
+}
+.pmicons-window-success:before {
+	content: '\ec49';
+}
+.pmicons-withdraw-dollar:before {
+	content: '\ec4a';
+}
+.pmicons-withdraw-e-cash:before {
+	content: '\ec4b';
+}
+.pmicons-withdraw-euro:before {
+	content: '\ec4c';
+}
+.pmicons-withdraw-money-atm:before {
+	content: '\ec4d';
+}
+.pmicons-withdraw-pound:before {
+	content: '\ec4e';
+}
+.pmicons-withdraw-receipt-atm:before {
+	content: '\ec4f';
+}
+.pmicons-woman:before {
+	content: '\ec50';
+}
+.pmicons-yoga-relax:before {
+	content: '\ec51';
+}
+.pmicons-zoom-in:before {
+	content: '\ec52';
+}
+.pmicons-zoom-out:before {
+	content: '\ec53';
+}

@@ -1,0 +1,213 @@
+<div #tableContainer>
+	<!-- TABLE VIEW -->
+	<table
+		class="hidden md:table w-full whitespace-nowrap bg-color-background-alternative table-fixed md:bg-color-surface-primary rounded-pmds sticky-column"
+	>
+		<thead>
+			<tr
+				class="text-left text-color-text-primary font-body-m-bold border-color-border-default bg-color-background-alternative"
+			>
+				@if (showSelectRow) {
+				<th
+					class="font-body-m-bold bg-color-surface-primary w-6 pl-4 py-3 last:pr-4 last:text-right"
+				>
+					@if (form) {
+					<form [formGroup]="form">
+						<pmds-cdk-checkbox
+							label=""
+							formControlName="checkbox"
+						/>
+					</form>
+					}
+				</th>
+				} @for (headerConfig of headerColumnsConfig; track
+				headerConfig.label) {
+				<th
+					class="{{ headerConfig?.styles }}
+							font-body-m-bold
+							w-10
+							py-3
+							last:pr-4
+							last:text-right
+						"
+					[ngClass]="{
+						'pl-4': $index === 0 && !showSelectRow,
+						'hover:cursor-pointer': !!headerConfig.action
+					}"
+					[attr.data-qa-id]="
+						dataQA + componentSelector + 'table-header-' + $index
+					"
+					(click)="
+						onHeadClicked(headerConfig?.action, $index);
+						onHeaderMouseOut()
+					"
+				>
+					<div
+						class="w-auto block overflow-hidden"
+						(mouseleave)="onHeaderMouseOut()"
+					>
+						<span
+							pmdsTitle
+							[forceTitle]="true"
+							class="inline-block shrink max-w-full mb-[-7px]"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								'table-header-label-' +
+								$index
+							"
+							[ngStyle]="{
+								'max-width':
+									!!headerConfig.action &&
+									!!headerConfig.tooltip
+										? 'calc(100% - 50px)'
+										: (!!headerConfig.action &&
+												!headerConfig.tooltip) ||
+										  (!headerConfig.action &&
+												!!headerConfig.tooltip)
+										? 'calc(100% - 25px)'
+										: '100%'
+							}"
+							(mouseenter)="onHeaderMouseEnter($index)"
+						>
+							{{ headerConfig?.label }}
+						</span>
+						@if ((headerConfig?.order && headerConfig.order !==
+						undefined) || headerConfig.action) {
+						<span
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								'table-sort-arrow-' +
+								$index
+							"
+							class="text-color-icon-action m-1 h-6"
+							[ngClass]="{
+								'pmicons-arrow-up':
+									headerConfig?.order === 'ASC' ||
+									(headerHoverIndex === $index &&
+										headerConfig?.order !== 'DES'),
+								'pmicons-arrow-down':
+									headerConfig?.order === 'DES'
+							}"
+						>
+						</span>
+						}
+						<div class="inline-block h-6 align-middle">
+							@if (headerConfig.tooltip) {
+							<span
+								[attr.data-qa-id]="
+									dataQA +
+									componentSelector +
+									'table-tooltip-' +
+									$index
+								"
+								[pmdsTooltip]="headerConfig.tooltip"
+								[pmdsTooltipTitle]="
+									headerConfig.tooltipTitle || null
+								"
+								[pmdsTooltipPosition]="
+									headerConfig.tooltipPosition ||
+									'bottom-center'
+								"
+								class="pmicons-info-circle text-color-icon-info text-xl inline-block ml-1"
+							>
+							</span>
+							}
+						</div>
+					</div>
+				</th>
+				}
+			</tr>
+		</thead>
+		@if (!showOnlyHeader) {
+		<tbody>
+			@for (item of dataCurrentPage; track (item + '-' + $index)) {
+			<tr
+				pmds-cdk-dynamic-row
+				class="border-t border-b text-color-text-primary font-body-s-regular relative py-4 border-color-border-default"
+				[dynamicRowComponent]="rowComponentConfig.component"
+				[data]="item"
+				[rowIndex]="$index"
+				[stylesConfig]="rowComponentConfig.styles"
+				[showSelectRow]="showSelectRow"
+				[ngClass]="{
+					'last:border-b-0': !showBottomBorder,
+					'cursor-pointer hover:bg-color-surface-hover hover:text-color-text-primary active:bg-color-surface-selected-alternative':
+						rowComponentConfig.selectRowAction &&
+						(!item['disabledAction'] ||
+							(!!item['disabledAction'] &&
+								!item['disabledAction']))
+				}"
+				[attr.data-qa-id]="
+					dataQA + componentSelector + 'table-row-' + $index
+				"
+				(click)="onClicked(item)"
+				(selectRow)="getSelectedRows()"
+				[rowSelected]="item.selected"
+			></tr>
+			}
+		</tbody>
+		}
+	</table>
+	<!-- END TABLE VIEW -->
+</div>
+<!-- CARD VIEW -->
+<section class="md:hidden">
+	@for (item of tableData; track item + '-' + $index) {
+	<section
+		class="
+				p-4
+				shadow-floating
+				rounded-pmds
+				relative
+				mb-4
+				last:mb-0
+				bg-color-surface-primary
+				{{ rowComponentConfig.stylesCard }}"
+		[ngClass]="{
+			'cursor-pointer hover:bg-color-surface-hover active:bg-color-surface-selected':
+				rowComponentConfig.selectRowAction &&
+				(!item['disabledAction'] ||
+					(!!item['disabledAction'] && !item['disabledAction']))
+		}"
+		(click)="onCardClicked(item)"
+	>
+		<pmds-cdk-dynamic-card
+			[dynamicCardComponent]="rowComponentConfig.cardComponent"
+			[data]="item"
+			[rowIndex]="$index"
+			[attr.data-qa-id]="
+				dataQA + componentSelector + 'dynamic-card-' + $index
+			"
+		/>
+	</section>
+	}
+	<!-- INFINITY SCROLL -->
+	<section [ngClass]="{ hidden: noMoreData }" [style.height.px]="100">
+		<div [style.marginTop.px]="100" class="w-full text-center">
+			@if (infinityScrollLoading) {
+			<pmds-cdk-loader [isPrimary]="false" [dataQA]="dataQA" />
+			}
+		</div>
+		<div
+			#infinityScroll
+			class="w-full text-center opacity-0"
+			[style.marginTop.px]="200"
+		>
+			.
+		</div>
+	</section>
+	<!-- INFINITY SCROLL -->
+</section>
+<!-- END CARD VIEW -->
+
+<!-- NG CONTENT -->
+@if (!( paginationInfo.actualPage < paginationInfo.total /
+paginationInfo.itemsPage )) {
+<div #content>
+	<ng-content></ng-content>
+</div>
+}
+<!-- END NG CONTENT -->
+<!-- EMPTY STATE REMOVED -->

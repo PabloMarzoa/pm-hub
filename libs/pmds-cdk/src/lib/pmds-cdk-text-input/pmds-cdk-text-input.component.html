@@ -1,0 +1,187 @@
+@if (skeleton) {
+<pmds-cdk-text-input-skeleton
+	class="h-[72px]"
+	[dataQA]="dataQA + componentSelector"
+/>
+} @else {
+<section [class]="'relative w-full font-body-m-regular h-[72px] ' + styles">
+	<!-- INPUT -->
+	<input
+		class="pl-3 py-3 h-12 w-full border text-base outline-none peer [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-pmds"
+		#input
+		aria-label="text input"
+		[attr.inputmode]="inputmode"
+		[disabled]="isDisabled"
+		[value]="value"
+		[type]="type === 'number' ? 'text' : type"
+		[attr.maxlength]="maxlength"
+		[attr.minlength]="minlength"
+		[attr.max]="max"
+		[attr.min]="min"
+		(keyup.enter)="input.blur()"
+		(focusout)="onFocusOut(); this.updateClearButtonOnFocus(false)"
+		(input)="onInput($event)"
+		(keypress)="maskInput($event); this.updateClearButtonOnFocus(true)"
+		(focus)="onFocus()"
+		[ngClass]="inputNgClass"
+		[attr.data-qa-id]="dataQA + componentSelector + 'value'"
+		placeholder=" "
+		pmdsNoLeadingSpacesInput
+	/>
+	<!-- END INPUT -->
+	<!-- PLACEHOLDER -->
+	<label
+		class="absolute w-full cursor-text text-xs pt-[5px] top-0 transform duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:pt-0 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:pt-[5px] peer-focus:text-xs"
+		[ngClass]="placeholderNgClass"
+		[attr.data-qa-id]="dataQA + componentSelector + 'placeholder'"
+		(click)="input.focus()"
+		pmdsTitle
+	>
+		{{ placeholder }}
+	</label>
+	<!-- END PLACEHOLDER -->
+	<!-- VALUE FORMATTED VALUE -->
+	@if (showValueFormatted && value) {
+	<label
+		class="absolute cursor-text left-[13px] text-color-text-primary top-[20px]"
+		[attr.data-qa-id]="dataQA + componentSelector + 'formated-value'"
+		(click)="input.focus(); showValueFormatted = false"
+	>
+		{{ valueFormatted }}
+	</label>
+	}
+	<!-- END VALUE FORMATTED VALUE -->
+	<!-- TAG CATEGORY -->
+	@if (tagCategoryData && !icon && !tooltip) {
+	<pmds-cdk-tag-category
+		class="absolute top-[11px] right-4"
+		[assetsFolder]="tagCategoryData.assetsFolder || ''"
+		[flagCode]="tagCategoryData.flagCode || ''"
+		[label]="tagCategoryData.label || ''"
+		[showIcon]="
+			tagCategoryData.showIcon === undefined
+				? true
+				: tagCategoryData.showIcon
+		"
+		[tooltip]="tagCategoryData.tooltip || ''"
+		[tooltipPosition]="tagCategoryData.tooltipPosition || 'top-center'"
+		[isDisabled]="isDisabled"
+		[dataQA]="dataQA + componentSelector"
+	/>
+	}
+	<!-- END TAG CATEGORY -->
+	<!-- SUFFIX -->
+	@if (suffix && !icon && !tagCategoryData && !tooltip) {
+	<div
+		class="absolute top-3 right-4 font-body-m-regular text-color-text-primary"
+		[attr.data-qa-id]="dataQA + componentSelector + 'suffix'"
+	>
+		{{ suffix }}
+	</div>
+	}
+	<!-- SUFFIX -->
+	<!-- CLEAR BUTTON -->
+	@if (showClear) {
+	<div
+		#clear
+		class="absolute z-10 flex items-center justify-center text-[8px] w-4 h-4 top-4 cursor-pointer rounded-full text-color-text-secondary bg-color-icon-default"
+		[ngClass]="clearButtonNgClass"
+		[attr.data-qa-id]="dataQA + componentSelector + 'clear-button'"
+		(mousedown)="checkOmitClick($event)"
+		(mouseup)="clearClick()"
+	>
+		<div class="pmicons-close-bold text-xs !font-bold"></div>
+	</div>
+	}
+	<!-- END CLEAR BUTTON -->
+	<!-- ICON -->
+	@if (icon) {
+	<div
+		class="absolute items-center cursor-text justify-center right-3 top-3"
+		[ngClass]="iconNgClass"
+		[attr.data-qa-id]="dataQA + componentSelector + 'icon'"
+		(click)="input.focus()"
+	>
+		<div
+			[class]="icon + ' text-2xl'"
+			[ngClass]="{
+						 'text-color-icon-default': !isDisabled && !icon.includes('color'),
+						 'text-color-icon-disabled': isDisabled,
+					 }"
+		></div>
+	</div>
+	}
+	<!-- END ICON -->
+	<!-- TOOLTIP -->
+	@if (tooltip || tooltipTitle) {
+	<div
+		class="absolute h-8 top-2 right-12 box-border border-l-[1px]"
+		[ngClass]="{
+			'border-color-border-disabled': isDisabled,
+			'border-color-border-default': !isDisabled
+		}"
+		(click)="input.focus()"
+	></div>
+	<div
+		class="absolute top-3 right-3"
+		[attr.data-qa-id]="dataQA + componentSelector + 'icon-info'"
+		(click)="input.focus()"
+	>
+		<div
+			[pmdsTooltip]="tooltip"
+			[pmdsTooltipTitle]="tooltipTitle"
+			[pmdsTooltipPosition]="'top-center'"
+			class="pmicons-info-circle text-2xl"
+			[ngClass]="{
+				'text-color-icon-info cursor-pointer': !isDisabled,
+				'text-color-text-disabled pointer-event pointer-events-none ':
+					isDisabled
+			}"
+		></div>
+	</div>
+	}
+	<!-- END TOOLTIP -->
+	<!-- HELPER TEXT -->
+	<section class="h-5 pt-[0.125rem] absolute">
+		@if (helperText) {
+		<div
+			class="text-color-text-primary font-body-xs-regular ml-3"
+			[ngClass]="{
+				'text-color-text-disabled': isDisabled
+			}"
+			[hidden]="showError"
+			[attr.data-qa-id]="dataQA + componentSelector + 'helper-text'"
+		>
+			{{ helperText }}
+		</div>
+		}
+	</section>
+	@if (!showError && maxlength && charactersLeftText) {
+	<section class="h-5 pt-[0.125rem] absolute">
+		<div
+			class="text-color-text-primary font-body-xs-regular ml-3"
+			[ngClass]="{
+				'text-color-text-disabled': isDisabled
+			}"
+			[hidden]="showError || helperText"
+			[attr.data-qa-id]="dataQA + componentSelector + 'error'"
+		>
+			{{ maxlength - input.value.length }} {{ charactersLeftText }}
+			{{ maxlength }}
+		</div>
+	</section>
+	}
+	<!-- END HELPER TEXT -->
+	<!-- ERROR MESSAGE -->
+	<pmds-cdk-form-error-message
+		class="mt-0.5"
+		[dataQA]="dataQA + componentSelector"
+		[control]="formControl"
+		[label]="placeholder"
+		[controlName]="formControlName"
+		[hidden]="!showError"
+		[literalsErrorFn]="literalsErrorFn"
+	/>
+	<!-- END ERROR MESSAGE -->
+</section>
+}

@@ -1,0 +1,70 @@
+<section
+	class="flex w-full"
+	[ngClass]="{ 'justify-end': userType === 'myMessage' && conversation }"
+>
+	<section
+		class="flex flex-col border border-color-border-default rounded-pmds p-4"
+		[ngClass]="{
+			'bg-color-surface-secondary': userType === 'myMessage',
+			'bg-color-surface-primary': userType === 'otherMessage',
+			'mobile:max-w-[288px] tablet:max-w-[704px] desktop:max-w-[600px]': messageType === 'comment',
+			'mobile:max-w-[212px] tablet:max-w-[534px] desktop:max-w-[704px]': messageType !== 'comment'
+		}"
+	>
+		<!-- FIRST ROW -->
+		<div class="flex flex-row items-center">
+			@if (!conversation && literals.profileLabel) {
+				<pmds-cdk-profile-photo
+					[dataQA]="dataQA + componentSelector"
+					class="mb-1"
+					[label]="literals.profileLabel"
+					type="label"
+				></pmds-cdk-profile-photo>
+			}
+			<section
+				[ngClass]="{
+					'flex flex-col': messageType === 'comment',
+					'flex flex-row': messageType !== 'comment'
+				}"
+			>
+				<span
+					[attr.data-qa-id]="
+						dataQA + componentSelector + 'message-title'
+					"
+					class="font-body-m-bold text-color-text-primary mb-1"
+					[ngClass]="{ 'pl-2': literals.profileLabel }"
+				>
+					{{ literals.title }}
+				</span>
+				<section
+					class="flex font-body-xs-regular text-color-text-tertiary pl-2 text-left"
+					[ngClass]="{ 'mt-[5px]': messageType !== 'comment' }"
+				>
+					@if (messageType === 'comment') {
+						<span class="mr-1">{{
+								literals.published
+							}}</span>
+					}
+					<span
+						[attr.data-qa-id]="
+							dataQA + componentSelector + 'message-date'
+						"
+					>
+						{{ literals.date }}
+					</span>
+				</section>
+			</section>
+		</div>
+		<!-- END FIRST ROW -->
+		<!-- CONTENT -->
+		<span
+			[attr.data-qa-id]="
+				dataQA + componentSelector + 'message-content'
+			"
+			class="font-body-m-regular text-color-text-primary mt-1 break-words"
+			[innerHTML]="literals.content"
+		>
+		</span>
+		<!-- END CONTENT -->
+	</section>
+</section>

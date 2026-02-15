@@ -1,0 +1,8 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+	"allowedNonPeerDependencies": ["."],
+  "dest": "../../dist/libs/pmds-cdk",
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

@@ -1,0 +1,85 @@
+@if (skeleton) {
+<pmds-cdk-radio-buttons-skeleton
+	[options]="options"
+	[dataQA]="dataQA + componentSelector"
+/>
+} @else { @if (groupLabel && !hideLabel) {
+<div
+	[attr.data-qa-id]="dataQA + componentSelector + 'group-label'"
+	class="mb-2 text-xs"
+>
+	{{ groupLabel }}
+</div>
+}
+<section class="flex mobile:flex-col" [ngClass]="{ 'flex-col': forceVertical }">
+	@for (option of options; track option) {
+	<div
+		[attr.data-qa-id]="
+			dataQA + componentSelector + 'pmds-cdk-radio-buttons-' + $index
+		"
+		class="flex mr-4 mobile:first:mt-0 mobile:mt-4"
+		[ngClass]="{
+			'mt-4': forceVertical,
+			'cursor-default': isDisabled,
+			'cursor-pointer': !isDisabled
+		}"
+		(click)="onChecked(option.value, $index)"
+	>
+		<!-- RADIO BUTTON -->
+		<div
+			[attr.data-qa-id]="
+				dataQA +
+				componentSelector +
+				'pmds-cdk-radio-buttons-radio-' +
+				$index
+			"
+			class="h-6 w-6 mr-2 flex justify-center items-center rounded-full bg-color-surface-primary"
+			[ngClass]="{
+				'border-color-border-focus': option?.checked && !isDisabled,
+				'border-color-border-default': !option?.checked && !isDisabled,
+				'border-color-border-disabled': isDisabled,
+				'border-2': option?.checked,
+				border: !option?.checked
+			}"
+		>
+			<div
+				class="h-3 w-3 rounded-full"
+				[ngClass]="{
+					'bg-color-action-alternative-default':
+						option?.checked && !isDisabled,
+					'bg-color-action-on-disabled': option?.checked && isDisabled
+				}"
+			></div>
+		</div>
+		<!-- END RADIO BUTTON -->
+		<!-- LABEL -->
+		<div
+			[attr.data-qa-id]="
+				dataQA +
+				componentSelector +
+				'pmds-cdk-radio-buttons-label-' +
+				$index
+			"
+			class="font-body-m-regular"
+			[ngClass]="{
+						'text-color-text-primary': !isDisabled,
+						'text-color-text-disabled': isDisabled,
+					}"
+		>
+			{{ option?.label }}
+		</div>
+		<!-- END LABEL -->
+	</div>
+	}
+</section>
+<!-- ERROR MESSAGE -->
+<pmds-cdk-form-error-message
+	[dataQA]="dataQA + componentSelector + 'radio-buttons-'"
+	[control]="formControl"
+	[label]="groupLabel"
+	[controlName]="formControlName"
+	[hidden]="!showError"
+	[literalsErrorFn]="literalsErrorFn"
+/>
+<!-- END ERROR MESSAGE -->
+}

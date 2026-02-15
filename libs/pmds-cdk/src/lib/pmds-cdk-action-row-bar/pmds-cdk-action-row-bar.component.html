@@ -1,0 +1,68 @@
+<!-- ICON THREE DOTS-->
+<div
+	class="flex items-center justify-end h-full"
+	[attr.data-qa-id]="dataQA + componentSelector + 'open-button'"
+>
+	@if (!showActions) {
+		<ng-container>
+			<div
+				class="h-full flex items-center"
+				(click)="openActionRowBar($event)"
+				[ngClass]="{
+			'cursor-pointer': !disabled,
+			'pointer-events-none': disabled,
+		 }"
+			>
+				<pmds-cdk-button
+					[dataQA]="dataQA + componentSelector"
+					buttonType="tertiary"
+					[icon]="'pmicons-dots3-horizontal'"
+					[customStyle]="'!w-16'"
+					[disabled]="disabled"
+					[smallFit]="true"
+				/>
+			</div>
+		</ng-container>
+	}
+</div>
+<!-- END ICON THREE DOTS-->
+@if (showActions) {
+	<div #actionsContent>
+		<!-- BACKGROUND ROW-->
+		<div
+			class="absolute left-[-100vw] top-0 bottom-0 right-0 z-9 bg-color-background-overlay-primary"
+			(click)="noAction($event)"
+			(mouseenter)="noAction($event)"
+		></div>
+		<!-- END BACKGROUND ROW -->
+		<!-- BUTTONS ACTIONS -->
+		<div
+			class="flex absolute top-0 bottom-0 right-0 z-10 animate-fade-in_fast font-body-s-regular"
+		>
+			@for (button of actionBarButtons; track button.label; let i = $index) {
+				<ng-container>
+					<button
+						[attr.data-qa-id]="dataQA + componentSelector + 'button-' + i"
+						class="text-color-text-secondary border-r border-color-border-alternative px-[34px] bg-color-action-main-default hover:bg-color-action-main-hover active:bg-color-action-main-selected min-w-[136px]"
+						type="button"
+						(click)="buttonAction($event, i)"
+					>
+						{{ button?.label }}
+					</button>
+				</ng-container>
+			}
+			<!-- BUTTON CLOSE -->
+			<button
+				aria-label="close"
+				[attr.data-qa-id]="dataQA + componentSelector + 'closeButton'"
+				class="text-color-text-secondary w-16 flex justify-center items-center bg-color-action-main-default hover:bg-color-action-main-hover active:bg-color-action-main-selected"
+				type="button"
+				(click)="closeAction($event)"
+			>
+				<span class="pmicons-close text-2xl mr-[1px]"></span>
+			</button>
+			<!-- END BUTTON CLOSE -->
+		</div>
+		<!-- END BUTTONS ACTIONS -->
+	</div>
+}

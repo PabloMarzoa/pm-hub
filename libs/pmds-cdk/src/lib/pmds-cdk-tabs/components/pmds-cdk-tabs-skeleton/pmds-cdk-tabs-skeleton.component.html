@@ -1,0 +1,15 @@
+<!-- SKELETON -->
+<section [attr.data-qa-id]="dataQA + '-skeleton'" class="overflow-scroll flex">
+	@for (item of [0,1,2,3]; track item) {
+	<section class="flex flex-col justify-end h-10 w-32">
+		<section [class]="$first ? 'p-4 pb-3.5' : 'p-4'">
+			<section class="flex justify-center w-full">
+				<pmds-cdk-skeleton [style]="'h-4 w-16'" />
+			</section>
+		</section>
+		<pmds-cdk-skeleton [style]="$first ? 'h-1 w-full' : 'h-[1px] w-full'" />
+	</section>
+	}
+</section>
+
+<!-- SKELETON -->

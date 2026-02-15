@@ -1,0 +1,222 @@
+@if (skeleton) {
+<pmds-cdk-paginator-skeleton [dataQA]="dataQA + componentSelector" />
+} @else {
+<section class="flex justify-between">
+	<!-- ITEMS DISPLAYED -->
+	<div
+		class="text-color-text-tertiary font-body-xs-regular flex flex-row items-center justify-center"
+		[attr.data-qa-id]="
+			dataQA + componentSelector + 'items-per-page-container'
+		"
+	>
+		<pmds-cdk-select-paginator
+			class="mr-2"
+			[initialValue]="selectValue"
+			[options]="itemsPage"
+			[dataQA]="dataQA + componentSelector + 'items-per-page-'"
+			(valueClick)="changeItemPerPage($event)"
+		/>
+		<div
+			class="mobile:hidden tablet:hidden block"
+			[ngClass]="{ '!hidden': forceTabletView }"
+		>
+			{{ literals?.itemsDisplayed }}
+		</div>
+		<section
+			class="text-color-text-tertiary font-body-xs-bold hidden tablet:block mobile:hidden"
+			[ngClass]="{ '!block': forceTabletView }"
+		>
+			<ng-container *ngTemplateOutlet="itemsDisplay"></ng-container>
+		</section>
+	</div>
+	<!-- END ITEMS DISPLAYED -->
+	<div
+		class="text-color-text-tertiary font-body-xs-bold flex items-center gap-4"
+	>
+		<!-- FROM TO ITEMS -->
+		<section
+			class="mobile:hidden tablet:hidden block"
+			[ngClass]="{ '!hidden': forceTabletView }"
+		>
+			<ng-container *ngTemplateOutlet="itemsDisplay"></ng-container>
+		</section>
+		<!-- END FROM TO ITEMS -->
+		<!-- PAGINATION ACTIONS -->
+		@if (paginationInfo.total > 7) {
+		<span class="inline-flex items-center gap-2 h-4 cursor-pointer">
+			<pmds-cdk-button
+				buttonType="tertiary"
+				[label]="literals?.prev || ''"
+				(buttonClick)="changePageEmit(paginationInfo.actualPage - 1)"
+				[dataQA]="dataQA + componentSelector + 'nav-prev-text-'"
+				icon="pmicons-chevron-left-small"
+				iconPosition="left"
+				[disabled]="paginationInfo.actualPage === 1"
+			></pmds-cdk-button>
+			<section class="flex items-center gap-1">
+				@if (lastPage <= 7) { @for (item of arrayPages; track item) {
+				<a
+					class="h-6 w-6 flex items-center justify-center cursor-pointer hover:!no-underline rounded-full hover:bg-color-surface-hover"
+					[ngClass]="{
+						'font-body-xs-bold text-color-text-secondary bg-color-surface-selected':
+							paginationInfo.actualPage === item,
+						'font-body-xs-regular':
+							paginationInfo.actualPage !== item
+					}"
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						'less-7-items-' +
+						$index +
+						(paginationInfo.actualPage === item ? '-current' : '')
+					"
+					(click)="changePageEmit(item)"
+				>
+					{{ item }}
+				</a>
+				} } @else { @if (![1, 2].includes(paginationInfo.actualPage)) {
+				<span
+					class="cursor-pointer hover:!no-underline rounded-full hover:bg-color-surface-hover"
+					[ngClass]="{
+						'font-body-xs-bold text-color-text-secondary bg-color-surface-selected':
+							paginationInfo.actualPage === 1,
+						'font-body-xs-regular': paginationInfo.actualPage !== 1
+					}"
+					[attr.data-qa-id]="
+						dataQA + componentSelector + 'more-7-items-first'
+					"
+					(click)="changePageEmit(1)"
+				>
+					{{ '1' }}
+				</span>
+				<span
+					class="cursor-default h-6 w-6 flex items-center justify-center"
+					>{{ '...' }}</span
+				>
+				} @for (item of numericalPage; track item) {
+				<a
+					class="h-6 w-6 flex items-center justify-center cursor-pointer hover:!no-underline rounded-full hover:bg-color-surface-hover"
+					[ngClass]="{
+						'font-body-xs-bold text-color-text-secondary bg-color-surface-selected':
+							paginationInfo.actualPage === item,
+						'font-body-xs-regular':
+							paginationInfo.actualPage !== item
+					}"
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						'more-7-items-' +
+						$index +
+						(paginationInfo.actualPage === item ? '-current' : '')
+					"
+					(click)="changePageEmit(item)"
+				>
+					{{ item }}
+				</a>
+				} @if (![lastPage - 2, lastPage - 1, lastPage].includes(
+				paginationInfo.actualPage )) {
+				<span
+					class="cursor-default h-6 w-6 flex items-center justify-center"
+					>{{ '...' }}</span
+				>
+				<span
+					class="cursor-pointer h-6 w-6 flex items-center justify-center hover:!no-underline rounded-full hover:bg-color-surface-hover"
+					[ngClass]="{
+						'font-body-xs-bold text-color-text-secondary bg-color-surface-selected':
+							paginationInfo.actualPage === lastPage,
+						'font-body-xs-regular':
+							paginationInfo.actualPage !== lastPage
+					}"
+					[attr.data-qa-id]="
+						dataQA + componentSelector + 'more-7-items-last'
+					"
+					(click)="changePageEmit(lastPage)"
+				>
+					{{ lastPage }}
+				</span>
+				} }
+			</section>
+			<pmds-cdk-button
+				buttonType="tertiary"
+				[label]="literals?.next || ''"
+				(buttonClick)="
+					changePageEmit(paginationInfo.actualPage + 1, true)
+				"
+				[dataQA]="dataQA + componentSelector + 'nav-next-page'"
+				[smallFit]="true"
+				buttonSize="small"
+				icon="pmicons-chevron-right-small-bold"
+				[disabled]="paginationInfo.actualPage === lastPage"
+			></pmds-cdk-button>
+		</span>
+		}
+		<!-- END PAGINATION ACTIONS -->
+		<!-- JUMP TO -->
+		@if (lastPage > 7) {
+		<div
+			class="text-color-text-tertiary font-body-xs-regular flex flex-row items-center justify-end z-30"
+			[attr.data-qa-id]="
+				dataQA + componentSelector + 'jump-to-page-container'
+			"
+		>
+			{{ literals?.jumpTo }}
+			<pmds-cdk-select-paginator
+				class="ml-2"
+				[selectedItem]="paginationInfo.actualPage"
+				[options]="arrayPages"
+				[search]="true"
+				[dataQA]="dataQA + componentSelector + 'jump-to-'"
+				(valueClick)="jumpToPage($event)"
+			/>
+		</div>
+		}
+		<!-- END JUMP TO -->
+	</div>
+</section>
+}
+<ng-template #itemsDisplay>
+	<span
+		class="inline-flex items-center"
+		[ngClass]="{ 'pr-4': numericalPage.length < 2 }"
+		[attr.data-qa-id]="dataQA + componentSelector + 'page-info'"
+	>
+		<span
+			class="px-1"
+			[attr.data-qa-id]="
+				dataQA + componentSelector + 'current-from-value'
+			"
+		>
+			{{
+				paginationInfo.total === 0
+					? 0
+					: paginationInfo.actualPage * paginationInfo.itemsPage -
+					  (paginationInfo.itemsPage - 1)
+			}}
+		</span>
+		{{ literals?.to }}
+		<span
+			class="px-1"
+			[attr.data-qa-id]="dataQA + componentSelector + 'current-to-value'"
+		>
+			{{
+				paginationInfo.total <
+				paginationInfo.actualPage * paginationInfo.itemsPage
+					? paginationInfo.total
+					: paginationInfo.actualPage * paginationInfo.itemsPage
+			}}
+		</span>
+		{{ literals?.labelOf }}
+		<span class="text-color-text-primary pl-1">
+			<span
+				[attr.data-qa-id]="dataQA + componentSelector + 'total-items'"
+			>
+				{{ paginationInfo.total }}
+				{{
+					paginationInfo.total === 1
+						? literals?.item
+						: literals?.items
+				}}
+			</span>
+		</span>
+	</span>
+</ng-template>

@@ -1,0 +1,22 @@
+<section
+	[attr.data-qa-id]="dataQA + componentSelector + 'pmds-cdk-profile-photo'"
+	[ngClass]="{ '!border-color-border-default': type === 'label' }"
+	class="h-10 w-10 rounded-full border border-transparent flex items-center justify-center bg-color-surface-secondary text-color-text-primary overflow-hidden font-body-xs-bold"
+>
+	<!-- LABEL -->
+	@if (type === 'label') {
+	<span class="" [attr.data-qa-id]="dataQA + componentSelector + 'label'">
+		{{ parseLabel }}
+	</span>
+	}
+	<!-- END LABEL -->
+	<!-- PHOTO -->
+	@if (type === 'photo') {
+	<img
+		[attr.data-qa-id]="dataQA + componentSelector + 'img'"
+		aria-label="profile photo"
+		[src]="photo"
+	/>
+	}
+	<!-- END PHOTO -->
+</section>

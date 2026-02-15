@@ -1,0 +1,83 @@
+@if (skeleton) {
+	<pmds-cdk-expansion-skeleton [skeletonOpen]="skeletonOpen" [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section class="w-100 min-h-12 p-4 select-none bg-color-background-alternative rounded-pmds">
+		<div class="spacer cursor-pointer flex flex-row justify-between items-center">
+			<!-- TOGGLE -->
+			<div class="flex flex-col justify-start mr-2" (click)="toggleExpansionPanelState()">
+				<span class="pmicons-chevron-down-small-1px text-2xl text-color-icon-action transition-transform duration-300 hover:text-color-action-main-hover active:text-color-action-main-active"
+					[ngClass]="{'rotate-180': open}"
+					[attr.data-qa-id]="dataQA + componentSelector + 'icon'">
+				</span>
+			</div>
+			<!-- END TOGGLE -->
+			<!-- TITLE -->
+			<div class="text-color-text-primary font-headline-desktop-s-regular flex flex-grow"
+					 (click)="toggleExpansionPanelState()"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'title'">
+				{{title}}
+				@if (tooltip) {
+					<span 
+						class="pmicons-info-circle ml-1 text-2xl text-color-icon-default"
+						[pmdsTooltip]="tooltip" 
+						[pmdsTooltipPosition]="'top-center'" 
+						[attr.data-qa-id]="dataQA + componentSelector + 'tooltip'"
+					></span>
+				}
+			</div>
+			<!-- END TITLE -->
+			<!-- ACTIONS -->
+			<div class="pr-2 mobile:hidden">
+				@for (action of actions; track action.label) {				  
+					<span
+						class="text-color-icon-action animated-rotation ml-2 {{action.icon}} hover:text-color-action-main-hover active:text-color-action-main-active"
+						[attr.data-qa-id]="dataQA + componentSelector + 'action-' + action.icon"
+						(click)="action.actionFn()">
+					</span>
+				}
+			</div>
+			<!-- END ACTIONS -->
+			<!-- MOBILE -->
+			@if (actions?.length) {			 
+				<div class="pr-2 md:hidden flex items-center justify-center relative">
+					<!-- BUTTON -->
+					<span
+						class="text-color-icon-action animated-rotation ml-2 pmicons-dots3-vertical text-2xl hover:text-color-action-main-hover active:text-color-action-main-active"
+						[attr.data-qa-id]="dataQA + componentSelector + 'open-action-menu'"
+						(click)="showContent()">
+					</span>
+					<!-- END BUTTON -->
+					<!-- OPTIONS CONTENT -->
+					@if (showOptions) {				 
+						<section
+							class="absolute min-w-[188px] top-8 right-0 bg-color-surface-primary shadow-floating rounded-pmds"
+							[attr.data-qa-id]="dataQA + componentSelector + 'dropdown-action-content'">
+							@for (action of actions; track action.label) {						  
+								<section
+									[attr.data-qa-id]="dataQA + componentSelector + 'action-' + action.icon"
+									class="p-1 h-12 w-full flex items-center">
+									<div
+										(click)="action.actionFn()"
+										class="w-full rounded-pmds px-3 py-2 text-color-text-primary font-body-m-regular cursor-pointer hover:bg-color-surface-hover">
+										{{action.label}}
+									</div>
+								</section>
+							}
+						</section>
+					}
+					<!-- END OPTIONS CONTENT -->
+				</div>
+			}
+			<!-- END MOBILE -->
+		</div>
+		<!--CONTENT-->
+		<div [ngClass]="{'overflow-hidden h-0 !m-0': !open}">
+			<div class="pt-6 mobile:pt-4"
+				[attr.data-qa-id]="dataQA + componentSelector + 'content'">
+				<ng-content></ng-content>
+			</div>
+		</div>
+		<!-- END CONTENT -->
+	</section>
+}
+

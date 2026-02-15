@@ -1,0 +1,219 @@
+@if (data || isLoading) {
+	<section
+		class="p-4"
+		[ngClass]="{
+		'bg-color-surface-primary rounded-pmds': !config?.onlyChart
+	}"
+		(click)="selectLine(false)"
+	>
+		<!-- TITLE -->
+		@if (config?.title && !config?.onlyChart) {
+			<section class="pb-4 flex justify-between flex-wrap">
+				<section class="flex flex-col gap-2">
+					<h2
+						class="font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold text-color-text-primary"
+						[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+					>
+						{{ config?.title }}
+					</h2>
+					@if (config?.subtitle) {
+						<h3 class="font-body-s-regular text-color-text-tertiary"
+							[attr.data-qa-id]="dataQA + componentSelector + 'subtitle'">
+							{{ config?.subtitle }}
+						</h3>
+					}
+				</section>
+				<ng-content></ng-content>
+			</section>
+		}
+		<!-- END TITLE -->
+		@if (!isLoading) {
+			<ng-container>
+				<!-- GRAPH -->
+				<section
+					class="w-full font-body-xs-regular text-color-text-primary pb-5"
+					[style.height.px]="graphHeight"
+				>
+					<svg
+						#graphSVG
+						width="100%"
+						height="242px"
+						class="!overflow-visible"
+						xmlns="http://www.w3.org/2000/svg"
+						[attr.viewBox]="viewBox">
+						<!-- X AXIS -->
+						<g
+							[style]="
+						'transform:translate(' +
+						yLabelsWidth +
+						'px,' +
+						(yLastAxis + 45) +
+						'px)'
+					"
+						>
+							@for (item of xLabels; track i; let i = $index) {
+								<g text-anchor="middle"
+								   [style]="'transform:translate(' + item.x + 'px)'">
+									<!-- NO MOBILE -->
+									<text
+										class="text-center font-body-xs-regular text-color-text-primary select-none mobile:hidden fixed"
+										xmlns="http://www.w3.org/1999/xhtml"
+										[attr.data-qa-id]="
+									dataQA + componentSelector + i + 'x-label'
+								"
+										[style]="item.labelSecondLine ? 'transform:translate(0px, -8px)' : ''"
+										[innerHTML]="item.label"
+									></text>
+									@if (item.labelSecondLine) {
+										<text class="text-center font-body-xs-regular text-color-text-primary select-none mobile:hidden fixed"
+											  xmlns="http://www.w3.org/1999/xhtml"
+											  [attr.data-qa-id]="
+									dataQA + componentSelector + i + 'x-label'
+								"
+											  [style]="'transform:translate(0px, 8px)'"
+											  [innerHTML]="item.labelSecondLine"
+										></text>
+									}
+									<!-- END NO MOBILE -->
+									<!-- MOBILE -->
+									<text
+										class="text-center font-body-xs-regular text-color-text-primary select-none md:hidden"
+										xmlns="http://www.w3.org/1999/xhtml"
+										[attr.data-qa-id]="
+									dataQA + componentSelector + i + 'x-label'
+								"
+										[innerHTML]="item.labelMobile"
+									></text>
+									<!-- END MOBILE -->
+								</g>
+							}
+						</g>
+						<!-- END X AXIS -->
+						<!-- Y AXIS -->
+						<g text-anchor="start" style="transform:translate(0px,20px)">
+							@for (item of yLines; track i; let i = $index) {
+								<g [style]="'transform:translate(0px, ' + item.y + 'px)'">
+									<text
+										class="fill-color-text-primary"
+										display="inherit"
+										[attr.data-qa-id]="
+								dataQA + componentSelector + i + 'y-label'
+							"
+									>
+										{{ item.label }}
+									</text>
+									<line
+										display="inherit"
+										class="stroke-color-graphs-lines"
+										stroke-width="1"
+										stroke-dasharray="1 3"
+										[attr.x1]="yLabelsWidth"
+										[attr.x2]="offsetWidth"
+										[attr.y1]="'-' + paddingBottom"
+										[attr.y2]="'-' + paddingBottom"
+									></line>
+								</g>
+							}
+						</g>
+						<!-- Y AXIS -->
+						<!-- GRAHP -->
+						<g
+							[style]="'transform:translate(' + yLabelsWidth + 'px,20px)'"
+							class="animate-fade-in"
+						>
+							<!-- LINES -->
+							@for (line of lines; track lineIndex; let lineIndex = $index) {
+								<g>
+									<path
+										fill="none"
+										[class]="line.color"
+										[attr.d]="line.d"
+										(click)="
+								$event.stopPropagation();
+								selectLine(true, lineIndex)
+							"
+										[ngClass]="{
+								'opacity-20': !lineActive[lineIndex]
+							}"
+									></path>
+								</g>
+							}
+							<!-- END LINES -->
+							<!-- POINTS -->
+							@for (point of points; track lineIndex; let lineIndex = $index) {
+								<g [ngClass]="{'opacity-20': !lineActive[lineIndex]}">
+									@for (value of point; track i; let i = $index) {
+										<g [style]="'transform:translate(' + value.x + 'px, ' + value.y + 'px)'"
+										   (click)="$event.stopPropagation(); selectLine(true, lineIndex, i)"
+										   [pmdsTooltip]="value.tooltip"
+										   pmdsTooltipPosition="top-center"
+										   [pmdsTooltipActivate]="lineShow[lineIndex][i]"
+										   delay="0">
+											<g
+												stroke-width="1"
+												fill="#fff"
+												[class]="value.color + ' cursor-pointer'"
+											>
+												<circle r="3"></circle>
+											</g>
+										</g>
+									}
+								</g>
+							}
+							<!-- END POINTS -->
+						</g>
+						<!-- END LINES -->
+					</svg>
+				</section>
+				<!-- END GRAPH -->
+				<!-- SOURCE -->
+				@if (graphicLegend?.length) {
+					<section class="flex flex-wrap gap-4">
+						@for (label of graphicLegend; track i; let i = $index) {
+							<div class="flex gap-1 items-center cursor-pointer"
+								 (click)="$event.stopPropagation(); selectLine(true, i)"
+								 [ngClass]="{'opacity-25': !lineActive[i]}"
+								 [attr.data-qa-id]="dataQA + componentSelector + i + '-legend'">
+								<div
+									class="w-4 h-0.5"
+									[attr.data-qa-id]="
+						dataQA + componentSelector + i + '-legend-line'
+					"
+									[class]="label.color"
+								></div>
+								<span
+									class="text-color-text-tertiary font-body-xs-regular"
+									[attr.data-qa-id]="
+						dataQA + componentSelector + i + '-legend-value'
+					"
+								>{{ label.label }}</span
+								>
+							</div>
+						}
+					</section>
+				}
+				<!-- END SOURCE -->
+			</ng-container>
+		} @else {
+			<ng-container [ngTemplateOutlet]="loading"></ng-container>
+		}
+	</section>
+} @else {
+	<ng-container [ngTemplateOutlet]="noData"></ng-container>
+}
+<!-- NO DATA -->
+<ng-template #noData>
+	<!-- Empty state removed -->
+</ng-template>
+<!-- END NO DATA -->
+<!-- LOADING -->
+<ng-template #loading>
+	<section class="flex items-center justify-center h-[258px]">
+		<pmds-cdk-loader
+			[dataQA]="dataQA + componentSelector"
+			[isPrimary]="false"
+			[isFullscreen]="false"
+		/>
+	</section>
+</ng-template>
+<!-- END LOADING -->

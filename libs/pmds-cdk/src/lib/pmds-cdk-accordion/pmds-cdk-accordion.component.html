@@ -1,0 +1,82 @@
+@if (!skeleton) {
+	<div
+		class="p-4 cursor-pointer flex justify-between items-center border-t border-color-border-default bg-color-surface-primary text-color-text-primary"
+		[ngClass]="{
+		'border-b-0': hideBottomBorder ? true : open,
+		'border-b': !hideBottomBorder
+	}"
+		(click)="toggleAccordion()"
+	>
+		<!-- TITLE -->
+		<div
+			class="font-body-m-bold flex"
+			[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+		>
+			{{ literals.title }}
+			<!-- TAGS -->
+			@if (tags) {
+				<section class="flex gap-2 ml-4">
+					@for (item of tags; track item.label; let i = $index) {
+						<pmds-cdk-tag-category
+							[flagCode]="item.flagCode || ''"
+							[dataQA]="dataQA + componentSelector + 'tags-'"
+							[assetsFolder]="item.assetsFolder || ''"
+							[label]="item.label"
+						/>
+					}
+				</section>
+			}
+			<!-- END TAGS -->
+		</div>
+		<!-- END TITLE -->
+		<!-- TOGGLE -->
+		<div class="flex justify-start">
+			<div
+				class="font-body-m-regular pr-4"
+				[attr.data-qa-id]="dataQA + componentSelector + 'elements'"
+			>
+				{{ literals.elements }}
+			</div>
+			<span
+				class="pmicons-chevron-down-1px text-2xl text-color-icon-action transition-transform duration-300 hover:text-color-action-main-hover active:text-color-action-main-active"
+				[ngClass]="{ 'rotate-180': open }"
+				[attr.data-qa-id]="dataQA + componentSelector + 'icon'"
+			>
+		</span>
+		</div>
+		<!-- END TOGGLE -->
+	</div>
+	<!--CONTENT-->
+	<section
+		class="bg-color-surface-primary text-color-text-primary font-body-m-regular"
+		[ngClass]="{
+		'overflow-hidden h-0': !open,
+		'border-b border-color-border-default': hideBottomBorder ? false : open
+	}"
+	>
+		@if (content.length) {
+			<div
+				class="p-4 border-t border-color-border-default"
+				*ngFor="let item of content; let i = index"
+				[attr.data-qa-id]="dataQA + componentSelector + 'content'"
+				[innerHTML]="item"
+			></div>
+		}
+		<!-- NG CONTENT -->
+		@if (!content?.length) {
+			<div class="px-4 pb-4"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'content'"
+			>
+				<ng-content></ng-content>
+			</div>
+		}
+
+		<!-- END NG CONTENT -->
+	</section>
+	<!-- END CONTENT -->
+} @else {
+	<pmds-cdk-accordion-skeleton
+		[dataQA]="dataQA + componentSelector"
+		[open]="skeletonOpen"
+	/>
+}

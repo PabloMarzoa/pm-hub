@@ -1,0 +1,74 @@
+<!-- BACKDROP SECTION -->
+@if (show && floatingButton) {
+<section
+	class="fixed top-0 left-0 w-screen h-screen bg-color-background-overlay-primary z-10 md:hidden"
+></section>
+}
+<!-- END BACKDROP SECTION -->
+<!-- STICKY SECTION -->
+@if (show) {
+<section
+	#container
+	[attr.data-qa-id]="dataQA + componentSelector + 'section'"
+	class="flex mobile:flex-col mobile:w-full items-center border-t border-t-color-border-default left-0 bottom-0 z-50 mobile:p-4 tablet:px-8 tablet:py-6 desktop:p-6 md:gap-6 mobile:gap-4 bg-color-surface-primary"
+	[ngClass]="{
+			 'md:hidden': !showDesktop,
+			 'fixed w-screen': position === 'fixed' || floatingButton,
+			 'w-full': position !== 'fixed',
+			 'animate-fade-in-up z-20': floatingButton,
+		 }"
+>
+	<!-- NAVIGATION BUTTONS -->
+	@if (floatingButton) {
+	<section
+		[ngClass]="{
+					  'justify-end': !showBackButton,
+					  'justify-between': showBackButton,
+				  }"
+		class="w-full flex items-center animate-fade-in-up"
+	>
+		@if (showBackButton) {
+		<pmds-cdk-button
+			buttonType="tertiary"
+			[dataQA]="dataQA + componentSelector + '-button-back'"
+			(buttonClick)="goToFirstLevel()"
+			buttonSize="small"
+			icon="pmicons-chevron-left"
+		/>
+		}
+		<pmds-cdk-button
+			buttonType="tertiary"
+			[dataQA]="dataQA + componentSelector + '-button-back'"
+			(buttonClick)="closeMenu()"
+			buttonSize="small"
+			icon="pmicons-close"
+		/>
+	</section>
+	}
+	<!-- END NAVIGATION BUTTONS -->
+	<!-- BUTTONS -->
+	 @for (button of buttonShowed; track button.label) {	   
+		 <section
+			 class="mobile:w-full"
+			 [ngClass]="{
+				 'animate-fade-in-up min-h-[48px] flex items-center': floatingButton
+			 }"
+		 >
+			 <pmds-cdk-button
+				 class="mobile:w-full"
+				 [buttonType]="button.type"
+				 [dataQA]="dataQA + componentSelector + $index + '-button-'"
+				 [label]="button.label"
+				 [disabled]="!!button.disabled"
+				 (buttonClick)="buttonClick(button)"
+				 [buttonSize]="'small'"
+				 [icon]="button.icon ? button.icon : ''"
+				 [iconPosition]="button.iconPosition ? button.iconPosition : 'right'"
+				 [fullWidth]="true"
+			 />
+		 </section>
+	 }
+	<!-- END BUTTONS -->
+</section>
+}
+<!-- END STICKY SECTION -->

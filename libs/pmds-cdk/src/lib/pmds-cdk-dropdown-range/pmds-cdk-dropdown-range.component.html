@@ -1,0 +1,137 @@
+@if (skeleton) {
+	<pmds-cdk-dropdown-range-skeleton [dataQA]="dataQA + componentSelector"/>
+}
+<!-- SELECTION -->
+<section
+	#selectFilterView
+	[attr.data-qa-id]="dataQA + componentSelector + 'pmds-cdk-dropdown-range'"
+	[ngClass]="{
+		'pointer-events-none border-color-border-disabled bg-color-surface-disabled':
+			isDisabled,
+		'border-color-border-default bg-color-surface-primary':
+			!isDisabled,
+		'border-color-border-focus':
+			showOptions && !isDisabled,
+		'!hidden': skeleton
+	}"
+	class="flex h-8 items-center border px-2 py-1 pr-1 w-max cursor-pointer rounded-pmds"
+	(click)="omitEvent = true; toggleShowOption()"
+>
+	<div class="flex justify-between">
+		<div
+			class="text-sm mr-1"
+			[ngClass]=" {
+			'!text-color-text-disabled font-body-s-regular': isDisabled && !(fromControl?.value || toControl?.value),
+			'text-color-action-main-default font-body-s-bold': (fromControl?.value || toControl?.value),
+			'text-color-text-primary font-body-s-regular': !(fromControl?.value || toControl?.value)
+			}"
+		>
+			{{ placeholder }}
+		</div>
+	</div>
+	<span
+		class="pmicons-chevron-down-small-bold text-2xl transition-all text-color-action-main-default"
+		[ngClass]="{
+			'rotate-180': showOptions,
+			'text-color-action-on-disabled': isDisabled,
+		}"
+	></span>
+</section>
+<!-- END SELECTION -->
+<!-- OPTIONS CONTENT -->
+@if (showOptions) {
+	<div (click)="omitEvent = true"
+		[attr.data-qa-id]="dataQA + componentSelector + 'pmds-cdk-dropdown-range-option-content'"
+		class="animate-fade-in_fast z-[11] w-[288px] absolute border border-color-border-default bg-white shadow-floating rounded-pmds mt-1"
+	>
+		<div>
+			<section class="flex flex-col px-4 pt-4">
+				<!-- DATE TYPE -->
+				@if (mode === 'date') {
+					<ng-container>
+						<pmds-cdk-datepicker
+							[dataQA]="dataQA + componentSelector + 'dropdown-range-date-from-'"
+							[formControlName]="fromFormControlName"
+							[format]="pattern"
+							[literals]="datepickerLiterals"
+							[min]="min"
+							[max]="toControl?.value ?  toControl?.value : max"
+							[isDisabled]="isDisabled"
+							[placeholder]="literals.from"
+						/>
+						<pmds-cdk-datepicker
+							[dataQA]="dataQA + componentSelector + 'dropdown-range-date-to-'"
+							[formControlName]="toFormControlName"
+							[format]="pattern"
+							[literals]="datepickerLiterals"
+							[min]="fromControl?.value ? fromControl?.value : min"
+							[max]="max"
+							[isDisabled]="isDisabled"
+							[placeholder]="literals.to"
+						/>
+					</ng-container>
+				}
+				<!-- END DATE TYPE -->
+				<!-- NUMBER TYPE -->
+				@if (mode === 'number') {
+					<ng-container>
+						<pmds-cdk-text-input
+							[dataQA]="dataQA + componentSelector + 'dropdown-range-min-number-type-'"
+							[formControlName]="fromFormControlName"
+							[placeholder]="literals.from"
+							type="number"
+							[showClear]="true"
+							[max]="maxNumber"
+							[min]="minNumber"
+							[maxIntLength]="maxIntLength"
+							[maxDecLength]="maxDecLength"
+							[decimalCharacter]="decimalCharacter"
+						/>
+						<pmds-cdk-text-input
+							[dataQA]="dataQA + componentSelector + 'dropdown-range-max-number-type-'"
+							[formControlName]="toFormControlName"
+							[placeholder]="literals.to"
+							type="number"
+							[showClear]="true"
+							[max]="maxNumber"
+							[min]="minNumber"
+							[maxIntLength]="maxIntLength"
+							[maxDecLength]="maxDecLength"
+							[decimalCharacter]="decimalCharacter"
+						/>
+					</ng-container>
+				}
+				<!-- END NUMBER TYPE -->
+			</section>
+		</div>
+		<!-- FOOTER -->
+		<footer
+			[attr.data-qa-id]="dataQA + componentSelector + 'pmds-cdk-dropdown-range-footer'"
+			class="flex justify-between w-full items-center border-t border-color-border-deocrative px-3 py-4"
+		>
+			<pmds-cdk-button
+				[dataQA]="dataQA + componentSelector + 'dropdown-range-button-apply-'"
+				[label]="literals.apply"
+				buttonSize="small"
+				buttonSizeMobile="small"
+				[smallFit]= "true"
+				[disabled]="
+				disabledApply ||
+				(!toControl?.value && !fromControl?.value) ||
+				(mode === 'number' && (toControl?.value && fromControl?.value) && (+fromControl?.value > +toControl?.value))
+			"
+				(buttonClick)="setSelection()"
+			/>
+			<pmds-cdk-button
+				[dataQA]="dataQA + componentSelector + 'dropdown-range-button-clear-'"
+				[label]="literals.clearAll"
+				buttonSize="small"
+				buttonSizeMobile="small"
+				[smallFit]="true"
+				buttonType="tertiary"
+				(buttonClick)="clear()"
+			/>
+		</footer>
+		<!-- END FOOTER -->
+	</div>
+}

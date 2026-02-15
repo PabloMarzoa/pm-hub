@@ -1,0 +1,186 @@
+import { Meta } from '@storybook/blocks';
+import { InitialPage } from "./pages/initial-page.mdx";
+import { EndPage } from "./pages/end-page.mdx";
+import { HubPage } from "./pages/hub-page.mdx";
+import { UtilitiesPage } from "./pages/utilities-page.mdx";
+
+<Meta title="Introduction" />
+
+<section className="snap-y snap-mandatory h-screen w-screen overflow-scroll">
+  <InitialPage />
+  <HubPage />
+  <UtilitiesPage />
+  <EndPage />
+</section>
+
+<style>
+	{`
+
+  * {
+    font-family: SantanderHeadlineBold !important;
+  }
+
+  .sbdocs.sbdocs-wrapper {
+    padding: 0!important;
+    justify-content: initial!important;
+  }
+
+  .pmds-fade {
+    view-timeline-name: --pmds-fade;
+    view-timeline-axis: block;
+    animation-timeline: --pmds-fade;
+    animation-name: pmds-fade;
+  }
+
+  @keyframes pmds-fade {
+      0% {
+          opacity: 0%;
+          scale: 120%;
+      }
+      50%  {
+          opacity: 100%;
+          scale: 100%;
+      }
+      75%  {
+          opacity: 100%;
+          scale: 100%;
+      }
+      100% {
+        opacity: 0%;
+        scale: 120%;
+      }
+  }
+
+  .pmds-fade-left {
+    view-timeline-name: --pmds-fade-left;
+    view-timeline-axis: block;
+    animation-timeline: --pmds-fade-left;
+    animation-name: pmds-fade-left;
+  }
+
+  @keyframes pmds-fade-left {
+      0% {
+          opacity: 0%;
+          transform: translate(-100px, 0px)
+      }
+      25% {
+          opacity: 50%;
+          transform: translate(0px, 0px)
+      }
+      50%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      75%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      100% {
+          opacity: 0%;
+        transform: translate(-100px, 0px)
+      }
+  }
+
+  .pmds-fade-right {
+    view-timeline-name: --pmds-fade-right;
+    view-timeline-axis: block;
+    animation-timeline: --pmds-fade-right;
+    animation-name: pmds-fade-right;
+  }
+
+  @keyframes pmds-fade-right {
+      0% {
+          opacity: 0%;
+          transform: translate(100px, 0px)
+      }
+      25% {
+          opacity: 50%;
+          transform: translate(0px, 0px)
+      }
+      50%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      75%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      100% {
+          opacity: 0%;
+        transform: translate(100px, 0px)
+      }
+  }
+  .pmds-fade-left {
+    view-timeline-name: --pmds-fade-left;
+    view-timeline-axis: block;
+    animation-timeline: --pmds-fade-left;
+    animation-name: pmds-fade-left;
+  }
+
+  @keyframes pmds-fade-left {
+      0% {
+          opacity: 0%;
+          transform: translate(-100px, 0px)
+      }
+      25% {
+          opacity: 50%;
+          transform: translate(0px, 0px)
+      }
+      50%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      75%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      100% {
+          opacity: 0%;
+        transform: translate(-100px, 0px)
+      }
+  }
+
+  .pmds-fade-right {
+    view-timeline-name: --pmds-fade-right;
+    view-timeline-axis: block;
+    animation-timeline: --pmds-fade-right;
+    animation-name: pmds-fade-right;
+  }
+
+  @keyframes pmds-fade-right {
+      0% {
+          opacity: 0%;
+          transform: translate(100px, 0px)
+      }
+      25% {
+          opacity: 50%;
+          transform: translate(0px, 0px)
+      }
+      50%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      75%  {
+          opacity: 100%;
+          transform: translate(0px, 0px)
+      }
+      100% {
+          opacity: 0%;
+        transform: translate(100px, 0px)
+      }
+  }
+
+
+  .beforeafter img { max-width: 100%; height: auto; }
+  .slider { position: relative; margin: 0 auto; overflow: hidden; }
+  .slider .slide { pointer-events: none; display: block; } 
+  .slider .slide img { display: block; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } 
+  .slider .slide ~ .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 
+  .slider .slide:before { content: ""; position: absolute; top: 0; left: 0; height: 100%; z-index: 2; pointer-events: initial; }
+  .slider .slide:first-child:nth-last-child(2):before, .slider .slide:first-child:nth-last-child(2) ~ *:before { width: 50%; } 
+  .slider .slide:first-child:nth-last-child(2) + * img { -webkit-clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); } 
+  .slider .slide:first-child:nth-last-child(2) + *:before { left: 50%; } 
+  .slider .slide:first-child:nth-last-child(3):before, .slider .slide:first-child:nth-last-child(3) ~ *:before { width: 33.3333333333%; }
+  .slider .slide:first-child:nth-last-child(3) + * img { -webkit-clip-path: polygon(33.3333333333% 0, 66.6666666667% 0, 66.6666666667% 100%, 33.3333333333% 100%); clip-path: polygon(33.3333333333% 0, 66.6666666667% 0, 66.6666666667% 100%, 33.3333333333% 100%); } .slider .slide:first-child:nth-last-child(3) + *:before { left: 33.3333333333%; } .slider .slide:first-child:nth-last-child(3) + * + * img { -webkit-clip-path: polygon(66.6666666667% 0, 100% 0, 100% 100%, 66.6666666667% 100%); clip-path: polygon(66.6666666667% 0, 100% 0, 100% 100%, 66.6666666667% 100%); } .slider .slide:first-child:nth-last-child(3) + * + *:before { left: 66.6666666667%; } .slider .slide:first-child:nth-last-child(4):before, .slider .slide:first-child:nth-last-child(4) ~ *:before { width: 25%; } .slider .slide:first-child:nth-last-child(4) + * img { -webkit-clip-path: polygon(25% 0, 50% 0, 50% 100%, 25% 100%); clip-path: polygon(25% 0, 50% 0, 50% 100%, 25% 100%); } .slider .slide:first-child:nth-last-child(4) + *:before { left: 25%; } .slider .slide:first-child:nth-last-child(4) + * + * img { -webkit-clip-path: polygon(50% 0, 75% 0, 75% 100%, 50% 100%); clip-path: polygon(50% 0, 75% 0, 75% 100%, 50% 100%); } .slider .slide:first-child:nth-last-child(4) + * + *:before { left: 50%; } .slider .slide:first-child:nth-last-child(4) + * + * + * img { -webkit-clip-path: polygon(75% 0, 100% 0, 100% 100%, 75% 100%); clip-path: polygon(75% 0, 100% 0, 100% 100%, 75% 100%); } .slider .slide:first-child:nth-last-child(4) + * + * + *:before { left: 75%; } .slider:hover .slide img { -webkit-clip-path: polygon(0% 0, 0% 0, 0% 100%, 0% 100%) !important; clip-path: polygon(0% 0, 0% 0, 0% 100%, 0% 100%) !important; } .slider .slide:hover img { -webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%) !important; clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%) !important; } .slider .slide:hover ~ .slide img { -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) !important; clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) !important;
+`}
+</style>

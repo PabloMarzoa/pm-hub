@@ -1,0 +1,92 @@
+<!-- OPERATIONAL MENU VIEW  -->
+@if (type === 'OPERATIONAL') {
+	<section [attr.data-qa-id]="dataQA + componentSelector"
+			 class="flex flex-row w-full mobile:w-full mobile:flex-col bg-color-surface-primary bg-color-surface-primary">
+		<div class="w-7 border-b border-color-border-default mobile:hidden tablet:w-8"></div>
+		<!-- STANDARD MENU ITEM VIEW  -->
+		@for (menuItem of menuOptions; track i; let i = $index) {
+			<section class="relative !mobile:w-full">
+				<div [attr.data-qa-id]="dataQA + componentSelector + i + '-menu-item'"
+					 #menuComponent
+					 class="border-b border-color-border-default h-9 px-4 py-3 flex items-center
+			 	tablet:py-2 desktop:py-2 mobile:h-10 mobile:border-none mobile:justify-between
+			 	hover:bg-color-surface-hover active:bg-color-surface-secondary hover:cursor-pointer relative text-color-text-primary"
+					 [ngClass]="{
+						'!border-color-border-active border-b-2' : menuItem.label === selectedMenuItem || menuItem.label === openMenu,
+						'font-body-s-bold' : menuItem.label === selectedMenuItem,
+						'font-body-s-regular' : menuItem.label !== selectedMenuItem,
+					}"
+					 (click)="selectMenuButton(menuItem, $event)" (mouseenter)="openOnHover(menuItem)">
+					{{menuItem.label}}
+					@if (menuItem.children) {
+						<span class="pmicons-chevron-down-bold text-xl transition-all text-color-action-main-default h-[22px] hidden mobile:block"
+							  [ngClass]="{'rotate-180': menuItem.label === openMenu}"></span>
+					}
+				</div>
+				<!-- STANDARD SUBMENUS ITEMS VIEW  -->
+				@if (openMenu === menuItem.label && menuItem.children) {
+					<section [attr.data-qa-id]="dataQA + componentSelector + 'menu-item'"
+							 class="absolute left-0 top-full font-body-s-regular mobile:relative bg-color-surface-primary">
+						@for (submenuItem of menuItem.children; track j; let j = $index) {
+							<div [attr.data-qa-id]="dataQA + componentSelector + j + '-submenu-item'"
+								 class="flex p-1 items-center desktop:border-b tablet:border-b border-color-border-default h-9 w-max
+								!mobile:border-b-none mobile:h-10 mobile:w-full
+								mobile:hover:bg-color-surface-hover active:bg-color-surface-secondary hover:cursor-pointer flex-grow text-color-text-primary"
+								 [ngClass]="{
+								'!border-color-border-active desktop:border-b-2 tablet:border-b-2 mobile:border-l-4 font-body-s-bold mobile:pl-7' : submenuItem.label === selectedSubmenuItem && menuItem.label === selectedMenuItem,
+								'mobile:pl-8' : !(submenuItem.label === selectedSubmenuItem && menuItem.label === selectedMenuItem)
+							 }"
+								 (click)="submenuItem.action(); setSubmenuItem(menuItem.label, submenuItem.label)">
+								<section class="flex items-center h-full pl-4 pr-16 hover:bg-color-surface-hover rounded-pmds">
+									{{submenuItem.label}}
+								</section>
+							</div>
+						}
+					</section>
+				}
+				<!-- END STANDARD SUBMENUS ITEMS VIEW  -->
+			</section>
+		}
+		<!-- END STANDARD MENU ITEM VIEW  -->
+		<div class="min-w-7 border-b border-color-border-default flex-grow mobile:hidden tablet:min-w-8"></div>
+	</section>
+}
+<!-- END OPERATIONAL MENU VIEW -->
+<!-- ADMIN MENU VIEW  -->
+@if (type === 'ADMIN') {
+	<section [attr.data-qa-id]="dataQA + componentSelector"
+			 class="flex flex-col w-full">
+		<!-- ADMIN MENU ITEM VIEW  -->
+		@for (menuItem of menuOptions; track i; let i = $index) {
+			<section>
+				<div [attr.data-qa-id]="dataQA + componentSelector + i + '-menu-item'"
+					 #menuComponent
+					 [class]="(menuItem.label === selectedMenuItem && !menuItem.children ? 'font-body-s-bold' : 'font-body-s-regular') + ' px-2 py-2.5 hover:cursor-pointer hover:bg-color-surface-hover rounded-pmds relative flex flex-row items-center'"
+					 (click)="selectMenuButton(menuItem, $event)">
+					<span [class]="(menuItem.icon) + ' text-color-action-default text-2xl'"></span>
+					<span class="h-5 mt-1 ml-2 text-color-text-primary hover:cursor-pointer" pmdsTitle
+						  [ngClass]="{'font-body-s-bold': menuItem.label === selectedMenuItem || menuItem.label === openMenu}">
+				{{menuItem.label}}
+			</span>
+				</div>
+				<!-- ADMIN SUBMENUS ITEMS VIEW  -->
+				@if ((openMenu === menuItem.label || selectedMenuItem === menuItem.label)  && menuItem.children) {
+					<section [attr.data-qa-id]="dataQA + componentSelector + 'menu-item'"
+							 class="font-body-s-regular mobile:relative">
+						@for (submenuItem of menuItem.children; track j; let j = $index) {
+							<div [attr.data-qa-id]="dataQA + componentSelector + j + '-submenu-item'"
+								 [class]="(submenuItem.label === selectedSubmenuItem && menuItem.label === selectedMenuItem ? 'font-body-s-bold' : 'font-body-s-regular') +
+				 				' h-fit pl-10 pr-2 py-2.5 text-color-text-primary hover:cursor-pointer hover:bg-color-surface-hover rounded-pmds'"
+								 (click)="submenuItem.action(); setSubmenuItem(menuItem.label, submenuItem.label)" pmdsTitle>
+								{{submenuItem.label}}
+							</div>
+						}
+					</section>
+				}
+				<!-- END ADMIN SUBMENUS ITEMS VIEW  -->
+			</section>
+		}
+		<!-- END ADMIN MENU ITEM VIEW  -->
+	</section>
+}
+<!-- END ADMIN MENU VIEW -->

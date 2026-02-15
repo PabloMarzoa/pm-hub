@@ -1,0 +1,277 @@
+@if (skeleton) {
+<pmds-cdk-phone-input-skeleton
+	class="h-[72px]"
+	[dataQA]="dataQA + componentSelector"
+/>
+} @else {
+<section class="h-[72px]">
+	<section class="relative flex w-full">
+		<!-- DROPDOWN CONTAINER -->
+		<section class="relative">
+			<!--DROPDOWN-->
+			<div
+				class="flex border items-center py-0 cursor-pointer px-3 h-12 w-[123px] rounded-tl-pmds rounded-bl-pmds"
+				[ngClass]="dropdownNgClass"
+				#optionsDropdown
+				(click)="toggleShowOption(false, true)"
+			>
+				@if (selectedValue && selectedValue.value) {
+				<div class="w-full font-body-s-regular">
+					<div
+						class="flex items-center"
+						[ngClass]="
+							showOptions || selectedValue
+								? 'text-color-text-primary'
+								: 'text-color-action-main-default'
+						"
+					>
+						@if (selectedValue) {
+						<pmds-cdk-country-label
+							[ngClass]="{ 'opacity-60': isDisabled }"
+							[codeCountry]="selectedValue.codeCountry"
+							[assetsFolder]="assetsFolder"
+							[showLabel]="false"
+						/>
+						}
+						<section
+							[attr.data-qa-id]="
+								dataQA + componentSelector + 'dropdown-label'
+							"
+							class="font-body-m-regular pl-2"
+							[ngClass]="{
+								'text-color-text-disabled': isDisabled,
+								'text-color-text-primary': !isDisabled
+							}"
+						>
+							{{ selectedValue ? selectedValue.label : '' }}
+						</section>
+					</div>
+				</div>
+				}
+				<span
+					class="pmicons-chevron-down-small-1px text-2xl ml-2 transition-all text-color-action-main-default h-[22px] block"
+					[ngClass]="{
+						'rotate-180': showOptions,
+						'text-color-icon-disabled': isDisabled
+					}"
+				></span>
+			</div>
+			<!--END DROPDOWN-->
+			<!-- DROPDOWN OPTIONS -->
+			@if (showOptions) {
+			<div
+				[attr.data-qa-id]="dataQA + componentSelector + 'prevent-close'"
+				#optionsContent
+				class="animate-fade-in_fast w-[123px] z-10 absolute bg-color-surface-primary"
+				[ngClass]="{
+					'opacity-60': isDisabled,
+					'-top-[310px]': showDropdownOnTop
+				}"
+				(click)="preventClose($event)"
+			>
+				<div
+					class="max-h-[300px] flex flex-col absolute mt-1 bg-color-surface-primary rounded-pmds shadow-floating w-full overflow-hidden"
+					[ngClass]="{ 'h-[300px]': showDropdownOnTop }"
+				>
+					<!--  SEARCH INPUT -->
+					@if (enableSearch) {
+					<div class="font-body-m-regular p-4 mobile:p-2">
+						<div
+							class="flex items-center justify-between h-12 rounded-pmds border border-color-border-default w-full"
+							(click)="inputSearch.focus()"
+						>
+							@if (!( searchInputHasFocus || (!!currentFilter &&
+							currentFilter.length > 0) )) {
+							<span
+								class="pmicons-magnifying-glass text-color-icon-default text-2xl mx-2"
+							>
+							</span>
+							}
+							<div
+								class="mr-4 w-full text-color-text-primary font-body-m-regular"
+								[ngClass]="{
+									'!mx-2':
+										searchInputHasFocus ||
+										(!!currentFilter &&
+											currentFilter.length > 0)
+								}"
+							>
+								<input
+									#inputSearch
+									aria-label="phone input search"
+									(focusin)="searchInputFocusChange(true)"
+									(focusout)="searchInputFocusChange(false)"
+									[attr.data-qa-id]="
+										dataQA + componentSelector + 'oc-input'
+									"
+									class="focus:outline-none w-full placeholder-shown:text-ellipsis"
+									[placeholder]="literals.searchPlaceholder"
+									[(ngModel)]="currentFilter"
+									(ngModelChange)="getFilteredOptions()"
+								/>
+							</div>
+						</div>
+					</div>
+					}
+					<!--  END SEARCH INPUT -->
+
+					<!--  OPTIONS -->
+					<div class="overflow-y-auto" #optionsDropdownContainer>
+						@for (option of enableSearch ? filteredOptions :
+						options; track option.value) {
+						<div
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								'select-option-' +
+								$index
+							"
+							class="flex flex-row justify-between m-1 px-3 mobile:px-2 rounded-pmds py-2 cursor-pointer text-color-text-primary"
+							[ngClass]="{
+								'bg-color-surface-selected text-color-text-secondary':
+									option.value === selectedValue?.value
+							}"
+							(click)="
+								selectOption(option, $event); inputForm.focus()
+							"
+						>
+							<div class="flex flex-row items-center w-full">
+								<div
+									class="flex justify-between items-center w-full font-body-s-regular"
+								>
+									<span
+										[attr.data-qa-id]="
+											dataQA +
+											componentSelector +
+											'oc-label-' +
+											$index
+										"
+										class="flex items-center"
+									>
+										<pmds-cdk-country-label
+											class="w-4 h-4 mb-2"
+											[codeCountry]="option.codeCountry"
+											[assetsFolder]="assetsFolder"
+											[showLabel]="false"
+										>
+										</pmds-cdk-country-label>
+										<section
+											class="font-body-m-regular pl-2"
+										>
+											{{ option.label }}
+										</section>
+									</span>
+									@if (option.value === selectedValue?.value)
+									{
+									<span
+										class="text-xl pmicons-checkmark"
+									></span>
+									}
+								</div>
+							</div>
+						</div>
+						}
+					</div>
+					<!--  OPTIONS -->
+					<!--  EMPTY STATE -->
+					@if (enableSearch && filteredOptions.length === 0) {
+					<div class="max-w-full">
+						<div class="p-4 mobile:p-2 text-center">
+							<div
+								class="font-body-m-bold text-color-text-primary"
+							>
+								{{ literals.emptyStateTitle }}
+							</div>
+							<div
+								class="font-body-m-regular text-color-text-tertiary"
+							>
+								{{ literals.emptyStateContent }}
+							</div>
+						</div>
+					</div>
+					}
+					<!--  END EMPTY STATE -->
+				</div>
+			</div>
+			}
+			<!-- DROPDOWN OPTIONS -->
+		</section>
+		<!-- END DROPDOWN CONTAINER -->
+
+		<!-- INPUT CONTAINER -->
+		<div
+			class="w-full relative"
+			[ngClass]="{ 'pointer-events-none select-none': isDisabled }"
+			(click)="inputForm.focus()"
+		>
+			<!-- INPUT -->
+			<input
+				class="font-body-m-regular px-3 h-12 border w-full outline-none pt-[17px] peer focus:!border-color-border-focus [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none font-body-m-bold rounded-pmds rounded-tl-none rounded-bl-none border-b"
+				#inputForm
+				aria-label="phone input"
+				type="text"
+				pmdsCdkOnlyNumber
+				[value]="value"
+				[disabled]="isDisabled"
+				[ngClass]="inputNgClass"
+				[attr.data-qa-id]="dataQA + 'pmds-cdk-phone-input'"
+				(input)="onInput($event)"
+				(paste)="onPaste($event)"
+				(focusin)="this.updateClearButtonOnFocus(true)"
+				(focusout)="checkErrors(); this.updateClearButtonOnFocus(false)"
+				placeholder=" "
+			/>
+			<!-- END INPUT -->
+			<!-- PLACEHOLDER -->
+			<label
+				class="absolute w-full pr-6 cursor-text font-body-xs-regular text-xs pt-[6px] top-0 left-3 transform duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:pt-0 peer-placeholder-shown:text-base peer-focus:top-[5px] peer-focus:pt-[1px] peer-focus:text-xs"
+				[ngClass]="{
+					'text-color-text-tertiary': !isDisabled,
+					'text-color-text-disabled pointer-event pointer-events-none':
+						isDisabled
+				}"
+				[attr.data-qa-id]="
+					dataQA +
+					componentSelector +
+					'pmds-cdk-text-input-placeholder'
+				"
+				(click)="inputForm.focus()"
+				pmdsTitle
+			>
+				{{ literals.placeholder }}
+			</label>
+			<!-- END PLACEHOLDER -->
+		</div>
+		<!-- END INPUT CONTAINER -->
+	</section>
+	<!-- HELPER TEXT -->
+	@if (!error && !skeleton && !!literals.helperText) {
+	<section
+		class="relative ml-[123px] pl-3 pt-1 font-body-xs-regular"
+		[ngClass]="{
+			'text-color-text-disabled': isDisabled,
+			'text-color-text-tertiary': !isDisabled
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'helper-text'"
+	>
+		<span class="absolute">
+			{{ literals?.helperText }}
+		</span>
+	</section>
+	}
+	<!-- END HELPER TEXT -->
+	<!-- FORM ERROR MESSAGE -->
+	<div class="ml-[123px]">
+		@if (!inputFocused) {
+		<pmds-cdk-form-error-message
+			[hideError]="!error"
+			[control]="control"
+			[controlName]="formControlName"
+			[dataQA]="dataQA + componentSelector"
+			[literalsErrorFn]="literalsErrorFn"
+		/>
+		}
+	</div>
+	<!-- END FORM ERROR MESSAGE -->
+</section>
+}

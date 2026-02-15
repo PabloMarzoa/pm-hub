@@ -1,0 +1,99 @@
+@if (data) {
+	<section class="flex flex-col text-color-text-primary border p-4 max-w-[100vw] rounded-pmds"
+			 [class]="styleByType[data.type || 'error']">
+		<div class="flex gap-2">
+			<!-- ICON -->
+			<span class="flex justify-start text-2xl"
+				  [ngClass]="iconByType[data.type || 'error']"
+				  [attr.data-qa-id]="dataQA + componentSelector + 'icon'"
+			>
+        </span>
+			<!-- END ICON -->
+			<!-- CONTENT -->
+			<div class="flex flex-col w-full">
+				<p class="font-body-m-bold"
+				   [attr.data-qa-id]="dataQA + componentSelector + 'title'"
+				>
+					{{ data.title }}
+				</p>
+				@if (data.content) {
+					<p class="font-body-m-regular pt-1"
+					   [attr.data-qa-id]="dataQA + componentSelector + 'content'"
+					   [innerHTML]="data.content">
+					</p>
+				}
+			</div>
+			<!-- END CONTENT -->
+			<!-- CLOSE BUTTON -->
+			@if (!data?.hideClose) {
+				<button class="flex justify-start text-2xl pmicons-close h-full" aria-label="close"
+						[ngClass]="actionByType[data.type || 'error']"
+						[attr.data-qa-id]="dataQA + componentSelector + 'close-button'"
+						(click)="close()">
+				</button>
+			}
+			<!-- END CLOSE BUTTON -->
+		</div>
+		<!-- SUBJECT AND MESSAGE -->
+		@if (data['literals']?.subject || data['literals']?.message) {
+			<ng-container>
+				<div class="flex flex-col px-8 pt-4">
+					@if (data['literals']?.subjectContent) {
+						<div class="flex gap-12 w-full pb-2">
+							<p class="font-body-s-bold w-1/12"
+							   [attr.data-qa-id]="dataQA + componentSelector + 'subject'"
+							>
+								{{ data['literals']?.subject }}
+							</p>
+							<p
+								class="font-body-s-regular"
+								[attr.data-qa-id]="dataQA + componentSelector + 'subject-content'"
+							>
+								{{ data['literals']?.subjectContent }}
+							</p>
+						</div>
+					}
+					@if (data['literals']?.messageContent) {
+						<div class="flex gap-12 w-full">
+							<p class="font-body-s-bold w-1/12"
+							   [attr.data-qa-id]="dataQA + componentSelector + 'message'"
+							>
+								{{ data['literals']?.message }}
+							</p>
+							<p
+								class="font-body-s-regular"
+								[attr.data-qa-id]="dataQA + componentSelector + 'message-content'"
+							>
+								{{ data['literals']?.messageContent }}
+							</p>
+						</div>
+					}
+				</div>
+			</ng-container>
+		}
+		<!-- END SUBJECT AND MESSAGE -->
+		<!-- ACTION BUTTON -->
+		@if (!!data?.actionFn) {
+			<ng-container>
+				<div class="flex justify-end pt-2" [ngClass]="actionByType[data.type || 'error']">
+					<button class="flex items-center cursor-pointer" aria-label="action"
+							[attr.data-qa-id]="dataQA + componentSelector + 'action-button'"
+							(click)="action()">
+						@if (data['literals']?.action) {
+							<span class="mr-2 font-body-m-regular"
+								  [attr.data-qa-id]="dataQA + componentSelector + 'action-button-text'">
+								{{ data['literals']?.action }}
+							</span>
+						}
+						<span class="text-2xl"
+							  [ngClass]="data.actionIcon!"
+							  [attr.data-qa-id]="dataQA + componentSelector + 'action-button-icon'"
+						>
+                </span>
+					</button>
+				</div>
+			</ng-container>
+		}
+		<!-- END ACTION BUTTON -->
+	</section>
+}

@@ -1,0 +1,86 @@
+@if (skeleton) {
+<pmds-cdk-option-buttons-skeleton
+	[likeDislike]="likeDislike"
+	[dataQA]="dataQA + componentSelector"
+/>
+} @else { @if (!likeDislike) {
+<div class="flex items-center">
+	<div class="inline-flex" role="group">
+		<!-- BUTTON -->
+		@for (option of options; track (option.id + '-' + $index)) {
+		<button
+			class="border-color-border-default leading-tight outline-none focus:ring-0 transition duration-150 ease-in-out flex items-center border-t border-b first:rounded-l-pmds first:border last:border last:rounded-r-pmds"
+			type="button"
+			aria-label="option button"
+			[attr.data-qa-id]="dataQA + componentSelector + 'button-' + $index"
+			[ngClass]="{
+                             'last:border-l-0' : options.length === 2,
+                             'h-12': size === 'large',
+                             'h-8': size === 'small',
+                             'pointer-events-none !bg-color-surface-primary text-color-action-main-default select-none': option?.active,
+                             'bg-color-surface-secondary text-color-text-primary hover:bg-color-surface-hover': !option?.active,
+                         }"
+			(click)="selectOption(option.id)"
+		>
+			<section class="flex items-center justify-center px-4 py-3 gap-1">
+				<!-- LABEL -->
+				@if (option?.label) {
+				<div
+					[attr.data-qa-id]="
+						dataQA + componentSelector + 'label-' + $index
+					"
+					class="whitespace-nowrap"
+					[ngClass]="
+						option?.active
+							? 'font-body-s-bold'
+							: 'font-body-s-regular'
+					"
+				>
+					{{ option?.label }}
+				</div>
+				}
+				<!-- END LABEL -->
+				<!-- ICON -->
+				@if (option?.icon) {
+				<div lass="pt-0.5">
+					<span class="text-2xl" [ngClass]="option.icon"></span>
+				</div>
+				}
+				<!-- END ICON -->
+			</section>
+		</button>
+		}
+		<!-- END BUTTON -->
+	</div>
+</div>
+} @else {
+<div class="flex items-center">
+	<div class="inline-flex" role="group">
+		<!-- BUTTON -->
+		@for (option of options; track (option.id + '-' + $index)) {
+		<button
+			class="border-color-border-default leading-tight outline-none h-12 first:border-r-0 focus:ring-0 transition duration-150 ease-in-out flex items-center border-t border-b first:rounded-l-pmds first:border last:border last:rounded-r-pmds"
+			aria-label="option button"
+			type="button"
+			[attr.data-qa-id]="dataQA + componentSelector + 'button-' + $index"
+			[ngClass]="{
+                             'pointer-events-none !bg-color-surface-primary text-color-action-main-default select-none': option?.active,
+                             'bg-color-surface-secondary text-color-text-primary hover:bg-color-surface-hover': !option?.active,
+                         }"
+			(click)="selectOption(option.id)"
+		>
+			<section class="flex items-center justify-center px-4 py-3 gap-1">
+				<!-- ICON -->
+				@if (option?.icon) {
+				<div class="pt-0.5">
+					<span class="text-2xl" [ngClass]="option.icon"></span>
+				</div>
+				}
+				<!-- END ICON -->
+			</section>
+		</button>
+		}
+		<!-- END BUTTON -->
+	</div>
+</div>
+} }

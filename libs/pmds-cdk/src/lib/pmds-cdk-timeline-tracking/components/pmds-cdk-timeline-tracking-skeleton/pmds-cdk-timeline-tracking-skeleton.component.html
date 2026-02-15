@@ -1,0 +1,31 @@
+<!-- SKELETON -->
+<section class="flex flex-col gap-4" [attr.data-qa-id]="dataQA + '-skeleton'">
+	@for (item of [0,1,2]; track item) {
+	<section class="flex gap-4 w-[328px] mobile:w-full h-[52px]">
+		<section class="flex flex-col items-center gap-4">
+			<pmds-cdk-skeleton
+				[attr.data-qa-id]="dataQA + '-skeleton'"
+				[style]="'size-6 !rounded-full'"
+			/>
+			@if (!$last) {
+
+			<pmds-cdk-skeleton
+				[attr.data-qa-id]="dataQA + '-skeleton'"
+				[style]="'w-[1px] h-4'"
+			/>
+			}
+		</section>
+		<section class="flex flex-col gap-4 w-full">
+			<pmds-cdk-skeleton
+				[attr.data-qa-id]="dataQA + '-skeleton'"
+				[style]="'w-[96px] h-3'"
+			/>
+			<pmds-cdk-skeleton
+				[attr.data-qa-id]="dataQA + '-skeleton'"
+				[style]="'w-full h-3'"
+			/>
+		</section>
+	</section>
+	}
+</section>
+<!-- SKELETON -->

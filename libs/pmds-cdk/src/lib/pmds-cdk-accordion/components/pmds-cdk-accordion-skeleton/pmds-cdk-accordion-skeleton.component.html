@@ -1,0 +1,21 @@
+<!-- SKELETON -->
+<section
+	[attr.data-qa-id]="dataQA + 'skeleton'"
+	class="p-4 w-full flex justify-between"
+>
+	<section class="p-0.5">
+		<pmds-cdk-skeleton [style]="'h-5 w-40'" />
+	</section>
+	<section class="flex gap-4 p-0.5">
+		<pmds-cdk-skeleton [style]="'h-5 w-40'" />
+		<pmds-cdk-skeleton [style]="'size-5'" />
+	</section>
+</section>
+@if (open) {
+<section [attr.data-qa-id]="dataQA + 'skeleton-open'" class="px-4 pb-4 w-full">
+	<section class="p-0.5">
+		<pmds-cdk-skeleton [style]="'h-72 w-full'" />
+	</section>
+</section>
+}
+<!-- SKELETON -->

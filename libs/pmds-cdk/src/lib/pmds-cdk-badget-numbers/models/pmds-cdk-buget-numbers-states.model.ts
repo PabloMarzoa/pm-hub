@@ -1,0 +1,1 @@
+export type TPmdsCdkBadgetNumbersSize = 'small' | 'medium' | 'large';

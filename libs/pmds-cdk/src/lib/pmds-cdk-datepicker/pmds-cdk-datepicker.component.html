@@ -1,0 +1,56 @@
+<section #section [ngClass]="{'relative': positionRight}">
+	<!-- INPUT DATE -->
+	@if (!skeleton) {
+		<section (click)="!isDisabled && (omitEvent = true)" class="h-[72px]" #datepickerInput>
+			<pmds-cdk-text-input
+				(click)="onOpenCalendar()"
+				(focusout)="checkValidDate(undefined, true)"
+				[dataQA]="dataQA + componentSelector + 'datepicker-'"
+				[formControlName]="formControlName"
+				[helperText]="literals.formatHelp"
+				[isDisabled]="isDisabled"
+				[literalsErrorFn]="literalsErrorFn"
+				[maxlength]="format.length"
+				[minlength]="format.length"
+				(keyup.enter)="checkValidDate(undefined, false, true)"
+				[ngClass]="{
+				'[&>div>input]:!border-color-border-focus [&>div>pmds-cdk-form-error-message]:hidden': showCalendar,
+			}"
+				[showClear]="true"
+				[icon]="'pmicons-calendar text-color-action-main-default ' + (showCalendar ? '' : 'cursor-pointer')"
+				[placeholder]="placeholder"
+			/>
+		</section>
+	}
+	<!-- END INPUT DATE -->
+	<!-- CALENDAR -->
+	<section class="absolute z-10" [pmdsViewportOverflow]="{height: 394, translateY: 448}"
+		[ngClass]="{'right-0': positionRight}">
+		@if (!isDisabled) {
+			<section class="absolute"
+					 [hidden]="!showCalendar"
+					 (click)="omitEvent = true">
+				<pmds-cdk-datepicker-calendar
+					#datepickerCalendar
+					[customStyles]="calendarWidthStyle"
+					[enabledToday]="enabledToday"
+					[setDate]="setDate"
+					[min]="min"
+					[max]="max"
+					[format]="format"
+					[dateInfo]="dateInfo"
+					[dataQA]="dataQA + componentSelector + 'datepicker-'"
+					[literals]="literals"
+					[selectableDates]="selectableDates"
+					[positionRight]="positionRight"
+					(selectDayChange)="selectDayChange($event)"
+					(closeCalendar)="showCalendar = false; datepickerCalendar.changeSetDate()"
+				/>
+			</section>
+		}
+	</section>
+	<!-- END CALENDAR -->
+	@if (skeleton) {
+		<pmds-cdk-skeleton class="animate-fade-in" [style]="'w-full h-[72px] rounded-pmds'"/>
+	}
+</section>

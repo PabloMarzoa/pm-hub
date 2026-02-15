@@ -1,0 +1,210 @@
+<section
+	class="relative flex flex-col justify-between border-solid border shadow-floating animate-fade-in_fast mobile:w-screen mobile:fixed mobile:left-0 mobile:rounded-b-none"
+	[ngClass]="{
+        'md:w-[520px]': (modalSize === 'small' || modalSize === 'medium') && !isSidebar,
+        'md:w-[936px]': modalSize === 'large' && !isSidebar,
+        'desktop:w-[440px]': modalSize === 'small' && isSidebar,
+        'desktop:w-[648px]': modalSize === 'medium' && isSidebar,
+        'desktop:w-[856px]': modalSize === 'large' && isSidebar,
+        'mobile:min-w-[100vw] mobile:top-0 mobile:h-[100dvh] max-w-[100vw] h-[100dvh] tablet:h-fit tablet:max-h-[80vh] tablet:w-screen tab bg-pmds-cdk-sidebar': isSidebar,
+        'rounded-pmds bg-color-surface-primary mobile:bottom-0 md:max-h-[80vh] md:max-w-[80vw] mobile:max-h-[90vh]': !isSidebar,
+    }"
+	[attr.data-qa-id]="dataQA + componentSelector + 'container'"
+>
+	@if (!loading) {
+	<ng-container>
+		<!-- ACTIONS SECTION -->
+		<section
+			class="flex justify-between w-full absolute z-10 pt-6 px-6 mobile:px-4"
+			[ngClass]="{
+				'mobile:pt-4': !isSidebar,
+				'mobile:pt-3': isSidebar
+			}"
+		>
+			<pmds-cdk-button
+				icon="pmicons-chevron-left-bold"
+				[label]="buttonBackLabel"
+				[hideLabelMobile]="true"
+				iconPosition="left"
+				buttonType="tertiary"
+				[smallFit]="true"
+				buttonSizeMobile="small"
+				[ngClass]="{
+					'opacity-0 pointer-events-none':
+						!isSidebar || config.hideBackButton || !buttonBackLabel
+				}"
+				(buttonClick)="action('back')"
+			>
+			</pmds-cdk-button>
+			<section class="flex relative">
+				@if (sidebarButtons && isSidebar) {
+				<div class="absolute -top-1 right-8">
+					<pmds-cdk-button-dropdown
+						type="tertiary"
+						size="small"
+						[smallFit]="true"
+						[options]="
+							sidebarButtons[0] && sidebarButtons[1]
+								? [
+										{
+											label: sidebarButtons[0].label,
+											actionFn: sidebarButtons[0].actionFn
+										},
+										{
+											label: sidebarButtons[1].label,
+											actionFn: sidebarButtons[1].actionFn
+										}
+								  ]
+								: [
+										{
+											label: sidebarButtons[0].label,
+											actionFn: sidebarButtons[0].actionFn
+										}
+								  ]
+						"
+					/>
+				</div>
+				}
+				<pmds-cdk-button
+					icon="pmicons-close1"
+					buttonType="tertiary"
+					[smallFit]="true"
+					buttonSizeMobile="small"
+					(buttonClick)="action('close', true)"
+				>
+				</pmds-cdk-button>
+			</section>
+		</section>
+		<!-- END ACTION SECTION -->
+		<!-- HEADER SECTION -->
+		<header
+			class="flex pb-6"
+			[attr.data-qa-id]="dataQA + componentSelector + 'header'"
+			[ngClass]="{
+			'!mobile:pb-0 mobile:p-0 mobile:bg-color-surface-primary mobile:border-color-border-decorative px-6 pt-14': isSidebar,
+			'mobile:p-4 mobile:pb-4 px-16 pt-9': !isSidebar,
+		}"
+		>
+			<!-- TITLE -->
+			@if (title) {
+			<div
+				class="h-10 w-full flex justify-between items-center relative"
+				[ngClass]="{
+					'mobile:justify-center mobile:aling-center mobile:p-0 h-12':
+						isSidebar
+				}"
+			>
+				<div
+					class="text-color-text-primary font-headline-desktop-l-regular"
+					[ngClass]="{
+						'mobile:self-center mobile:font-headline-mobile-m-regular':
+							isSidebar
+					}"
+				>
+					<span
+						[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+					>
+						{{ title }}
+					</span>
+				</div>
+			</div>
+			}
+			<!-- END TITLE -->
+			<!-- SIDEBAR BUTTONS -->
+			@if (sidebarButtons && isSidebar) {
+			<div class="flex gap-4 items-center mobile:hidden">
+				@if (sidebarButtons[0]) {
+				<pmds-cdk-button
+					[icon]="sidebarButtons[0].icon"
+					[label]="sidebarButtons[0].label"
+					buttonType="tertiary"
+					[smallFit]="true"
+					[dataQA]="dataQA + componentSelector + 'sidebar-button-1-'"
+					(buttonClick)="sidebarButtons[0].actionFn()"
+				/>
+				} @if (sidebarButtons[1]) {
+				<pmds-cdk-button
+					[icon]="sidebarButtons[1].icon"
+					[label]="sidebarButtons[1].label"
+					buttonType="tertiary"
+					[smallFit]="true"
+					[dataQA]="dataQA + componentSelector + 'sidebar-button-2-'"
+					(buttonClick)="sidebarButtons[1].actionFn()"
+				/>
+				}
+			</div>
+			}
+			<!-- END SIDEBAR BUTTONS -->
+		</header>
+		<!-- END HEADER SECTION -->
+		<!-- BODY -->
+		<section
+			class="overflow-y-auto mobile:relative grow mb-6 mobile:mb-2 mobile:px-4 font-body-m-regular text-color-text-primary"
+			[ngClass]="{
+			'md:max-h-[72vh] px-16': !isSidebar,
+			'px-6 relative mobile:mt-4': isSidebar,
+		}"
+		>
+			@if (body) {
+			<div
+				[ngClass]="{
+					'mb-6 mobile:mb-2': contentBody?.children?.length
+				}"
+				[attr.data-qa-id]="dataQA + componentSelector + 'body'"
+			>
+				{{ body }}
+			</div>
+			}
+			<!-- CONTENT -->
+			<div
+				#contentBody
+				[attr.data-qa-id]="dataQA + componentSelector + 'content-body'"
+			>
+				<ng-content select="[body]"></ng-content>
+			</div>
+			<!-- END CONTENT -->
+		</section>
+		<!-- BODY -->
+		<!-- FOOTER -->
+		<footer
+			class="w-full flex gap-6 mobile:gap-4 mobile:bg-color-surface-primary mobile:flex-col mobile:p-4"
+			[ngClass]="{
+			'bg-color-surface-primary border-t border-t-color-border-decorative p-6': isSidebar,
+			'px-16 pb-10': !isSidebar,
+			'hidden': config.hiddenFooter,
+		 }"
+			[attr.data-qa-id]="dataQA + componentSelector + 'footer'"
+		>
+			@if (buttonConfirmLabel) {
+			<pmds-cdk-button
+				[buttonSize]="'small'"
+				[buttonSizeMobile]="'medium'"
+				[label]="buttonConfirmLabel"
+				[disabled]="config.disabledConfirmButton || false"
+				[dataQA]="dataQA + componentSelector + 'confirm-'"
+				(click)="action('confirm')"
+			/>
+			} @if (buttonCloseLabel) {
+			<pmds-cdk-button
+				buttonType="secondary"
+				[buttonSize]="'small'"
+				[buttonSizeMobile]="'medium'"
+				[label]="buttonCloseLabel"
+				[dataQA]="dataQA + componentSelector + 'cancel-'"
+				(click)="action('cancel')"
+			/>
+			}
+			<ng-content select="[footer]"></ng-content>
+		</footer>
+		<!-- END FOOTER -->
+	</ng-container>
+	} @if (loading) {
+	<ng-container>
+		<section
+			class="w-full h-full flex items-center justify-center tablet:min-h-[70vh]"
+		>
+			<pmds-cdk-loader [isPrimary]="false" />
+		</section>
+	</ng-container>
+	}
+</section>

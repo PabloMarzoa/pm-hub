@@ -1,0 +1,97 @@
+@if (skeleton) {
+	<pmds-cdk-checkbox-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section class="flex">
+		<!-- CHECK -->
+		<div class="inline-block select-none"
+			[ngClass]="{
+				'cursor-pointer': !isDisabled,
+				'cursor-default bg-color-surface-disabled': isDisabled
+			}"
+			[attr.data-qa-id]="dataQA + componentSelector + 'toggle-value'"
+			(click)="toggleValue()">
+			<!-- UNDEFINED VALUE (INDETERMINATE) -->
+			@if (value === undefined || value === null) {
+				<div class="rounded border-2 w-6 h-6 flex justify-center items-center"
+					[ngClass]="{
+						'border-color-border-focus bg-color-action-alternative-default':
+							!isDisabled,
+						'border-color-border-disabled bg-color-surface-disabled':
+							isDisabled
+					}"
+					[attr.data-qa-id]="dataQA + componentSelector + 'null-value'">
+					<div class="border-b-2 w-[8px] absolute"
+						[ngClass]="{
+							'border-color-text-secondary': !isDisabled,
+							'border-b-color-border-disabled': isDisabled
+						}">
+					</div>
+				</div>
+			}
+			<!-- END UNDEFINED VALUE (INDETERMINATE) -->
+			<!-- TRUE VALUE -->
+			@if (value === true) {
+				<div class="rounded border-2 relative text-color-text-secondary w-6 h-6 flex justify-center items-center"
+					 [ngClass]="{
+					'border-color-border-focus bg-color-action-alternative-default': !isDisabled,
+					'border-color-border-disabled bg-color-surface-disabled': isDisabled
+				}"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'true-value'">
+					<div class="rotate-[-45deg] border-2 border-r-0 border-t-0 h-1 w-2.5 absolute"
+						 [ngClass]="{
+						'border-b-color-text-secondary border-l-color-text-secondary': !isDisabled,
+						'border-b-color-border-disabled border-l-color-border-disabled': isDisabled
+					}">
+					</div>
+				</div>
+			}
+			<!-- END TRUE VALUE -->
+			<!-- FALSE VALUE -->
+			@if (value === false) {
+				<div class="rounded border w-6 h-6 flex justify-center items-center"
+					 [ngClass]="{
+					'border-color-border-error': showError && !isDisabled,
+					'border-color-border-default bg-color-surface-primary': !isDisabled,
+					'border-color-border-disabled bg-color-surface-disabled': isDisabled
+				}"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'false-value'">
+				</div>
+			}
+			<!-- END FALSE VALUE -->
+		</div>
+		<!-- END CHECK -->
+		<!-- LABEL -->
+		@if (label) {
+			<div class="ml-2"
+				 [ngClass]="{
+					'cursor-pointer': !isDisabled,
+					'cursor-default': isDisabled
+				}"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'label-toggle-value'"
+				 (click)="toggleValue()">
+				<div class="font-body-m-regular"
+					 [ngClass]="{
+						'text-color-text-primary': !isDisabled,
+						'text-color-text-disabled': isDisabled
+					}"
+					 [innerHTML]="label">
+				</div>
+			</div>
+		}
+		<!-- END LABEL -->
+	</section>
+	<!-- FORM ERROR -->
+	@if (showError) {
+		<section class="-ml-3">
+			<pmds-cdk-form-error-message
+				[dataQA]="dataQA + componentSelector"
+				[control]="formControl"
+				[label]="label"
+				[hideError]="!showError"
+				[controlName]="formControlName"
+				[literalsErrorFn]="literalsErrorFn"
+			/>
+		</section>
+	}
+	<!-- END FORM ERROR -->
+}

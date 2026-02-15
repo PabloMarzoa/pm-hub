@@ -1,0 +1,1 @@
+export type TPmdsCdkTextType = 'module-title' | 'section-title' | 'description' | 'category';

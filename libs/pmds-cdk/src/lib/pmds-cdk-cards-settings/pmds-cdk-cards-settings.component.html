@@ -1,0 +1,82 @@
+@if (skeleton) {
+	<pmds-cdk-cards-settings-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section cdkDropList
+		(cdkDropListDropped)="drop($event)"
+		[attr.data-qa-id]="dataQA + componentSelector + 'section'"
+		class="flex flex-col gap-4 [&>.cdk-drag-placeholder]:opacity-0">
+		<!-- ITEMS -->
+		@for (item of settingsItems; track item.value; let i = $index) {
+			<div class="flex p-4 flex-wrap items-center justify-between gap-4 rounded-pmds bg-color-surface-primary shadow-raised border-color-border-default text-color-text-primary"
+				 cdkDrag
+				 [attr.data-qa-id]="dataQA + componentSelector + i + '-item'"
+				 [cdkDragDisabled]="type === 'toggle'">
+				<!-- LEFT SECTION -->
+				<section class="flex gap-4 items-center max-w-[100%]">
+					@if (showCheckbox) {
+						<pmds-cdk-checkbox
+							[dataQA]="dataQA + componentSelector + i + '-checkbox-'"
+							(ngModelChange)="checkedItem.emit(item)"
+							[(ngModel)]="item.checkBoxValue" />
+					}
+					@if (item.field) {
+						<pmds-cdk-text-field
+							[disabledEllipsis]="true"
+							[dataQA]="dataQA + componentSelector + i + '-text-field-'"
+							[field]="item.field"
+							type="two-line-bold" />
+					}
+					@if (!item.field) {
+						<div class="font-body-s-regular"
+							[attr.data-qa-id]="dataQA + componentSelector + i + '-value'">
+							{{ item.value }}
+						</div>
+					}
+				</section>
+				<!-- END LEFT SECTION -->
+				<!-- RIGHT SECTION -->
+				<section
+					class="flex gap-4 items-center justify-between flex-grow"
+					[ngClass]="{
+					'justify-between': item.tagLabel,
+					'justify-end': !item.tagLabel,
+				}"
+				>
+					@if (item.tagLabel) {
+						<pmds-cdk-tag-label
+							[dataQA]="dataQA + componentSelector + i + '-tag-label-'"
+							[color]="item.tagLabel.color"
+							[label]="item.tagLabel.label" />
+					}
+					<section class="flex gap-4 items-center">
+						@if (showEditAction) {
+							<div [attr.data-qa-id]="dataQA + componentSelector + i + '-edit'"
+								(click)="editedItem.emit(item)"
+								class="pmicons-edit text-2xl text-color-icon-action"
+								></div>
+						}
+						@if (type === 'moveDelete') {
+							<div [attr.data-qa-id]="dataQA + componentSelector + i + '-move'"
+								 class="pmicons-dragndrop text-2xl text-color-icon-action hover:cursor-move"
+							></div>
+						}
+						@if (showDeleteAction) {
+							<div [attr.data-qa-id]="dataQA + componentSelector + i + '-delete'"
+								 (click)="deletedItem.emit(item)"
+								 class="pmicons-trash text-2xl text-color-icon-action"
+							></div>
+						}
+						@if (type === 'toggle') {
+							<pmds-cdk-toggle-switch
+								[dataQA]="dataQA + componentSelector + i + '-toggle-'"
+								(ngModelChange)="toggledItem.emit(item)"
+								[(ngModel)]="item.switchValue" />
+						}
+					</section>
+				</section>
+				<!-- END RIGHT SECTION -->
+			</div>
+		}
+		<!-- END ITEMS -->
+	</section>
+}

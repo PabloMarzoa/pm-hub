@@ -1,0 +1,1 @@
+export type TPmdsCdkCardsFileUploadStates = 'initial' | 'loading' | 'error';

@@ -1,0 +1,1 @@
+export type TPmdsCdkErrorPageType = '401' | '403' | '404' | '500' | '503';

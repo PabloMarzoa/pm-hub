@@ -1,0 +1,22 @@
+pmds-cdk-header {
+	&>section {
+		@apply bg-color-surface-primary;
+	}
+	.pmicons-building, .pmicons-bell {
+		@apply text-color-icon-default;
+	}
+	.pmicons-burger-menu {
+		@apply text-color-icon-action;
+	}
+
+	.header-menu-close-action {
+		@apply text-color-icon-action;
+	}
+}
+
+
+.transition-animation {
+	@apply transition-all;
+	@apply duration-700;
+	@apply ease-in-out;
+}

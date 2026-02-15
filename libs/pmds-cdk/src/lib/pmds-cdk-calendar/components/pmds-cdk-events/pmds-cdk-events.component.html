@@ -1,0 +1,62 @@
+@if (events) {
+	<section class="px-4 pt-2 pb-4 flex flex-col tablet:max-h-[330px] max-h-[275px] overflow-y-scroll overflow-x-hidden">
+		@for (day of events | keyvalue; track day.key) {
+			<div tabindex="0">
+				<!-- EVENTS DAY -->
+				@if (day.value.events.length) {
+					<section class="gap-2 flex flex-col animate-fade-in pt-2">
+						<!-- TITLE -->
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'title'">{{
+								day.value.title
+							}}</span>
+						<!-- END TITLE -->
+						<!-- EVENTS -->
+						@for (event of day.value.events; track event.eventTitle; let i = $index) {
+							<section [attr.data-qa-id]="dataQA + componentSelector + i + '-event'"
+									 class="relative flex flex-col rounded-pmds border border-color-border-default px-4 py-3 cursor-pointer h-16 overflow-hidden text-color-text-primary"
+									 (click)="selectEvent.emit(event)">
+								<div
+									[attr.data-qa-id]="
+						dataQA + componentSelector + i + '-event-title'
+					"
+									class="font-body-s-bold"
+								>
+									{{ event.eventTitle }}
+								</div>
+								<div
+									[attr.data-qa-id]="
+						dataQA + componentSelector + i + '-event-subtitle'
+					"
+									class="font-body-s-regular"
+								>
+									{{ event.eventSubtitle }}
+								</div>
+								<div
+									class="w-1 h-16 top-0 left-0 absolute"
+									[ngClass]="{
+						'bg-color-support-10': event.eventType === 'CONFIRMED',
+						'bg-color-support-08': event.eventType === 'PENDING',
+						'bg-color-support-06': event.eventType === 'SETTLED',
+						'bg-color-support-02': event.eventType === 'CUSTOM',
+					}"
+								></div>
+							</section>
+						}
+						<!-- END EVENTS -->
+					</section>
+				}
+				<!-- END EVENTS DAY -->
+			</div>
+		}
+		<!-- NOT EVETNS -->
+		@if (!events || noEvents) {
+			<div [attr.data-qa-id]="dataQA + componentSelector + '-not-events'"
+				 class="flex flex-col rounded-pmds border border-color-border-default h-16 items-center justify-center font-body-s-regular text-color-text-primary animate-fade-in"
+			>
+				{{ noEventsLiteral }}
+			</div>
+		}
+		<!-- END NOT EVETNS -->
+	</section>
+}
+

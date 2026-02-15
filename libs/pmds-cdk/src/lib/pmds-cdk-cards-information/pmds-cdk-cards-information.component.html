@@ -1,0 +1,70 @@
+@if (skeleton) {
+	<pmds-cdk-cards-information-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section class="w-[392px] border rounded-pmds shadow-raised p-4 bg-color-surface-primary text-color-text-primary"
+		[ngClass]="{'bg-color-surface-disabled': !selected}">
+		@if (!create) {
+			<div class="flex flex-col">
+				<!-- FIRST LINE -->
+				<div class="flex flex-row items-start justify-between">
+					<div class="flex flex-col">
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'title'"
+							class="font-body-s-regular"
+							[ngClass]="{ 'text-color-text-disabled': !selected }">
+							{{ literals.title }}
+						</span>
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'subtitle'"
+							class="font-body-s-bold"
+							[ngClass]="{ 'text-color-text-disabled': !selected }">
+							{{ literals.subtitle }}
+						</span>
+					</div>
+					@if (toggle) {
+						<div>
+							<pmds-cdk-toggle-switch
+								[(ngModel)]="selected"
+								[size]="'medium'"
+								(ngModelChange)="toggleClicked($event)"
+							/>
+						</div>
+					}
+				</div>
+				<!-- END FIRST LINE -->
+				<!-- SECOND LINE -->
+				@if (actions?.length && !disabled) {}
+				<div class="flex flex-row justify-between items-center mt-1">
+					<span [attr.data-qa-id]="dataQA + componentSelector + 'icon'"
+						[class]="'text-2xl ' + literals.icon">
+					</span>
+					<div class="flex flex-row">
+						@for (action of actions; track action.label) {
+							<pmds-cdk-button
+								class="mr-2"
+								buttonType="tertiary"
+								[buttonSize]="'small'"
+								[customStyle]="'h-6'"
+								[smallFit]="true"
+								[label]="action.label"
+								[icon]="action.icon"
+								(buttonClick)="action.actionFn()">
+							</pmds-cdk-button>
+						}
+					</div>
+				</div>
+				<!-- END SECOND LINE -->
+			</div>
+		}
+		<!-- IS CREATE -->
+		@if (create) {
+			<div class="h-full flex items-center justify-center">
+				<pmds-cdk-button
+					buttonType="secondary"
+					[label]="create.label"
+					[icon]="create.icon"
+					(buttonClick)="create.actionFn()"
+				></pmds-cdk-button>
+			</div>
+		}
+		<!-- END IS CREATE -->
+	</section>
+}

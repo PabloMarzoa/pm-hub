@@ -1,0 +1,22 @@
+<button class="flex justify-center items-center whitespace-nowrap" aria-label="action"
+				[type]="type"
+				[ngClass]="getClass()"
+				[disabled]="disabled"
+				[attr.data-qa-id]="dataQA + componentSelector + 'container'"
+				(click)="onButtonClick($event)"
+>
+	<!-- LABEL -->
+	<span
+		[ngClass]="{'mobile:hidden': hideLabelMobile}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'label'"
+	>{{ label }}</span>
+	<!-- END LABEL -->
+	<!-- ICON -->
+	@if (icon) {
+		<span class="font-body-m-bold text-2xl"
+			  [ngClass]="getIconClass()"
+			  [attr.data-qa-id]="dataQA + componentSelector + 'icon'">
+    	</span>
+	}
+	<!-- END ICON -->
+</button>

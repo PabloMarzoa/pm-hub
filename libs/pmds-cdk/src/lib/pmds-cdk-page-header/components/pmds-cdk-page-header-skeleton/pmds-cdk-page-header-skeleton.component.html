@@ -1,0 +1,19 @@
+<!-- SKELETON -->
+<section [attr.data-qa-id]="dataQA + 'skeleton'" class="flex flex-col gap-4 pt-6 mobile:pt-4">
+	<section class="px-1 md:hidden">
+		<pmds-cdk-skeleton [style]="'w-[288px] h-5'" />
+	</section>
+	<section class="flex items-center gap-4 p-1 tablet:pb-4">
+		<pmds-cdk-skeleton [style]="'w-[336px] mobile:w-[120px] h-[28px] mobile:h-5'" />
+		<pmds-cdk-skeleton [style]="'size-5'" />
+	</section>
+	<section class="px-1 pb-4 tablet:hidden mobile:hidden">
+		<pmds-cdk-skeleton [style]="'w-10 h-[3px]'" />
+	</section>
+	<section>
+		<pmds-cdk-skeleton
+		class="absolute left-0"
+		[style]="'left-0 absolute w-screen h-[1px]'" />
+	</section>
+</section>
+<!-- SKELETON -->

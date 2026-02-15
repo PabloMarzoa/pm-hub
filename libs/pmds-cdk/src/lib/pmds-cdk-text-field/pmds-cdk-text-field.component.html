@@ -1,0 +1,124 @@
+@if (skeleton) {
+<pmds-cdk-text-field-skeleton [dataQA]="dataQA + componentSelector" />
+} @else {
+<section
+	class="w-full text-color-text-primary gap-4 flex"
+	[ngClass]="{
+		'flex justify-between items-center': flexTypes.includes(typeShow),
+		inline: inlineTypes.includes(typeShow),
+		'!items-start': disabledEllipsis
+	}"
+>
+	<!-- LABEL -->
+	<div
+		class="font-body-s-regular flex"
+		[ngClass]="{
+			'pr-4': flexTypes.includes(typeShow)
+		}"
+	>
+		<div
+			[attr.data-qa-id]="dataQA + componentSelector + 'label'"
+			pmdsTitle
+			[disabledEllipsis]="disabledEllipsis"
+		>
+			{{ field.label }}
+		</div>
+		@if (field.tooltip) {
+		<div
+			[pmdsTooltip]="field.tooltip"
+			pmdsTooltipPosition="top-center"
+			class="pmicons-info-circle text-base text-color-text-info ml-0.5 pt-0.5"
+		></div>
+		}
+	</div>
+	<!-- LABEL -->
+	<!-- VALUE -->
+	@switch (typeShow) { @case ('two-line-tag') {
+	<pmds-cdk-tag-label
+		[dataQA]="dataQA + componentSelector + 'value-'"
+		[label]="value"
+		[color]="field.tagColor || 'grey'"
+	/>
+	} @case ('two-line-country') {
+	<pmds-cdk-tag-category
+		[label]="value"
+		[dataQA]="dataQA + componentSelector + 'value-'"
+		[showIcon]="true"
+		[flagCode]="field.flagCode || ''"
+		[assetsFolder]="field.assetsFolder || ''"
+	/>
+	} @case ('list') {
+	<div class="flex flex-col font-body-s-bold">
+		@for (val of listValues; track (val + '-' + $index)) {
+		<div [attr.data-qa-id]="dataQA + componentSelector + 'value'">
+			{{ val }}
+		</div>
+		}
+	</div>
+	} @case ('two-line-link') {
+	<div
+		[attr.data-qa-id]="dataQA + componentSelector + 'value'"
+		class="font-body-s-regular text-color-action-main-default cursor-pointer hover:text-color-action-main-hover active:text-color-action-main-selected"
+		(click)="field.actionFn?.()"
+		pmdsTitle
+		[ngClass]="{
+			'break-words': disabledEllipsis
+		}"
+		[disabledEllipsis]="disabledEllipsis"
+	>
+		{{ value }}
+	</div>
+	} @case ('two-line-figure-bold') {
+	<div
+		class="font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold"
+		pmdsTitle
+		[disabledEllipsis]="disabledEllipsis"
+	>
+		{{ value }}
+	</div>
+	} @default {
+	<div
+		[ngClass]="{
+				'flex': field.copyValue || iconValue,
+				'justify-end items-center': (field.copyValue || iconValue) && flexTypes.includes(typeShow),
+			}"
+	>
+		<div
+			[attr.data-qa-id]="dataQA + componentSelector + 'value'"
+			class="font-body-s-bold block relative"
+			[ngClass]="{
+				'font-body-s-bold': ['two-line-bold', 'inline-bold'].includes(
+					typeShow
+				),
+				'font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold':
+					type === 'inline-figure-bold',
+				'font-body-s-regular': [
+					'two-line-regular',
+					'inline-regular'
+				].includes(typeShow),
+				'items-center': field.copyValue,
+				'text-right': flexTypes.includes(typeShow),
+				'break-words': disabledEllipsis
+			}"
+			pmdsTitle
+			[disabledEllipsis]="disabledEllipsis"
+		>
+			{{ value }}
+		</div>
+		@if (iconValue) {
+		<div
+			class="pmicons-placeholder text-xl text-color-icon-action ml-1"
+		></div>
+		} @if (field.copyValue) {
+		<section class="ml-1">
+			<pmds-cdk-copy-clipboard
+				[dataQA]="dataQA + componentSelector"
+				[textToCopy]="field.copyValue"
+			></pmds-cdk-copy-clipboard>
+		</section>
+		}
+	</div>
+	} }
+	<!-- END VALUE -->
+</section>
+}

@@ -1,0 +1,161 @@
+{
+	"name": "pmds-hub-storybook",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"prefix": "pmds-hub",
+	"sourceRoot": "apps/pmds-hub-storybook/src",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/pmds-hub-storybook",
+				"index": "apps/pmds-hub-storybook/src/index.html",
+				"main": "apps/pmds-hub-storybook/src/main.ts",
+				"polyfills": ["zone.js"],
+				"inlineStyleLanguage": "scss",
+				"assets": [
+					"apps/pmds-hub-storybook/src/favicon.ico",
+					"apps/pmds-hub-storybook/src/assets",
+					{
+						"glob": "**/*",
+						"input": "dist/libs/pmds-util-libs/pmds-util-img-flags/src/assets",
+						"output": "assets"
+					},
+					{
+						"glob": "**/*",
+						"input": "dist/libs/pmds-util-libs/pmds-util-img-svg/src/assets",
+						"output": "assets"
+					}
+				],
+				"styles": [],
+				"scripts": []
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "apps/pmds-hub-storybook/tsconfig.app.prod.json",
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "1mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "2kb",
+							"maximumError": "4kb"
+						}
+					],
+					"fileReplacements": [
+						{
+							"replace": "apps/pmds-hub-storybook/src/environments/environment.ts",
+							"with": "apps/pmds-hub-storybook/src/environments/environment.prod.ts"
+						}
+					],
+					"outputHashing": "all",
+					"styles": [
+						"apps/pmds-hub-storybook/src/styles.scss",
+						"apps/pmds-hub-storybook/src/global.scss"
+					]
+				},
+				"development": {
+					"tsConfig": "apps/pmds-hub-storybook/tsconfig.app.json",
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true,
+					"styles": [
+						"apps/pmds-hub-storybook/src/styles.scss",
+						"apps/pmds-hub-storybook/src/global.scss"
+					]
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"configurations": {
+				"production": {
+					"buildTarget": "pmds-hub-storybook:build:production"
+				},
+				"development": {
+					"buildTarget": "pmds-hub-storybook:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"buildTarget": "pmds-hub-storybook:build"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "apps/pmds-hub-storybook/jest.config.ts"
+			}
+		},
+		"serve-static": {
+			"executor": "@nx/web:file-server",
+			"options": {
+				"buildTarget": "pmds-hub-storybook:build"
+			}
+		},
+		"storybook": {
+			"executor": "@storybook/angular:start-storybook",
+			"options": {
+				"port": 4400,
+				"configDir": "apps/pmds-hub-storybook/.storybook",
+				"browserTarget": "pmds-hub-storybook:build",
+				"compodoc": false
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"build-storybook": {
+			"executor": "@storybook/angular:build-storybook",
+			"outputs": ["{options.outputDir}"],
+			"options": {
+				"outputDir": "dist/storybook/pmds-hub-storybook",
+				"configDir": "apps/pmds-hub-storybook/.storybook",
+				"browserTarget": "pmds-hub-storybook:build",
+				"compodoc": false
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"test-storybook": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "test-storybook -c apps/pmds-hub-storybook/.storybook --url=http://localhost:4400"
+			}
+		},
+		"static-storybook": {
+			"executor": "@nx/web:file-server",
+			"options": {
+				"buildTarget": "pmds-hub-storybook:build-storybook",
+				"staticFilePath": "dist/storybook/pmds-hub-storybook"
+			},
+			"configurations": {
+				"ci": {
+					"buildTarget": "pmds-hub-storybook:build-storybook:ci"
+				}
+			}
+		}
+	}
+}

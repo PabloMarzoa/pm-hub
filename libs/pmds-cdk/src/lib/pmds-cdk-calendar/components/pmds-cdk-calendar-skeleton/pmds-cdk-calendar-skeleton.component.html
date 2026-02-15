@@ -1,0 +1,39 @@
+<!-- SKELETON -->
+<section
+	[attr.data-qa-id]="dataQA + 'skeleton'"
+	class="p-4 w-full bg-color-surface-primary border border-color-default rounded-pmds"
+>
+	<!-- FIRST LINE -->
+	<section class="flex justify-between items-center pb-4">
+		<pmds-cdk-skeleton [style]="'h-5 w-20'" />
+		<pmds-cdk-skeleton [style]="'h-6 w-24 mobile:w-6'" />
+	</section>
+	<!-- END FIRST LINE -->
+	<section class="flex justify-between mobile:flex-col">
+		<!-- FIRST SECTION -->
+		<section class="flex flex-col gap-4">
+			<section class="pb-4">
+				<pmds-cdk-skeleton [style]="'h-5 w-40 mobile:w-24'" />
+			</section>
+			<pmds-cdk-skeleton [style]="'h-[280px] w-[324px]'" />
+			<section class="flex justify-center w-full">
+				<pmds-cdk-skeleton [style]="'h-5 w-20'" />
+			</section>
+		</section>
+		<!-- END FIRST SECTION -->
+		<!-- LINE -->
+		<section class="px-4 mobile:px-0 mobile:py-4">
+			<pmds-cdk-skeleton
+				[style]="'h-[360px] mobile:h-[1px] w-[1px] mobile:w-full'"
+			/>
+		</section>
+		<!-- END LINE -->
+		<!-- SECOND SECTION -->
+		<section class="flex flex-col gap-4">
+			<pmds-cdk-skeleton [style]="'h-4 w-20'" />
+			<pmds-cdk-skeleton [style]="'h-[64px] w-[324px]'" />
+		</section>
+	</section>
+	<!-- END SECOND SECTION -->
+</section>
+<!-- SKELETON -->

@@ -1,0 +1,44 @@
+@if (show) {
+	<section [attr.data-qa-id]="dataQA + componentSelector + 'button-modal-section'"
+		class="w-screen h-screen fixed top-0 left-0 z-50 animate-fade-in_fast">
+		<!-- BACKDROP -->
+		<div [attr.data-qa-id]="dataQA + componentSelector + 'button-modal-backdrop'"
+			class="w-full h-full bg-color-background-overlay-primary"
+			(click)="hasBackdropClick ? updateShow(false) : ''"
+		></div>
+		<!-- END BACKDROP -->
+		<!-- BUTTONS -->
+		<div class="fixed w-screen bottom-0 p-4 bg-color-surface-primary animate-fade-in-up">
+			@for (button of buttonShowed; track button.label; let i = $index) {
+				<div class="mb-4 last:mb-0 animate-fade-in-up">
+					<pmds-cdk-button
+						[buttonType]="button.type"
+						[dataQA]="dataQA + componentSelector + i + '-button-'"
+						[label]="button.label"
+						(buttonClick)="buttonClick(button)"
+						[icon]="button.icon ? button.icon : ''"
+						[iconPosition]="
+					button.iconPosition ? button.iconPosition : 'right'
+				"
+						[disabled]="button.disabled || false"
+						[fullWidth]="true"
+					/>
+				</div>
+			}
+			<!-- BUTTONS -->
+			@if (showBackbutton) {
+				<div class="mt-4 animate-fade-in-up">
+					<pmds-cdk-button
+						buttonType="tertiary"
+						[dataQA]="dataQA + componentSelector + '-back-button-'"
+						[label]="backLiteral"
+						(buttonClick)="backClick()"
+						[fullWidth]="true"
+					/>
+				</div>
+			}
+			<!-- END BUTTONS -->
+		</div>
+		<!-- END BUTTONS -->
+	</section>
+}

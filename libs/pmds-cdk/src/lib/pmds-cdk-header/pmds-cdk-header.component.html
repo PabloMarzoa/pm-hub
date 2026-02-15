@@ -1,0 +1,194 @@
+<section
+	[attr.data-qa-id]="dataQA + selectorComponent + 'section'"
+	#header
+	class="mobile:px-4 tablet:px-8 desktop:px-7 w-full h-16 transition-animation"
+	[ngClass]="{ 'with-opened-menu': showMenu }"
+>
+	<section class="flex flex-row justify-between items-center h-full">
+		<div
+			class="mobile:flex-col flex flex-row justify-between md:items-center"
+		>
+			<!-- LOGO -->
+			<div
+				class="text-color-text-primary font-headline-desktop-m-regular flex flex-grow mobile:w-24"
+			>
+				<pmds-cdk-header-logo-emi class="hidden-in-saas" />
+				<pmds-cdk-header-logo-saas
+					class="hidden-in-emi"
+					[redVersion]="showMenu"
+				/>
+			</div>
+			<!-- END LOGO -->
+			<!-- BACKOFFICE LABEL -->
+			@if (type === 'backoffice') {
+			<span
+				[attr.data-qa-id]="
+					dataQA + selectorComponent + 'backoffice-label'
+				"
+				class="mobile:hidden bg-color-background-default ml-4 font-body-xs-regular px-1 py-0.5"
+			>
+				{{ literals.backofficeLabel }}
+			</span>
+			}
+			<!-- END BACKOFFICE LABEL -->
+		</div>
+
+		<section class="flex items-center">
+			<!-- COMPANIES DROPDOWN -->
+			@if (companies?.length) {
+			<pmds-cdk-dropdown
+				[(ngModel)]="selectedCompany"
+				class="mr-4 mobile:hidden"
+				[label]="selectedCompanyLabel"
+				(selectChange)="setCompany($event || '')"
+				[isFilter]="true"
+				[keepValue]="true"
+				[options]="companies"
+				[dataQA]="dataQA + selectorComponent + 'company-'"
+			/>
+			}
+			<!-- END COMPANIES DROPDOWN -->
+			<!-- COMPANIES MODAL MOBILE -->
+			@if (companies?.length) {
+			<section
+				[ngClass]="{
+					'!opacity-0 cursor-default': showMenu,
+					'cursor-pointer': !showMenu
+				}"
+				[attr.data-qa-id]="
+					dataQA + selectorComponent + 'company-icon-btn'
+				"
+				class="md:hidden cursor-pointer pmicons-building text-2xl p-2.5 transition-animation"
+				(click)="!showMenu && openModal()"
+			></section>
+			}
+			<!-- END COMPANIES MODAL MOBILE -->
+			<!-- NOTIFICATIONS -->
+			<section
+				class="flex-none relative transition-animation transition-animation"
+				[ngClass]="{
+					'!opacity-0 cursor-default': showMenu,
+					'cursor-pointer': !showMenu
+				}"
+			>
+				<section
+					class="flex items-center p-2.5"
+					(click)="!showMenu && toggleShowOption(false, true)"
+				>
+					<span class="pmicons-bell text-2xl"></span>
+					<pmds-cdk-badget-numbers
+						[ngClass]="{ '!opacity-0': showMenu }"
+						class="absolute top-0 right-0 transition-animation"
+						[label]="notifications"
+						[size]="'small'"
+						[isActive]="true"
+						[hasBackground]="true"
+						[dataQA]="
+							dataQA + selectorComponent + 'company-badget-'
+						"
+					/>
+				</section>
+			</section>
+			<!-- END NOTIFICATIONS -->
+			<!-- MENU -->
+			<section
+				[attr.data-qa-id]="dataQA + selectorComponent + 'menu-icon-btn'"
+				[ngClass]="{ '!opacity-0': showMenu }"
+				class="md:hidden cursor-pointer pmicons-burger-menu-1px text-2xl text-color-text-primary header-menu-action p-2.5 transition-animation opacity-100"
+				(click)="toggleMenu()"
+			></section>
+			<section
+				[attr.data-qa-id]="dataQA + selectorComponent + 'menu-icon-btn'"
+				[ngClass]="{ '-rotate-90 !opacity-100': showMenu }"
+				class="md:hidden cursor-pointer pmicons-close1 text-2xl header-menu-close-action p-2.5 transition-animation opacity-0 absolute right-4"
+				(click)="toggleMenu()"
+			></section>
+			<!-- END MENU -->
+			<!-- PROFILE PHOTO -->
+			<pmds-cdk-profile-photo
+				class="mobile:hidden ml-4"
+				type="photo"
+				[photo]="photoSrc"
+				[dataQA]="dataQA + selectorComponent + 'profile-'"
+			/>
+			<!-- END PROFILE PHOTO -->
+		</section>
+	</section>
+	<section class="flex justify-end">
+		<section class="absolute mt-4 right-6">
+			@if (showNotification) {
+			<pmds-cdk-notifications-popover
+				#optionsContent
+				[dataQA]="'storybook-qa-'"
+				[notifications]="notificationsInfo"
+				[literals]="titleNotifications"
+				[button]="buttonNotification"
+				(buttonClick)="close()"
+			></pmds-cdk-notifications-popover>
+			}
+		</section>
+	</section>
+</section>
+
+<!-- DESKTOP AND TABLET MENU -->
+@if (menuConfig && !isMobile) {
+<section>
+	<pmds-cdk-menu-and-submenu
+		[dataQA]="dataQA"
+		[menuOptions]="menuConfig.menuOptions"
+	></pmds-cdk-menu-and-submenu>
+</section>
+}
+<!-- END DESKTOP AND TABLET MENU -->
+
+<!-- MOBILE MENU -->
+@if (menuConfig && isMobile) {
+<div
+	class="cdk-overlay-container fixed top-0 left-0 h-full h-[calc(100vh - 64px)] z-[1000] transition-animation"
+	[ngStyle]="{
+		transform: !showMenu ? 'translateX(' + header.offsetWidth + 'px)' : ''
+	}"
+>
+	<section
+		class="absolute top-[64px] bottom-0 left-0 right-0 cdk-global-overlay-wrapper flex flex-col justify-between"
+		[ngStyle]="{
+			width: documentWidth + 'px',
+			height: documentHeight - 64 + 'px'
+		}"
+	>
+		<pmds-cdk-menu-and-submenu
+			[dataQA]="dataQA"
+			[menuOptions]="menuConfig.menuOptions"
+		></pmds-cdk-menu-and-submenu>
+
+		<!-- MOBILE MENU FOOTER -->
+		<div
+			class="h-20 w-full px-4 flex flex-row items-center justify-between border-t border-color-border-default"
+		>
+			<!-- PROFILE PHOTO -->
+			<pmds-cdk-profile-photo
+				type="photo"
+				[photo]="photoSrc"
+				[dataQA]="dataQA + selectorComponent + 'profile-'"
+			/>
+			<!-- END PROFILE PHOTO -->
+
+			<!-- LOGOUT -->
+			<pmds-cdk-button
+				[dataQA]="dataQA"
+				[label]="menuFooterAction.label"
+				[buttonType]="'tertiary'"
+				[icon]="menuFooterAction.icon || ''"
+				[buttonSize]="'small'"
+				(buttonClick)="
+					menuFooterAction.action && menuFooterAction.action()
+				"
+			>
+			</pmds-cdk-button>
+			<!-- END LOGOUT-->
+		</div>
+		<!-- END MOBILE MENU FOOTER -->
+	</section>
+</div>
+}
+<!-- END MOBILE MENU -->

@@ -1,0 +1,118 @@
+import { Meta, Markdow } from '@storybook/blocks';
+
+<Meta title="Docs/Installation" />
+
+# Installation
+
+For use the Fuel library need the next requirents:
+
+-   Get access to **pmhub libs**
+-   **Angular** project with version **20.0.0** or above
+-   **Tailwindcss** lib with version **3.4.x**
+
+## Steps
+
+<br />
+### 1 · Install Fuel dependencies
+
+```js
+npm install @pmhub/pmds-cdk @pmhub/pmds-common @pmhub/pmds-common
+```
+
+### 2 · Add in your _angular.json_ in _stylePreprocessorOptions.includePaths_ array the value _"./node_modules"_
+
+```js
+ "your-project": {
+    ***
+    "architect": {
+        "build": {
+          ***
+          "options": {
+            ***
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./node_modules"
+              ]
+            },
+          },
+        },
+      },
+    },
+```
+
+### 3 · Copy Fuel fonts to your assets folder
+
+```
+cp ./node_modules/@pmhub/pmds-common/src/assets/fonts ./{{your assets folder}}
+```
+
+### 4 · Add to your **_global style file_** this code
+
+```css
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+@layer base {
+	@font-face {
+		font-family: 'SantanderHeadlineRegular';
+		src: url('#{$pathname}/ngAssetsAccountsNext/fonts/SantanderHeadline/SantanderHeadline-Regular.woff2')
+			format('woff2');
+	}
+	@font-face {
+		font-family: 'SantanderHeadlineBold';
+		src: url('#{$pathname}/ngAssetsAccountsNext/fonts/SantanderHeadline/SantanderHeadline-Bold.woff2')
+			format('woff2');
+	}
+	@font-face {
+		font-family: 'SantanderMicroText';
+		src: url('#{$pathname}/ngAssetsAccountsNext/fonts/SantanderMicroText/SantanderMicroText.woff2')
+			format('woff2');
+	}
+	@font-face {
+		font-family: 'SantanderMicroTextBold';
+		src: url('#{$pathname}/ngAssetsAccountsNext/fonts/SantanderMicroText/SantanderMicroText-Bd.woff2')
+			format('woff2');
+	}
+}
+
+@font-face {
+	font-family: 'pm-icons';
+	src: url('#{$pathname}/ngAssetsAccountsNext/fonts/PmIcons/pm-icons.eot');
+	src: url('#{$pathname}/ngAssetsAccountsNext/fonts/PmIcons/pm-icons.eot')
+			format('embedded-opentype'), url('#{$pathname}/ngAssetsAccountsNext/fonts/PmIcons/pm-icons.ttf')
+			format('truetype'),
+		url('#{$pathname}/ngAssetsAccountsNext/fonts/PmIcons/pm-icons.woff')
+			format('woff'), url('#{$pathname}/ngAssetsAccountsNext/fonts/PmIcons/pm-icons.svg')
+			format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+@use '@pmhub/pmds-common/src/assets/styles/icons.scss';
+@use '@pmhub/pmds-common/src/assets/styles/fonts.scss';
+```
+
+### 5 · Select you theme
+
+-   #### 5.a · Add EMI styles to your **_global style file_**
+
+```css
+@use '@pmhub/pmds-common/src/assets/styles/emi-colors.scss';
+@use '@pmhub/pmds-common/src/assets/styles/emi-shapes.scss';
+```
+
+## Tips
+
+-   If you need a older version from library you can install a specific version with npm:
+
+```js
+npm install @pmhub/pmds-cdk@20.0.0
+```
+
+-   You can install only one component without install the hub:
+
+```js
+npm install @pmhub/pmds-cdk
+```

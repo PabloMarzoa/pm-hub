@@ -1,0 +1,18 @@
+<!-- BUTTON -->
+<button
+	class="md:hidden h-12 w-12 flex items-center justify-center fixed bottom-6 right-6 z-[49] shadow-floating"
+	aria-label="floating button"
+	[attr.data-qa-id]="dataQA + componentSelector + 'button'"
+	[ngClass]="{
+		'bg-color-action-disabled text-color-action-on-disabled cursor-default':
+			isDisabled,
+		'bg-color-action-main-default text-color-icon-alternative hover:bg-color-action-main-hover active:bg-color-action-main-selected':
+			!isDisabled
+	}"
+	(click)="isDisabled ? null : buttonClick.emit()"
+>
+	<!-- ICON -->
+	<span [class]="icon + ' text-3xl !font-bold'"></span>
+	<!-- END ICON -->
+</button>
+<!-- END BUTTON -->

@@ -1,0 +1,14 @@
+<!-- SKELETON -->
+<section
+	class="h-[72px] w-full py-3.5 px-6 flex gap-2 items-center bg-color-surface-primary rounded-pmds"
+	[ngClass]="{'rounded-b-none': additionalContent}"
+	[attr.data-qa-id]="dataQA + 'skeleton'">
+		<pmds-cdk-skeleton [style]="'size-6 !rounded-full'" />
+		<pmds-cdk-skeleton [style]="'w-[222px] h-4'" />
+</section>
+@if (additionalContent) {
+ <section class="w-full p-6 bg-color-surface-primary rounded-b-pmds border-t border-color-border-default">
+	<pmds-cdk-skeleton [style]="'w-full h-20 mobile:h-[120px]'" />
+ </section>
+}
+<!-- SKELETON -->

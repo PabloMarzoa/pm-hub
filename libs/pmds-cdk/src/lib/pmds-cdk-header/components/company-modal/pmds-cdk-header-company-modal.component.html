@@ -1,0 +1,39 @@
+<pmds-cdk-modal>
+	<section body>
+		<!--  OPTIONS -->
+		@for (option of options; track i; let i = $index) {
+			<div class="flex flex-row justify-between m-1 px-4 py-3 cursor-pointer text-color-text-primary rounded-pmds"
+				 [ngClass]="{
+				'bg-color-surface-selected': option.value === value,
+				'text-color-text-secondary': option.value === value,
+				'hover:bg-color-surface-hover hover:!text-color-text-primary':
+					option.value !== value
+			}"
+				 [attr.data-qa-id]="
+				dataQA + componentSelector + '-select-option-' + i
+			"
+				 (click)="selectOption(option)"
+			>
+				<div class="flex flex-row items-center">
+					<div class="flex flex-col font-body-m-regular">
+					<span
+						[attr.data-qa-id]="
+							dataQA + componentSelector + '-oc-label-' + i
+						"
+					>
+						{{ option?.label }}
+					</span>
+					</div>
+				</div>
+				@if (option?.value === value) {
+					<span [attr.data-qa-id]="dataQA + componentSelector + '-oc-value-' + i"
+						  class="pmicons-checkmark text-2xl">
+				</span>
+				}
+			</div>
+		}
+		<!--  OPTIONS -->
+		<!-- END CONTENT -->
+	</section>
+	<!-- BODY -->
+</pmds-cdk-modal>

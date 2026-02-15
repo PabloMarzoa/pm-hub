@@ -1,0 +1,123 @@
+@if (skeleton) {
+	<pmds-cdk-textarea-skeleton class="h-28" [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section class="h-28 relative">
+		<section [ngClass]="{
+			'border-color-border-focus': isFocus,
+			'border-color-border-error': showError,
+			'border-color-border-disabled bg-color-surface-disabled pointer-events-none': isDisabled,
+		}"
+			class="w-full h-[88px] relative border rounded-pmds border-color-border-default bg-color-surface-primary pb-3 px-3 cursor-pointer"
+		>
+			<section
+				[ngClass]="{
+				'pt-3': !isFocus && !value,
+				'pt-1': isFocus || value
+			}"
+				class="absolute flex transition-all max-w-[95%]"
+			>
+				<label
+					[attr.data-qa-id]="dataQA + componentSelector + 'placeholder'"
+					[ngClass]="{
+					'font-body-m-regular': !isFocus,
+					'font-body-xs-regular': isFocus || value,
+					'text-color-text-disabled': isDisabled,
+					'text-color-text-tertiary': !isDisabled,
+				}"
+					class="transition-all"
+					pmdsTitle
+				>{{ placeholder }}</label
+				>
+				@if (tooltip) {
+					<div class="ml-1 flex">
+						<span
+							[pmdsTooltip]="tooltip"
+							pmdsTooltipPosition="top-center"
+							[ngClass]="{
+								'text-2xl': !isFocus,
+								'text-sm': isFocus || value,
+								'text-color-icon-disabled': isDisabled,
+								'text-color-text-info': !isDisabled
+							}"
+							class="pmicons-info-circle transition-all"
+						></span>
+					</div>
+				}
+			</section>
+			<!-- CLEAR BUTTON -->
+			@if (value && !isDisabled && isFocus) {
+				<div
+					[attr.data-qa-id]="dataQA + componentSelector + 'remove-icon-click'"
+					class="z-10 absolute flex items-center justify-center text-[8px] w-4 h-4 top-4 right-4 cursor-pointer rounded-full text-color-text-secondary bg-color-icon-default animate-fade-in_fast"
+					[ngClass]="{
+					'opacity-0': !(value && !isDisabled)
+				}"
+					(mousedown)="checkOmitClick($event)"
+					(mouseup)="clickOnClear()"
+				>
+					<div>&#10005;</div>
+				</div>
+			}
+			<!-- END CLEAR BUTTON -->
+			<textarea
+				aria-label="textarea"
+				[attr.data-qa-id]="dataQA + componentSelector + 'textarea'"
+				#textarea
+				[ngClass]="{
+				'text-color-text-primary': !isDisabled,
+				'text-color-text-disabled': isDisabled
+			}"
+				class="w-full resize-none outline-none mt-5 h-[90%] bg-transparent text-color-text-primary font-body-m-regular"
+				[attr.maxlength]="maxlength"
+				[value]="value"
+				(input)="onInput($event)"
+				(focus)="isFocus = true; showError = false"
+				(focusout)="onFocusOut()"
+				(blur)="isFocus = false"
+			>
+		</textarea>
+		</section>
+		<!-- HELPER TEXT -->
+		<section class="h-5 pt-[0.125rem] absolute">
+			@if (helperText) {
+				<div
+					[attr.data-qa-id]="dataQA + componentSelector + 'helper-text'"
+					class="text-color-text-primary font-body-xs-regular ml-3"
+					[ngClass]="{
+					'text-color-text-disabled': isDisabled
+				}"
+					[hidden]="showError"
+				>
+					{{ helperText }}
+				</div>
+			}
+		</section>
+		@if (!showError && charactersLeftText && maxlength) {
+			<section
+				class="h-5 pt-[0.125rem] absolute"
+			>
+				<div
+					[attr.data-qa-id]="dataQA + componentSelector + 'characters-left'"
+					class="text-color-text-primary font-body-xs-regular ml-3"
+					[ngClass]="{
+					'text-color-text-disabled': isDisabled
+				}"
+					[hidden]="showError || helperText"
+				>
+					{{ maxlength - value.length }} {{ charactersLeftText }}
+				</div>
+			</section>
+		}
+		<!-- END HELPER TEXT -->
+		<!-- ERROR MESSAGE -->
+		<pmds-cdk-form-error-message
+			[dataQA]="dataQA + componentSelector"
+			[control]="formControl"
+			[label]="placeholder"
+			[controlName]="formControlName"
+			[hidden]="!showError"
+			[literalsErrorFn]="literalsErrorFn"
+		/>
+		<!-- END ERROR MESSAGE -->
+	</section>
+}

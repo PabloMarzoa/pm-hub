@@ -1,0 +1,37 @@
+@if (skeleton) {
+	<pmds-cdk-country-label-skeleton [size]="size" [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section
+		class="flex items-center mobile:font-body-s-bold text-color-text-primary"
+		[ngClass]="{
+			'font-body-s-bold': size === 'small',
+			'font-body-m-bold': size === 'large'
+		}"
+	>
+		<!-- FLAG -->
+		<img
+			class="mobile:h-6"
+			[ngClass]="{
+				'h-6': size === 'small',
+				'h-8': size === 'large'
+			}"
+			[src]="src"
+			[alt]="'flag ' + codeCountry"
+			[attr.data-qa-id]="dataQA + componentSelector + 'flag'"
+			(error)="updateUrl()"
+		/>
+		<!-- END FLAG -->
+		<!-- LABEL -->
+		@if (showLabel) {
+			<span [ngClass]="{
+				'ml-1': size === 'small',
+				'ml-2': size === 'large'
+			}"
+				  [attr.data-qa-id]="dataQA + componentSelector + 'label'"
+				  class="mobile:ml-1"
+			>{{ label }}</span
+			>
+		}
+		<!-- END LABEL -->
+	</section>
+}

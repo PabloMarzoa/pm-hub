@@ -1,0 +1,13 @@
+@if (skeleton) {
+	<pmds-cdk-tag-label-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<!-- TAG LABEL -->
+	<section
+		class="flex items-center w-fit border font-body-xs-bold rounded-full px-2 py-1 text-center text-color-text-primary"
+		[attr.data-qa-id]="dataQA + componentSelector + 'label'"
+		[ngClass]="colorSet[color]"
+	>
+		{{ label }}
+	</section>
+	<!-- TAG LABEL -->
+}

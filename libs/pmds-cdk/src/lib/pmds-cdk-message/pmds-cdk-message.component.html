@@ -1,0 +1,29 @@
+<!-- CONVERSATION -->
+@if (messages?.length) {
+	<section class="bg-color-surface-primary p-4 w-full">
+		<section class="flex flex-col gap-1">
+			@for (message of messages; track $index) {
+				<pmds-cdk-chat-comment
+					[dataQA]="dataQA + componentSelector"
+					[literals]="message.literals"
+					[userType]="message.typeUser"
+					[messageType]="messageType"
+				>
+				</pmds-cdk-chat-comment>
+			}
+		</section>
+	</section>
+}
+<!-- END CONVERSATION -->
+<!-- MESSAGE -->
+@if (literals && messageType) {
+	<pmds-cdk-chat-comment
+		[dataQA]="dataQA + componentSelector"
+		[literals]="literals"
+		[userType]="userType ? userType : 'otherMessage'"
+		[conversation]="false"
+		[messageType]="messageType"
+	>
+	</pmds-cdk-chat-comment>
+}
+<!-- END MESSAGE -->

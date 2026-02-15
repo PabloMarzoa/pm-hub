@@ -1,0 +1,13 @@
+<!-- SKELETON -->
+<section
+	[attr.data-qa-id]="dataQA + '-skeleton'"
+	class="flex gap-6 tablet:gap-4 mobile:gap-2 mobile:grid mobile:grid-cols-2"
+>
+	@for (item of shortcutItems; track item) {
+		<section class="flex flex-col items-center justify-center gap-4 mobile:gap-2 w-[184px] mobile:w-full h-[84px] mobile:h-[52px] rounded-pmds border border-color-skeleton-01 bg-color-surface-primary">
+			<pmds-cdk-skeleton [style]="'size-5 mobile:size-3 '" />
+			<pmds-cdk-skeleton [style]="'w-[90px] mobile:w-[70px] h-3 mobile:h-2'" />
+		</section>
+	}
+</section>
+<!-- SKELETON -->

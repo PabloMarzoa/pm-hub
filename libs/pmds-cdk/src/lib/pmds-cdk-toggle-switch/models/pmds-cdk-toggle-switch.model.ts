@@ -1,0 +1,1 @@
+export type TPmdsCdkToggleSwitchSize = 'small' | 'medium' | 'large';

@@ -1,0 +1,196 @@
+@if (data || isLoading) {
+	<section class="p-4"
+			 (click)="selectBar(false)"
+			 [ngClass]="{'bg-color-surface-primary rounded-pmds': !config?.onlyChart}">
+		<!-- TITLE -->
+		@if (config?.title && !config?.onlyChart) {
+			<section class="pb-4 flex justify-between flex-wrap">
+				<section class="flex flex-col gap-2">
+					<h2
+						class="font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold text-color-text-primary"
+						[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+					>
+						{{ config?.title }}
+					</h2>
+					@if (config?.subtitle) {
+						<h3 class="font-body-s-regular text-color-text-tertiary"
+							[attr.data-qa-id]="dataQA + componentSelector + 'subtitle'"
+						>
+							{{ config?.subtitle }}
+						</h3>
+					}
+				</section>
+				<ng-content></ng-content>
+			</section>
+		}
+		<!-- END TITLE -->
+		@if (!isLoading) {
+			<ng-container>
+				<!-- GRAPH -->
+				<section
+					class="w-full font-body-xs-regular text-color-text-primary pb-5"
+					[style.height.px]="graphHeight"
+				>
+					<svg
+						#graphSVG
+						width="100%"
+						height="242px"
+						class="!overflow-visible"
+						[attr.viewBox]="viewBox"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<!-- X AXIS -->
+						<g
+							[style]="
+						'transform:translate(' +
+						yLabelsWidth +
+						'px,' +
+						(yLastAxis + 45) +
+						'px)'
+					"
+						>
+							@for (item of xLabels; track i; let i = $index) {
+								<g text-anchor="middle"
+								   [style]="'transform:translate(' + item.x + 'px)'">
+									<!-- NO MOBILE -->
+									<text
+										[ngClass]="{
+									'opacity-50': !barsActive[i]
+								}"
+										(click)="
+									$event.stopPropagation(); selectBar(true, i)
+								"
+										class="text-center font-body-xs-regular text-color-text-primary cursor-pointer mobile:hidden"
+										[attr.data-qa-id]="
+									dataQA + componentSelector + i + 'x-label'
+								"
+										[style]="item.labelSecondLine ? 'transform:translate(0px, -8px)' : ''"
+										[innerHTML]="item.label"
+									></text>
+									@if (item.labelSecondLine) {
+										<text [ngClass]="{'opacity-50': !barsActive[i]}"
+											  (click)="
+									$event.stopPropagation(); selectBar(true, i)
+								"
+											  class="text-center font-body-xs-regular text-color-text-primary cursor-pointer mobile:hidden"
+											  [attr.data-qa-id]="
+									dataQA + componentSelector + i + 'x-label-second-line'
+								"
+											  [style]="'transform:translate(0px, 8px)'"
+											  [innerHTML]="item.labelSecondLine"
+										></text>
+									}
+									<!-- END NO MOBILE -->
+									<!-- MOBILE -->
+									<text
+										[ngClass]="{
+									'opacity-50': !barsActive[i]
+								}"
+										(click)="
+									$event.stopPropagation(); selectBar(true, i)
+								"
+										class="text-center font-body-xs-regular text-color-text-primary cursor-pointer md:hidden"
+										[attr.data-qa-id]="
+									dataQA + componentSelector + i + 'x-label'
+								"
+										[innerHTML]="item.labelMobile"
+									></text>
+									<!-- END MOBILE -->
+								</g>
+							}
+						</g>
+						<!-- END X AXIS -->
+						<!-- Y AXIS -->
+						<g text-anchor="start" style="transform:translate(0,20px)">
+							@for (item of yLines; track i; let i = $index) {
+								<g [style]="'transform:translate(0, ' + item.y + 'px)'">
+									<text
+										class="fill-color-text-primary"
+										display="inherit"
+										style="opacity: 1"
+										[attr.data-qa-id]="
+								dataQA + componentSelector + i + 'y-label'
+							"
+									>
+										{{ item.label }}
+									</text>
+									<line
+										display="inherit"
+										class="stroke-color-graphs-lines"
+										stroke-width="1"
+										stroke-dasharray="1 3"
+										[attr.x1]="yLabelsWidth"
+										[attr.x2]="offsetWidth"
+										[attr.y1]="'-' + paddingBottom"
+										[attr.y2]="'-' + paddingBottom"
+									></line>
+								</g>
+							}
+						</g>
+						<!-- Y AXIS -->
+						<!-- BARS -->
+						<g
+							[style]="'transform:translate(' + yLabelsWidth + 'px,20px)'"
+							class="animate-fade-in"
+						>
+							@for (bar of bars; track i; let i = $index) {
+								<g (click)="$event.stopPropagation(); selectBar(true, i)"
+								   [ngClass]="{
+							'opacity-50': !barsActive[i]
+						}"
+								   [style]="
+							'transform:translate(' + bar.x + 'px, ' + bar.y + 'px)'
+						"
+								   [pmdsTooltip]="bar.tooltip"
+								   pmdsTooltipPosition="top-center"
+								   [pmdsTooltipActivate]="barsShow[i]"
+								   delay="0"
+								>
+									<text fill="transparent">{{ i }}</text>
+									<path
+										class="fill-color-graphs-low-01"
+										[attr.d]="bar.d"
+									></path>
+								</g>
+							}
+						</g>
+						<!-- BARS -->
+					</svg>
+				</section>
+				<!-- END GRAPH -->
+				<!-- SOURCE -->
+				@if (config?.source) {
+					<section>
+						<h3
+							class="font-body-xs-regular text-color-text-tertiary pt-2"
+							[attr.data-qa-id]="dataQA + componentSelector + 'source'"
+						>
+							{{ config?.source }}
+						</h3>
+					</section>
+				}
+				<!-- END SOURCE -->
+			</ng-container>
+		} @else {
+			<ng-container [ngTemplateOutlet]="loading"></ng-container>
+		}
+	</section>
+} @else {
+	<ng-container [ngTemplateOutlet]="noData"></ng-container>
+}
+<!-- NO DATA -->
+<ng-template #noData>
+	<!-- Empty state removed -->
+</ng-template>
+<!-- END NO DATA -->
+<!-- LOADING -->
+<ng-template #loading>
+	<section class="flex items-center justify-center h-[258px]">
+		<pmds-cdk-loader
+			[dataQA]="dataQA + componentSelector"
+			[isPrimary]="false"
+			[isFullscreen]="false"
+		/>
+	</section>
+</ng-template>
+<!-- END LOADING -->

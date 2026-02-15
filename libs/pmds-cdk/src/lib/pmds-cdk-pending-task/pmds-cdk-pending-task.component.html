@@ -1,0 +1,114 @@
+@if (skeleton) {
+<pmds-cdk-pending-task-skeleton [dataQA]="dataQA + componentSelector" />
+} @else {
+<section
+	[attr.data-qa-id]="dataQA + componentSelector + 'section'"
+	class="rounded-pmds flex flex-col items-start bg-color-surface-primary border border-color-border-default text-color-text-primary"
+>
+	<!-- TITLE -->
+	<section class="px-4 pt-4 flex justify-start items-center gap-2">
+		<pmds-cdk-text
+			[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+			type="section-title"
+			text="Pending task"
+		/>
+		<pmds-cdk-badget-numbers
+			[attr.data-qa-id]="dataQA + componentSelector + 'total'"
+			size="large"
+			[label]="totalTask"
+		/>
+	</section>
+	<!-- END TITLE -->
+	<!-- GROUPS TASK -->
+	@if (totalTask) {
+	<section class="w-full p-4 flex gap-4 flex-col items-end">
+		<section
+			class="w-full overflow-y-auto max-h-96 grid grid-cols-1 gap-4 md:grid-cols-2"
+		>
+			@for (group of groupTasks; track group.label) {
+			<section class="overflow-hidden rounded-pmds relative w-full">
+				<section
+					class="flex items-center h-16 overflow-hidden justify-between rounded-pmds gap-4 py-2 px-4 w-full border border-color-border-default"
+				>
+					<!-- TEXT GROUP -->
+					<section class="flex flex-col justify-between">
+						<div
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								$index +
+								'-total-tasks'
+							"
+							class="font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold"
+						>
+							{{ group.tasks }}
+						</div>
+						<div
+							[attr.data-qa-id]="
+								dataQA + componentSelector + $index + '-label'
+							"
+							class="font-body-s-regular"
+						>
+							{{ group.label }}
+						</div>
+					</section>
+					<!-- END TEXT GROUP -->
+					<!-- BUTTON TASK -->
+					<pmds-cdk-button
+						buttonType="tertiary"
+						[smallFit]="true"
+						buttonSize="small"
+						[dataQA]="
+							dataQA + componentSelector + $index + '-view-group-'
+						"
+						icon="pmicons-chevron-right-small-1px"
+						[label]="literals.view"
+						(buttonClick)="viewGroup.emit(group)"
+					/>
+					<!-- END BUTTON GROUP -->
+				</section>
+				<div
+					class="absolute h-16 bg-color-support-08 w-1 left-0 top-0"
+				></div>
+			</section>
+			}
+		</section>
+		<!-- VIEW ALL BUTTON -->
+		<pmds-cdk-button
+			buttonType="tertiary"
+			[smallFit]="true"
+			buttonSize="small"
+			icon="pmicons-chevron-right-bold"
+			[dataQA]="dataQA + componentSelector + 'view-all-'"
+			[label]="literals.viewAll"
+			(buttonClick)="viewAll.emit()"
+		/>
+		<!-- END VIEW ALL BUTTON -->
+	</section>
+	}
+	<!-- END GROUPS TASK -->
+	<!-- NOT TASK -->
+	 @if (!totalTask) {	  
+		 <section
+			 class="flex gap-4 flex-col items-center justify-between px-4 py-8 w-full"
+		 >
+			 <div [attr.data-qa-id]="dataQA + componentSelector + 'empty-svg'">
+				 <pmds-cdk-pending-task-empty />
+			 </div>
+			 <div
+				 [attr.data-qa-id]="dataQA + componentSelector + 'empty-title'"
+				 class="text-center font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold"
+			 >
+				 {{ literals.noTasksTitle }}
+			 </div>
+			 <div
+				 [attr.data-qa-id]="dataQA + componentSelector + 'empty-msg'"
+				 class="text-center font-body-s-regular"
+			 >
+				 {{ literals.noTasksMsg }}
+			 </div>
+		 </section>
+	 }
+	<!-- END NOT TASK -->
+</section>
+}

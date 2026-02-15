@@ -1,0 +1,57 @@
+@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/icons.scss';
+@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/fonts.scss';
+@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/emi-colors.scss';
+@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/emi-shapes.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+}
+
+:root {
+	.docblock-emptyblock,
+	.docblock-code-toggle--disabled,
+	.sbdocs.sbdocs-preview.sb-unstyled > div:not(div.docs-story):first-child {
+		display: none;
+	}
+	.sbdocs.sbdocs-preview.sb-unstyled {
+		padding-top: 0;
+	}
+	.rejt-value{
+		max-width: 256px;
+		overflow: scroll;
+	}
+	.rejt-function-value-node{
+		max-height: 256px;
+		overflow: scroll;
+	}
+
+	.sbdocs-content {
+		max-width:1450px!important;
+	}
+}
+
+@font-face {
+	font-family: 'pm-icons';
+	src: url('assets/fonts/PmIcons/pm-icons.eot');
+	src: url('assets/fonts/PmIcons/pm-icons.eot') format('embedded-opentype'),
+		url('assets/fonts/PmIcons/pm-icons.ttf') format('truetype'),
+		url('assets/fonts/PmIcons/pm-icons.woff') format('woff'),
+		url('assets/fonts/PmIcons/pm-icons.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+
+
+body {
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+}

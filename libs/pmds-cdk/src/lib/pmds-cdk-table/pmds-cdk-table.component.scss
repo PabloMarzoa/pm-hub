@@ -1,0 +1,62 @@
+.static-first {
+	overflow-x: auto;
+	width: 100%;
+	table thead th, table tbody td, table tbody tr {
+		white-space: nowrap;
+	}
+
+	::ng-deep table tbody tr td:first-child, table thead tr th:first-child {
+		position: sticky;
+		left: 0;
+		z-index: 10;
+	}
+
+	::ng-deep table tr th:first-child {
+		z-index: 11;
+	}
+
+	table thead tr th {
+		position: sticky;
+		width: 100px;
+		top: 0;
+		z-index: 9;
+	}
+}
+
+.static-first-with-checkbox {
+	@extend .static-first;
+
+	::ng-deep table tbody tr > td:nth-child(1), table thead tr th:nth-child(1) {
+		width: 50px !important;
+		position: sticky;
+		z-index: 11;
+	}
+
+	::ng-deep table tbody tr > * > td:nth-child(1), table thead tr th:nth-child(2) {
+		position: sticky;
+		z-index: 10;
+		left: 50px;
+	}
+}
+
+.static-second {
+	@extend .static-first;
+	::ng-deep table tbody tr td:nth-child(2), table thead tr th:nth-child(2) {
+		position: sticky;
+		z-index: 10;
+	}
+
+	::ng-deep table tr th:nth-child(2) {
+		z-index: 11;
+	}
+}
+
+.static-second-with-checkbox {
+	@extend .static-first-with-checkbox;
+
+	::ng-deep table tbody tr > * > td:nth-child(2), table thead tr th:nth-child(3) {
+		position: sticky;
+		z-index: 10;
+		left: 50px;
+	}
+}

@@ -1,0 +1,124 @@
+<section
+	class="w-full h-full relative font-body-s-regular flex items-center justify-start px-4 text-color-text-primary"
+	[attr.data-qa-id]="dataQA + componentSelector + 'section'"
+	[ngClass]="{
+		'border': isEditing || showError,
+		'border-color-border-focus': isEditing && !showError,
+		'border-color-border-error': showError,
+	}"
+	(click)="omitEvent = !!isEditing"
+>
+	<!-- NO EDIT SECTION -->
+	@if (!isEditing) {
+		<section [class]="'w-full gap-1 flex items-center ' + noEditClass"
+				 (click)="$event.stopPropagation()"
+				 [ngClass]="{
+		'justify-start': contentPosition === 'left',
+		'justify-center': contentPosition === 'center',
+		'justify-end': contentPosition === 'right',
+	}"
+		>
+			<!-- NO EDIT ICON -->
+			@if (noEditIcon) {
+				<span [class]="noEditIcon + ' text-2xl text-color-action-main-default'"
+					[attr.data-qa-id]="dataQA + componentSelector + 'no-edit-icon'"
+				></span>
+			}
+			<!-- END NO EDIT ICON -->
+			<!-- NO EDIT VALUE -->
+			<span
+				[attr.data-qa-id]="dataQA + componentSelector + 'no-edit-value'"
+				pmdsTitle
+			>{{ noEditValue ? noEditValue : '-' }}</span
+			>
+			<!-- END NO EDIT VALUE -->
+			<!-- EDIT BUTTON -->
+			<pmds-cdk-button
+				[ngClass]="{ 'tablet:hidden': hideOnTablet }"
+				(buttonClick)="initEdit(); $event.stopPropagation()"
+				icon="pmicons-edit"
+				buttonType="tertiary"
+				[dataQA]="dataQA + componentSelector + 'edit-button'"
+				[disabled]="isDisabled"
+			/>
+			<!-- NO EDIT BUTTON -->
+		</section>
+	}
+	<!-- END NO EDIT SECTION -->
+	<!-- EDIT SECTION -->
+	@if (isEditing) {
+		<section class="w-full h-full flex items-center"
+				 (click)="omitEvent = true; $event.stopPropagation()"
+		>
+			<!-- INPUT -->
+			<input aria-label="editable content input"
+				   #inputValue
+				   class="w-full bg-transparent outline-none pr-8"
+				   [attr.data-qa-id]="dataQA + componentSelector + 'input'"
+				   [ngClass]="{
+				'text-left': contentPosition === 'left',
+				'text-center': contentPosition === 'center',
+				'text-right': contentPosition === 'right',
+			}"
+				   [value]="value || ''"
+				   [type]="typeInput"
+				   [placeholder]="placeholder"
+				   (input)="changeValue($event)"
+				   (keyup.enter)="updateValue(); isEditing = showError"
+			/>
+			<!-- END INPUT -->
+			<!-- CLEAR BUTTON -->
+			<section class="absolute top-0 bottom-0 right-4 flex items-center">
+				<div
+					(click)="resetValue(); $event.stopPropagation()"
+					[attr.data-qa-id]="dataQA + componentSelector + 'clear-button'"
+					class="bg-color-icon-default h-6 w-6 flex items-center justify-center rounded-full cursor-pointer"
+				>
+				<span
+					class="pmicons-close-bold text-color-text-secondary"
+				></span>
+				</div>
+			</section>
+			<!-- END CLEAR BUTTON -->
+		</section>
+	}
+	<!-- END EDIT SECTION -->
+	<!-- TOOLTIP -->
+	@if (tooltipValue && isEditing) {
+		<section class="absolute bottom-1"
+				 [ngClass]="{
+			'left-0': tooltipPosition === 'left',
+			'left-1/2': tooltipPosition === 'center',
+			'right-0': tooltipPosition === 'right',
+		}"
+		>
+			<section
+				class="relative px-4 flex pt-1"
+				[ngClass]="{
+				'justify-start': tooltipPosition === 'left',
+				'justify-center': tooltipPosition === 'center',
+				'justify-end': tooltipPosition === 'right',
+			}"
+			>
+				<!-- TOOLTIP TRIANGLE -->
+				<section
+					class="absolute top-0 h-2 w-2 rotate-45 bg-color-tooltip"
+					[ngClass]="{
+					'left-8': tooltipPosition === 'left',
+					'right-8': tooltipPosition === 'right',
+				}"
+				></section>
+				<!-- END TOOLTIP TRIANGLE -->
+				<!-- TOOLTIP VALUE -->
+				<section
+					[attr.data-qa-id]="dataQA + componentSelector + 'tooltip-value'"
+					class="absolute max-w-[304px] w-max bg-color-tooltip text-color-text-secondary rounded-pmds px-2.5 py-1 font-body-xs-regular"
+				>
+					{{ tooltipValue }}
+				</section>
+				<!-- END TOOLTIP VALUE -->
+			</section>
+		</section>
+	}
+	<!-- TOOLTIP -->
+</section>

@@ -1,0 +1,115 @@
+<div [class]="'flex flex-col justify-between ' + customStyles">
+	<!-- PRIMARY -->
+	@if (isPrimary) {
+		<div [ngClass]="{
+            'fixed top-0 left-0 h-screen w-screen z-50': isFullscreen,
+            '': !isFullscreen,
+        }"
+			 [class]="bgClass || ''"
+			 [attr.data-qa-id]="dataQA + componentSelector + 'primary'"
+		>
+			<section class="h-20"
+					 [ngClass]="{
+            	'relative': !isFullscreen,
+        	}"
+			>
+				<div
+					[class]="
+					'absolute left-1/2 top-1/2 h-0 w-0 animate-[dotRotate1_5s_0s_linear_infinite] before:absolute before:left-1/2 before:ml-[-11px] before:mt-[-11px] before:h-5 before:w-5 before:animate-[dotMove_5s_0s_ease_infinite] before:rounded-[50px] before:bg-color-action-main-default'
+				"
+				></div>
+				<div
+					[class]="
+					'absolute left-1/2 top-1/2 h-0 w-0 animate-[dotRotate2_5s_1.25s_linear_infinite] before:absolute before:left-1/2 before:ml-[-11px] before:mt-[-11px] before:h-5 before:w-5 before:animate-[dotMove_5s_1.25s_ease_infinite] before:rounded-[50px] before:bg-color-action-main-default'
+				"
+				></div>
+				<div
+					[class]="
+					'absolute left-1/2 top-1/2 h-0 w-0 animate-[dotRotate3_5s_2.5s_linear_infinite] before:absolute before:left-1/2 before:ml-[-11px] before:mt-[-11px] before:h-5 before:w-5 before:animate-[dotMove_5s_2.5s_ease_infinite] before:rounded-[50px] before:bg-color-action-main-default'
+				"
+				></div>
+				<div
+					[class]="
+					'absolute left-1/2 top-1/2 h-0 w-0 animate-[dotRotate4_5s_3.75s_linear_infinite] before:absolute before:left-1/2 before:ml-[-11px] before:mt-[-11px] before:h-5 before:w-5 before:animate-[dotMove_5s_3.75s_ease_infinite] before:rounded-[50px] before:bg-color-action-main-default'
+				"
+				></div>
+				<div
+					[class]="
+					'h-0 w-0 left-1/2 top-1/2 absolute before:absolute before:ml-[-21.5px] before:mt-[-21.5px] before:left-1/2 before:rounded-[50px] before:w-11 before:h-11 before:bg-color-action-main-default'
+				"
+				>
+				</div>
+			</section>
+			<!-- TEXTS PRIMARY -->
+			<div
+				[ngClass]="{
+				'absolute top-1/2 w-full pt-16': isFullscreen,
+				'pt-4': !isFullscreen
+			}"
+			>
+				<ng-container *ngTemplateOutlet="text"></ng-container>
+			</div>
+			<!-- END TEXTS PRIMARY -->
+		</div>
+	}
+	<!-- END PRIMARY -->
+	<!-- SECONDARY -->
+	@if (!isPrimary) {
+		<ng-container>
+			<section class="relative h-10">
+				<section
+					class="absolute left-0 w-full flex items-center"
+					[ngClass]="{
+					'top-6': title || subtitle,
+					'top-5': !title && !subtitle,
+
+				}"
+				>
+					<div
+						class="inset-0 m-auto animate-[bubblesRotate_ease-in-out_1s_infinite] rounded-full"
+						[attr.data-qa-id]="dataQA + componentSelector + 'secondary'"
+					>
+						<div
+							[class]="
+							'absolute left-1/2 right-1/2 mt-[-6px] ml-[-6px] h-3 w-3 rounded-full first:animate-[bubblesAnimLeft_ease-in-out_1s_infinite_alternate] last:animate-[bubblesAnimRight_ease-in-out_1s_infinite_alternate] bg-color-action-main-default'
+						"
+						></div>
+						<div
+							[class]="
+							'absolute left-1/2 right-1/2 mt-[-6px] ml-[-6px] h-3 w-3 rounded-full first:animate-[bubblesAnimLeft_ease-in-out_1s_infinite_alternate] last:animate-[bubblesAnimRight_ease-in-out_1s_infinite_alternate] bg-color-action-main-default'
+						"
+						></div>
+					</div>
+				</section>
+			</section>
+			<!-- TEXTS SECONDARY -->
+			@if (title || subtitle) {
+				<section class="pt-6">
+					<ng-container *ngTemplateOutlet="text"></ng-container>
+				</section>
+			}
+			<!-- END TEXTS SECONDARY -->
+		</ng-container>
+	}
+	<!-- END SECONDARY -->
+</div>
+<!-- TEXTS -->
+<ng-template #text>
+	<div class="text-center">
+		@if (title) {
+			<div class="h-6 text-center font-SantanderHeadlineRegular text-xl leading-6 tracking-normal text-color-text-primary"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'title'"
+			>
+				{{ title }}
+			</div>
+			@if (subtitle) {
+				<div class="mt-2 h-4 text-center text-color-text-tertiary font-body-xs-regular leading-4 tracking-normal"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'subtitle'"
+				>
+					{{ subtitle }}
+				</div>
+			}
+		}
+	</div>
+</ng-template>
+<!-- END TEXTS -->

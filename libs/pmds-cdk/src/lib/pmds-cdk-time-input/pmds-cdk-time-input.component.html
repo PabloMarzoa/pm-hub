@@ -1,0 +1,218 @@
+@if (skeleton) {
+<pmds-cdk-time-input-skeleton
+	class="h-[72px]"
+	[dataQA]="dataQA + componentSelector"
+/>
+} @else {
+<section class="h-[72px]">
+	<div [class]="'relative w-full font-body-m-regular'">
+		<!-- INPUT -->
+		<input
+			aria-label="time input"
+			class="pmds-cdk-time-input cursor-pointer leading-5 pl-10 py-3 h-12 w-full border text-base outline-none peer [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-pmds"
+			#input
+			[type]="inputType"
+			[disabled]="isDisabled"
+			[value]="value"
+			(keyup.enter)="input.blur()"
+			(input)="onInput($event)"
+			(keypress)="this.updateClearButtonOnFocus(true)"
+			(focusout)="onFocusOut(); this.updateClearButtonOnFocus(false)"
+			(focus)="this.updateClearButtonOnFocus(true)"
+			[ngClass]="inputNgClass"
+			[attr.data-qa-id]="dataQA + 'pmds-cdk-time-input-value'"
+			placeholder=" "
+			pmdsNoLeadingSpacesInput
+		/>
+		<!-- END INPUT -->
+		<!-- PLACEHOLDER -->
+		<label
+			class="left-10 cursor-pointer !pointer-events-none absolute text-xs pt-1 top-0 transform duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:pt-0 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:pt-1 peer-focus:text-xs"
+			[ngClass]="{
+				'text-color-text-tertiary': !isDisabled,
+				'text-color-text-disabled pointer-event pointer-events-none':
+					isDisabled
+			}"
+			[attr.data-qa-id]="dataQA + componentSelector + 'placeholder'"
+			(click)="onPlaceholderClick()"
+		>
+			{{ placeholder }}
+		</label>
+		<!-- END PLACEHOLDER -->
+		<!-- CLEAR BUTTON -->
+		@if (showClear) {
+		<div
+			class="absolute flex items-center justify-center text-[8px] z-[5] w-4 h-4 top-4 right-10 rounded-full text-color-text-secondary bg-color-icon-default"
+			[ngClass]="clearButtonNgClass"
+			[attr.data-qa-id]="dataQA + componentSelector + 'clear-button'"
+			(mousedown)="checkOmitClick()"
+			(mouseup)="clearClick()"
+		>
+			<div>&#10005;</div>
+		</div>
+		}
+		<!-- END CLEAR BUTTON -->
+		<!-- ICON -->
+		<div
+			class="absolute items-center justify-center top-3 left-3 pointer-events-none"
+			[attr.data-qa-id]="dataQA + componentSelector + 'clock-icon'"
+		>
+			<div
+				[class]="'pmicons-time text-2xl'"
+				[ngClass]="clockIconNgClass"
+			></div>
+		</div>
+		<!-- END ICON -->
+		<!-- ICON DROPDOWN -->
+		<div
+			class="absolute items-center justify-center top-3 right-3"
+			[ngClass]="{ 'pointer-events-none': isDisabled }"
+			[attr.data-qa-id]="dataQA + componentSelector + 'dropdown-icon'"
+			(click)="toggleShowOption(false, true, $event)"
+		>
+			<span
+				class="pmicons-chevron-down-small-bold text-2xl transition-all text-color-action-main-default ml-2 cursor-pointer block"
+				[ngClass]="{
+					'!rotate-180 border-color-border-active': showOptions,
+					'text-color-icon-disabled cursor-default': isDisabled
+				}"
+			></span>
+		</div>
+		<!-- END ICON DROPDOWN-->
+		<!-- DROPDOWN OPTIONS -->
+		<section
+			class="animate-fade-in_fast z-10 absolute border border-color-border-default shadow-floating bg-color-surface-primary rounded-pmds mt-1"
+			[hidden]="!(showOptions && options && options.length)"
+			#dropdownOptions
+			[style.minWidth.px]="optionMinWidth"
+			[attr.data-qa-id]="dataQA + componentSelector + 'prevent-close'"
+			(click)="preventClose($event)"
+		>
+			<div>
+				<!--  OPTIONS -->
+				<div #optionsElement class="max-h-[316px] overflow-auto">
+					@for (option of options; track option.value) { @if
+					(showCategory && option.showCategory && option.category) {
+					<div class="px-4 py-3 font-body-m-bold">
+						{{ option.category }}
+					</div>
+					}
+					<div
+						class="flex flex-row justify-between m-1 px-4 py-3 cursor-pointer text-color-text-primary hover:!bg-color-surface-hover hover:!text-color-text-primary rounded-pmds"
+						[ngClass]="{
+							'bg-color-surface-selected': option.value === value,
+							'text-color-text-secondary': option.value === value,
+							'hover:bg-color-surface-hover':
+								!provisionalSelectedValues.includes(option)
+						}"
+						[attr.data-qa-id]="
+							dataQA +
+							componentSelector +
+							'select-option-' +
+							$index
+						"
+						(click)="selectOption(option, $event)"
+					>
+						<div class="flex flex-row items-center">
+							<div class="flex flex-col font-body-m-regular">
+								<span
+									class="flex items-center"
+									[ngClass]="{
+										'font-body-m-bold': option.sublabel
+									}"
+									[attr.data-qa-id]="
+										dataQA +
+										componentSelector +
+										'oc-label-' +
+										$index
+									"
+								>
+									@if (option.icon) {
+									<span
+										[ngClass]="
+											option.icon &&
+											option.icon.length > 0
+												? option.icon
+												: ''
+										"
+									>
+									</span>
+									} @if (option.flagCode) {
+									<img
+										class="h-4 w-4 mr-2"
+										[src]="
+											assetsFolder +
+											'/img/flags/' +
+											option.flagCode +
+											'.svg'
+										"
+									/>
+									}
+									{{ option?.label }}
+								</span>
+								@if (option.sublabel) {
+								<span
+									class="font-body-s-regular"
+									[attr.data-qa-id]="
+										dataQA +
+										componentSelector +
+										'oc-sublabel-' +
+										$index
+									"
+								>
+									{{ option.sublabel }}
+									@if (option.sublabelIcon) {
+									<span
+										[ngClass]="
+											option.sublabelIcon &&
+											option.sublabelIcon.length > 0
+												? option.sublabelIcon
+												: ''
+										"
+									></span>
+									}
+								</span>
+								}
+							</div>
+						</div>
+						@if (option?.value === value) {
+						<span class="pmicons-checkmark text-2xl leading-6">
+						</span>
+						}
+					</div>
+					}
+				</div>
+				<!--  OPTIONS -->
+			</div>
+		</section>
+		<!-- DROPDOWN OPTIONS -->
+		<!-- HELPER TEXT -->
+		<section class="h-5 pt-[0.125rem] absolute">
+			@if (helperText) {
+			<div
+				class="text-color-text-primary font-body-xs-regular ml-3"
+				[ngClass]="{
+					'text-color-text-disabled': isDisabled
+				}"
+				[hidden]="showError"
+				[attr.data-qa-id]="dataQA + componentSelector + 'helper-text'"
+			>
+				{{ helperText }}
+			</div>
+			}
+		</section>
+		<!-- END HELPER TEXT -->
+		<!-- ERROR MESSAGE -->
+		<pmds-cdk-form-error-message
+			class="mt-0.5"
+			[dataQA]="dataQA + 'text-input-'"
+			[control]="formControl"
+			[label]="placeholder"
+			[controlName]="formControlName"
+			[hidden]="!showError"
+			[literalsErrorFn]="literalsErrorFn"
+		/>
+		<!-- END ERROR MESSAGE -->
+	</div>
+</section>
+}

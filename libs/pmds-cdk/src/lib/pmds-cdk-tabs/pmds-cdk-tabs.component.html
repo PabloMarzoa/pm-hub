@@ -1,0 +1,63 @@
+@if (skeleton) {
+<pmds-cdk-tabs-skeleton [dataQA]="dataQA + componentSelector" />
+} @else {
+<!-- TABS -->
+<section
+	class="flex justify-start h-10 overflow-auto"
+	[attr.data-qa-id]="dataQA + componentSelector + '-container'"
+>
+	<!-- TAB -->
+	@for (tab of tabs$ | async; track tab.componentPath) {
+	<div
+		class="flex items-center justify-center min-w-[160px]"
+		[ngClass]="{
+			'hover:bg-color-surface-hover cursor-pointer':
+				activeTab !== tab && !tab.isDisabled && !config.isDisabled
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + '-select-tab-' + $index"
+		(click)="selectTab(tab)"
+	>
+		<div
+			class="flex items-center justify-center relative h-full w-full px-4 py-[0.625rem] select-none font-body-s-regular"
+			[ngClass]="{
+				'font-body-s-bold': activeTab === tab,
+				'font-body-s-regular': activeTab !== tab,
+				'text-color-action-main-default': activeTab === tab,
+				'text-color-text-tertiary':
+					activeTab !== tab && !tab.isDisabled && !config.isDisabled,
+				'text-color-text-disabled bg-color-surface-disabled':
+					tab.isDisabled || config.isDisabled
+			}"
+			[attr.data-qa-id]="dataQA + componentSelector + '-tab-' + $index"
+		>
+			<!-- TAB CONTENT -->
+			@if (tab?.tabContent) {
+			<ng-container *ngTemplateOutlet="tab.tabContent"></ng-container>
+			} @if (!tab.tabContent) {
+			{{ 'NO TAB LABEL' }}
+			}
+			<!-- END TAB CONTENT -->
+			<div
+				class="h-1 border-b-4 transition-all border-color-action-main-default absolute left-0 bottom-0"
+				[ngClass]="{
+					'w-0':
+						activeTab !== tab &&
+						!tab.isDisabled &&
+						!config.isDisabled,
+					'w-full':
+						activeTab === tab &&
+						!tab.isDisabled &&
+						!config.isDisabled
+				}"
+			></div>
+		</div>
+	</div>
+	}
+	<!-- END TAB -->
+</section>
+<!-- END TABS -->
+<pmds-cdk-divider />
+<!-- INNER ROUTING -->
+<router-outlet></router-outlet>
+<!-- END INNER ROUTING -->
+}

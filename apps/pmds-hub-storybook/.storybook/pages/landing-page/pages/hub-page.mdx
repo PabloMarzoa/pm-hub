@@ -1,0 +1,35 @@
+export function HubPage() {
+	return (
+		<section className="flex flex-col items-center justify-center h-screen w-full snap-start snap-always py-10">
+			<div className="pmds-fade !text-[3rem] pb-8 text-center leading-none !text-slate-600">
+				Separate in 3 hub <br /> for best{' '}
+				<span className="!text-cyan-900 !text-[3rem] leading-none">
+					maintenance
+				</span>
+			</div>
+			<section className="grid grid-cols-3 grid-rows-2 gap-6 w-full h-1/2 max-w-[750px]">
+				<div className="relative overflow-hidden col-span-3 pmds-fade-right bg-orange-200 rounded-xl shadow-lg text-white w-full h-full p-4">
+					<p className="!text-xl !text-orange-800 !m-0">Cdk</p>
+					<p className="!text-3xl !text-orange-800 !m-0 w-4/5">
+						More than 100 components for integrate in your apps
+					</p>
+					<span className="pmicons-atom absolute -bottom-24 -right-16 rotate-2 !text-[15rem] !text-orange-800 opacity-60"></span>
+				</div>
+				<div className="relative overflow-hidden pmds-fade-left bg-teal-200 rounded-xl shadow-lg text-white w-full h-full p-4">
+					<p className="!text-xl !text-teal-800 !m-0">Common</p>
+					<p className="!text-3xl !text-teal-800 !m-0">
+						Utilities for easy development
+					</p>
+					<span className="pmicons-cardboard-box absolute -bottom-5 -right-4 rotate-2 !text-[5rem] !text-teal-800 opacity-60"></span>
+				</div>
+				<div className="relative overflow-hidden col-span-2 pmds-fade-right bg-blue-200 rounded-xl shadow-lg text-white w-full h-full p-4">
+					<p className="!text-xl !text-blue-800 !m-0">Core</p>
+					<p className="!text-3xl !text-blue-800 !m-0 w-4/5">
+						Make your application works great
+					</p>
+					<span className="pmicons-management-health absolute -bottom-5 -right-4 rotate-2 !text-[7rem] !text-blue-800 opacity-60"></span>
+				</div>
+			</section>
+		</section>
+	);
+}

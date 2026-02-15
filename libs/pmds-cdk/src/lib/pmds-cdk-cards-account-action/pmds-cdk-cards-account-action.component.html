@@ -1,0 +1,18 @@
+@if (skeleton) {
+    <pmds-cdk-cards-account-action-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+    <section
+        [attr.data-qa-id]="dataQA + componentSelector + 'section'"
+        class="flex items-center justify-center rounded-pmds h-[140px] w-[368px] overflow-hidden shadow-raised bg-color-surface-primary cursor-pointer [&>pmds-cdk-button>button>span]:hover:text-color-action-main-hover [&>pmds-cdk-button>button>span]:active:text-color-action-main-selected"
+        (click)="emitClickCard()"
+    >
+        <!-- BUTTON -->
+        <pmds-cdk-button
+            [dataQA]="dataQA + componentSelector + '-button-'"
+            [label]="label"
+            [icon]="icon"
+            buttonType="tertiary"
+        />
+        <!-- END BUTTON -->
+    </section>
+}

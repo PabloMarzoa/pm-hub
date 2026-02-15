@@ -1,0 +1,26 @@
+<button class="bg-color-surface-primary text-color-text-primary
+				border rounded-pmds px-2 border-color-border-default
+				flex justify-center items-center whitespace-nowrap h-8"
+		[ngClass]="{'!bg-color-surface-disabled !border-color-action-on-disabled pointer-events-none' : disabled}"
+		[type]="'button'"
+		[disabled]="disabled"
+		[attr.data-qa-id]="dataQA + componentSelector + 'container'"
+		(click)="onButtonClick()">
+	<!-- LABEL -->
+	<span [attr.data-qa-id]="dataQA + componentSelector + 'label'"
+		  class=""
+		  [ngClass]="{
+			  'font-body-s-regular' : !open,
+			  '!text-color-action-main-default font-body-s-bold' : open,
+			  '!text-color-action-on-disabled' : disabled
+			}">
+		{{ label }}
+	</span>
+	<!-- END LABEL -->
+	<!-- ICON -->
+	<span class="font-body-m-bold text-2xl pmicons-plus-bolder text-color-action-main-default pl-2"
+		  [ngClass]="{'text-color-action-on-disabled' : disabled}"
+		  [attr.data-qa-id]="dataQA + componentSelector + 'icon'">
+    </span>
+	<!-- END ICON -->
+</button>

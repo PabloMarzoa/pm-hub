@@ -1,0 +1,39 @@
+<section class="flex items-center" [ngClass]="{'w-full justify-between' : !compact && label}">
+	<!-- LABEL -->
+	 @if (label) {	  
+		 <span
+			 [attr.data-qa-id]="dataQA + componentSelector + 'label'"
+			 class="pr-4 font-body-m-regular"
+			 [ngClass]="{
+				 'text-color-text-tertiary': isDisabled,
+				 'text-color-text-primary': !isDisabled
+			 }"
+		 >
+			 {{label}}
+		 </span>
+	 }
+	<!-- END LABEL -->
+
+	<!-- TOGGLE -->
+	<label
+		class="relative inline-flex items-center cursor-pointer"
+		[ngClass]="{'pointer-events-none cursor-default opacity-50' : isDisabled }">
+		<!-- INPUT -->
+		<input aria-label="toggle switch"
+			[attr.data-qa-id]="dataQA + componentSelector + 'checkbox'"
+			type="checkbox"
+			class="sr-only peer"
+			[(ngModel)]="value"
+			[checked]="value"
+			[disabled]="isDisabled"
+			(change)="setValue($event)">
+		<div
+			[attr.data-qa-id]="dataQA + componentSelector + 'slider'"
+			[class]="sizeClass.get(size) + 'border border-color-border-default rounded-full peer peer-checked:bg-color-surface-selected peer-checked:after:right-0 after:shadow-raised after:absolute after:bg-color-surface-primary after:border-color-border-default after:border after:rounded-full after:transition-all'"
+			[ngClass]="{'bg-color-surface-disabled peer-checked:bg-color-surface-disabled border-color-border-disabled after:border-color-border-disabled': isDisabled,
+						'bg-color-surface-tertiary': !isDisabled}">
+		</div>
+		<!-- INPUT -->
+	</label>
+	<!-- END TOGGLE -->
+</section>

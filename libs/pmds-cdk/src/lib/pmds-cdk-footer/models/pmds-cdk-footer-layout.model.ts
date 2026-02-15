@@ -1,0 +1,1 @@
+export type TPmdsCdkFooterLayout = 'simple' | 'contact' | 'banner';

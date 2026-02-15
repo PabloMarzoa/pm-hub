@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "esnext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pmhub/pmds-cdk": [
+        "libs/pmds-cdk/src/index.ts"
+      ],
+      "@pmhub/pmds-common": [
+        "libs/pmds-common/src/index.ts"
+      ],
+      "@pmhub/pmds-libs-plugin": [
+        "plugins/pmds-libs-plugin/src/index.ts"
+      ],
+      "@pmhub/pmds-storybook/utils": [
+        "apps/pmds-hub-storybook/src/utils/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

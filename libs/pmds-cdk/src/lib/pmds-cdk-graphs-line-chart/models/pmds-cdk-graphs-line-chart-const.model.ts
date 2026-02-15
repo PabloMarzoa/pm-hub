@@ -1,0 +1,106 @@
+export const LINES = 6;
+
+export const GRAPH_HEIGHT = 242;
+
+export const BG_COLORS_LOW = [
+    'bg-color-graphs-low-01',
+    'bg-color-graphs-low-02',
+    'bg-color-graphs-low-03',
+    'bg-color-graphs-low-04',
+    'bg-color-graphs-low-05',
+    'bg-color-graphs-low-06',
+    'bg-color-graphs-low-07',
+    'bg-color-graphs-low-08',
+]
+
+export const BG_COLORS_MID = [
+    'bg-color-graphs-mid-01',
+    'bg-color-graphs-mid-02',
+    'bg-color-graphs-mid-03',
+    'bg-color-graphs-mid-04',
+    'bg-color-graphs-mid-05',
+    'bg-color-graphs-mid-06',
+    'bg-color-graphs-mid-07',
+    'bg-color-graphs-mid-08',
+    'bg-color-graphs-mid-09',
+    'bg-color-graphs-mid-10',
+    'bg-color-graphs-mid-11',
+    'bg-color-graphs-mid-12',
+    'bg-color-graphs-mid-13',
+    'bg-color-graphs-mid-14',
+    'bg-color-graphs-mid-15',
+]
+
+export const BG_COLORS_HIGH = [
+    'bg-color-graphs-high-01',
+    'bg-color-graphs-high-02',
+    'bg-color-graphs-high-03',
+    'bg-color-graphs-high-04',
+    'bg-color-graphs-high-05',
+    'bg-color-graphs-high-06',
+    'bg-color-graphs-high-07',
+    'bg-color-graphs-high-08',
+    'bg-color-graphs-high-09',
+    'bg-color-graphs-high-10',
+    'bg-color-graphs-high-11',
+    'bg-color-graphs-high-12',
+    'bg-color-graphs-high-13',
+    'bg-color-graphs-high-14',
+    'bg-color-graphs-high-15',
+    'bg-color-graphs-high-16',
+    'bg-color-graphs-high-17',
+    'bg-color-graphs-high-18',
+    'bg-color-graphs-high-19',
+    'bg-color-graphs-high-20',
+]
+
+export const STROKE_COLORS_LOW = [
+    'stroke-color-graphs-low-01',
+    'stroke-color-graphs-low-02',
+    'stroke-color-graphs-low-03',
+    'stroke-color-graphs-low-04',
+    'stroke-color-graphs-low-05',
+    'stroke-color-graphs-low-06',
+    'stroke-color-graphs-low-07',
+    'stroke-color-graphs-low-08',
+]
+export const STROKE_COLORS_MID = [
+    'stroke-color-graphs-mid-01',
+    'stroke-color-graphs-mid-02',
+    'stroke-color-graphs-mid-03',
+    'stroke-color-graphs-mid-04',
+    'stroke-color-graphs-mid-05',
+    'stroke-color-graphs-mid-06',
+    'stroke-color-graphs-mid-07',
+    'stroke-color-graphs-mid-08',
+    'stroke-color-graphs-mid-09',
+    'stroke-color-graphs-mid-10',
+    'stroke-color-graphs-mid-11',
+    'stroke-color-graphs-mid-12',
+    'stroke-color-graphs-mid-13',
+    'stroke-color-graphs-mid-14',
+    'stroke-color-graphs-mid-15',
+]
+
+export const STROKE_COLORS_HIGH = [
+    'stroke-color-graphs-high-01',
+    'stroke-color-graphs-high-02',
+    'stroke-color-graphs-high-03',
+    'stroke-color-graphs-high-04',
+    'stroke-color-graphs-high-05',
+    'stroke-color-graphs-high-06',
+    'stroke-color-graphs-high-07',
+    'stroke-color-graphs-high-08',
+    'stroke-color-graphs-high-09',
+    'stroke-color-graphs-high-10',
+    'stroke-color-graphs-high-11',
+    'stroke-color-graphs-high-12',
+    'stroke-color-graphs-high-13',
+    'stroke-color-graphs-high-14',
+    'stroke-color-graphs-high-15',
+    'stroke-color-graphs-high-16',
+    'stroke-color-graphs-high-17',
+    'stroke-color-graphs-high-18',
+    'stroke-color-graphs-high-19',
+    'stroke-color-graphs-high-20',
+]

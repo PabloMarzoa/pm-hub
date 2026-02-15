@@ -1,0 +1,30 @@
+{
+	"name": "pmds-hub-storybook-e2e",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/pmds-hub-storybook-e2e/src",
+	"projectType": "application",
+	"targets": {
+		"e2e": {
+			"executor": "@nx/cypress:cypress",
+			"options": {
+				"cypressConfig": "apps/pmds-hub-storybook-e2e/cypress.config.ts",
+				"devServerTarget": "pmds-hub-storybook:serve:development",
+				"testingType": "e2e"
+			},
+			"configurations": {
+				"production": {
+					"devServerTarget": "pmds-hub-storybook:serve:production"
+				},
+				"ci": {
+					"devServerTarget": "pmds-hub-storybook:serve-static"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
+		}
+	},
+	"tags": [],
+	"implicitDependencies": ["pmds-hub-storybook"]
+}

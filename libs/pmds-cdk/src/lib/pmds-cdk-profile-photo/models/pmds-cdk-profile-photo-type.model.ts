@@ -1,0 +1,1 @@
+export type TPmdsCdkProfilePhotoLayout = 'label' | 'photo'

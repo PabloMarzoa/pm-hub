@@ -1,0 +1,1 @@
+export type TPmdsCdkEditableContentPosition = 'left' | 'right' | 'center'

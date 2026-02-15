@@ -1,0 +1,9 @@
+{
+	"generators": {
+		"add-library": {
+			"factory": "./src/generators/add-library/generator",
+			"schema": "./src/generators/add-library/schema.json",
+			"description": "add-library generator"
+		}
+	}
+}

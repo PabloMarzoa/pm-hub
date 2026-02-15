@@ -1,0 +1,88 @@
+export function UtilitiesPage() {
+	return (
+		<section className="flex flex-col items-center justify-center h-screen w-full snap-start snap-always py-10">
+			<div className="pmds-fade !text-[3rem] pb-10 text-center leading-none !text-slate-600">
+				Powered by <br />
+				<span className="!text-pink-500 !text-[3rem] leading-none">
+					Storybook
+				</span>
+			</div>
+			<section className="pmds-fade-left flex gap-4 w-full p-4 max-w-[750px]">
+				{generate(0)}
+				{generate(1)}
+				{generate(2)}
+				{generate(3)}
+				{generate(4)}
+			</section>
+			<section className="pmds-fade-right flex gap-4 w-full px-4 max-w-[750px]">
+				{generate(5)}
+				{generate(6)}
+				{generate(7)}
+				{generate(8)}
+				{generate(9)}
+			</section>
+		</section>
+	);
+}
+
+export function generate(index) {
+	return <a href={apps[index].path} className="border rounded-xl shadow-lg w-full h-fit p-4 hover:scale-[1.05] hover:rotate-2 transition-all cursor-pointer">
+					<p className="!text-base !m-0 !text-pink-500">{apps[index].title}</p>
+					<p className="!text-md !m-0 !text-slate-600">
+						{apps[index].subtitle}
+					</p>
+				</a>
+}
+
+export const apps = [
+	{
+	title: 'CDK atomic',
+	subtitle: 'Minimal component',
+	path: '?path=/docs/cdk-atomic-accordion--docs'
+},
+	{
+	title: 'CDK molecule',
+	subtitle: 'Advanced components',
+	path: '?path=/docs/cdk-molecule-autocomplete--docs'
+},
+	{
+	title: 'Directives',
+	subtitle: 'Angular directives class',
+	path: '?path=/docs/common-directives-decimal-number-format--docs'
+},
+	{
+	title: 'Pipes',
+	subtitle: 'Angular pipes class',
+	path: '?path=/docs/common-pipes-account-format--docs'
+},
+	{
+	title: 'Utils',
+	subtitle: 'Rest of utils in library',
+	path: '?path=/docs/common-utils-history-routing--docs'
+},
+	{
+	title: 'Colors',
+	subtitle: 'Design system colors',
+	path: '?path=/docs/utils-colors--docs'
+},
+	{
+	title: 'Fonts',
+	subtitle: 'Design system fonts',
+	path: '?path=/docs/utils-fonts--docs'
+},
+	{
+	title: 'Icons',
+	subtitle: 'Pmds icons collection',
+	path: '?path=/docs/utils-icons--docs'
+},
+	{
+	title: 'Flags',
+	subtitle: 'Svg flags collection',
+	path: '?path=/docs/utils-flags--docs'
+},
+	{
+	title: 'Images',
+	subtitle: 'Svgs images collection',
+	path: '?path=/docs/utils-images--docs'
+}
+]

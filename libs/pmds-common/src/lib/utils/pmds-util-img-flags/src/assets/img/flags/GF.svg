@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title> FLA000 | GF french guyana</title>
+    <defs>
+        <circle id="path-1" cx="255.99975" cy="255.99975" r="255.99975"></circle>
+        <path d="M79.129924,71.0004558 L441.07674,432.945316 C394.466274,481.705388 328.779566,512.07674 255.99925,512.07674 C114.614492,512.07674 -0.000499999512,397.461748 -0.000499999512,256.07699 C-0.000499999512,183.297171 30.3704366,117.610864 79.129924,71.0004558 Z" id="path-3"></path>
+    </defs>
+    <g id="-FLA000-|-GF-french-guyana" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rectangle" transform="translate(0.000500, 0.000500)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#6DA544" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#F4D609" fill-rule="nonzero" xlink:href="#path-3"></use>
+        </g>
+        <polygon id="Star" fill="#D3111A" points="256.0005 286.817573 205.842825 325.036617 226.691722 265.523499 174.843677 229.63105 237.886679 231.068964 256.0005 170.667167 274.114321 231.068964 337.157323 229.63105 285.309278 265.523499 306.158175 325.036617"></polygon>
+    </g>
+</svg>

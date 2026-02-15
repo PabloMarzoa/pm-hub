@@ -1,0 +1,17 @@
+<section class="w-fit">
+    <!-- BUTTON -->
+	<pmds-cdk-button
+		[dataQA]="dataQA + componentSelector"
+		[smallFit]="true"
+		buttonSize="small"
+		buttonType="tertiary"
+        buttonSizeMobile="small"
+		[ngClass]="{'[&>button>span]:text-color-text-success': showCopied}"
+		[label]="showCopied ? literalCopied || literal : literal"
+		[iconPosition]="iconPosition"
+		[icon]="showCopied ? 'pmicons-correct text-color-text-success' : 'pmicons-copy-document'"
+		[hideLabelMobile]="hideLabelMobile"
+		(click)="copyTextToClipboard($event)"
+	/>
+    <!-- END BUTTON -->
+</section>

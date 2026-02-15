@@ -1,0 +1,1 @@
+export type IPmdsCdkTextInputType = 'text' | 'password' | 'number';

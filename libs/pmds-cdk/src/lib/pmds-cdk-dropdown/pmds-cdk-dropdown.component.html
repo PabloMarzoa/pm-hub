@@ -1,0 +1,510 @@
+@if (skeleton) {
+<pmds-cdk-dropdown-skeleton
+	class="h-[72px]"
+	[dataQA]="dataQA + componentSelector"
+/>
+}
+<section
+	[hidden]="skeleton"
+	#container
+	[ngClass]="{
+		relative: positionRight || isPositionTop,
+		'h-[72px]': !isFilter && !isTitle
+	}"
+>
+	<!-- TITLE VIEW -->
+	@if (isTitle) {
+	<section
+		#selectFilterView
+		class="relative flex items-center px-2 py-1 h-12 mobile:h-8 w-fit rounded-pmds mobile:pl-0"
+		[ngClass]="{
+			'pointer-events-none !bg-color-surface-disabled border-color-border-disabled text-color-text-disabled ':
+				isDisabled,
+			'border-color-border-error': showErrors,
+			'bg-color-surface-hover': showOptions && !isDisabled,
+			'cursor-pointer': options.length > 1
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'toggle-show-option'"
+		(click)="toggleShowOption(false, true)"
+	>
+		@if (!selectedValues?.length) {
+		<div>
+			<div
+				class="font-headline-desktop-l-regular mobile:font-headline-mobile-m-regular text-color-text-primary whitespace-nowrap"
+				[ngClass]="{ '!text-color-text-disabled': isDisabled }"
+				[attr.data-qa-id]="
+					dataQA +
+					componentSelector +
+					'no-filter-no-selection-placeholder'
+				"
+				pmdsTitle
+			>
+				<span class="mr-2 mobile:hidden mobile:mr-0">|</span
+				>{{ placeholder }}
+			</div>
+		</div>
+		} @if (selectedValues?.length) {
+		<div>
+			@if (selectedValues.length === options.length ||
+			selectedValues.length > 0) {
+			<div
+				class="flex items-center font-headline-desktop-l-regular mobile:font-headline-mobile-m-regular text-color-text-primary whitespace-nowrap"
+				[ngClass]="{ '!text-color-text-disabled': isDisabled }"
+				pmdsTitle
+			>
+				<span class="mobile:hidden mr-2">| </span>
+				<span
+					[ngClass]="
+						selectedValues[0].icon &&
+						selectedValues[0].icon.length > 0
+							? selectedValues[0].icon
+							: ''
+					"
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						'no-filter-one-selection-placeholder'
+					"
+				></span>
+				@if(!multi && selectedValues[0].flagCode) {
+				<img
+					class="h-4 w-4 mr-2"
+					[src]="
+						assetsFolder +
+						'/img/flags/' +
+						selectedValues[0].flagCode +
+						'.svg'
+					"
+				/>
+				}
+				{{
+					multi
+						? selectedValues.length === options.length &&
+						  options.length > 1
+							? literals.all
+							: options.length === 1
+							? selectedValues[0].label
+							: labelMulti
+						: selectedValues[0].label
+				}}
+			</div>
+			}
+		</div>
+		} @if (!!options && options.length > 1) {
+		<div class="flex items-center justify-center">
+			<span
+				class="pmicons-chevron-down-small-bold text-2xl transition-all text-color-action-main-default ml-2 md:mt-2"
+				[ngClass]="{
+					'rotate-180 border-color-border-active': showOptions,
+					'text-color-icon-disabled': isDisabled
+				}"
+			></span>
+			@if (tooltip?.length) {
+			<div
+				class="border-l border-color-border-default pl-4 text-2xl ml-2 text-color-icon-info flex justify-center"
+			>
+				<span
+					[pmdsTooltip]="tooltip"
+					[pmdsTooltipTitle]="tooltipTitle"
+					[pmdsTooltipPosition]="tooltipPosition"
+					class="pmicons-info-circle"
+				>
+				</span>
+			</div>
+			}
+		</div>
+		}
+	</section>
+	}
+	<!-- END TITLE VIEW -->
+	<!-- FILTER VIEW -->
+	@if (isFilter && !isTitle) {
+	<section
+		#selectFilterView
+		class="flex items-center h-8 mobile:w-full px-2 py-0 w-fit border border-color-border-default bg-color-surface-primary cursor-pointer rounded-pmds"
+		[ngClass]="{
+			'pointer-events-none !bg-color-surface-disabled border-color-border-disabled':
+				isDisabled,
+			'border-color-border-error': showErrors,
+			'!border-color-border-focus': showOptions,
+			'border-color-border-warning': warningText && !showErrors && !showOptions,
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'toggle-show-option'"
+		(click)="toggleShowOption(false, true)"
+	>
+		<div class="w-full font-body-s-regular">
+			<div
+				[class]="
+					'flex items-center' +
+					(selectedValues.length
+						? ' font-body-s-bold'
+						: ' font-body-s-regular')
+				"
+				[ngClass]="{
+					'text-color-text-disabled': isDisabled && !selectedValues.length,
+					'text-color-text-primary': !isDisabled && !selectedValues.length,
+					'text-color-action-main-default': selectedValues.length,
+				}"
+				[attr.data-qa-id]="dataQA + componentSelector + 'filter-label'"
+				pmdsTitle
+			>
+				{{ label || placeholder }}
+			</div>
+		</div>
+		<div class="pl-2 flex items-center justify-center">
+			<span
+				class="text-2xl transition-all text-color-action-main-default h-[22px] pmicons-chevron-down-small-bold"
+				[ngClass]="{
+					'rotate-180': showOptions,
+					'text-color-icon-disabled': isDisabled
+				}"
+			></span>
+		</div>
+	</section>
+	}
+	<!-- END FILTER VIEW -->
+	<!-- NO FILTER VIEW -->
+	@if (!isFilter && !isTitle) {
+	<section
+		#selectFilterView
+		class="relative flex items-center px-3 py-1 h-12 w-full border border-color-border-default bg-color-surface-primary cursor-pointer rounded-pmds"
+		[ngClass]="{
+			'pointer-events-none !bg-color-surface-disabled border-color-border-disabled text-color-text-disabled ':
+				isDisabled,
+			'border-color-border-error': showErrors,
+			'border-color-border-warning':
+				warningText && !showErrors && !showOptions,
+			'!border-color-border-focus':
+				showOptions && !isDisabled && !showErrors
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'toggle-show-option'"
+		(click)="toggleShowOption(false, true)"
+	>
+		@if (!selectedValues?.length) {
+		<div class="w-[calc(100%-1rem)]">
+			<div
+				class="font-body-m-regular text-color-text-tertiary whitespace-nowrap"
+				[ngClass]="{ '!text-color-text-disabled': isDisabled }"
+				[attr.data-qa-id]="
+					dataQA +
+					componentSelector +
+					'no-filter-no-selection-placeholder'
+				"
+				pmdsTitle
+			>
+				{{ placeholder }}
+			</div>
+		</div>
+		} @if (selectedValues?.length) {
+		<div class="w-[calc(100%-1rem)]">
+			@if (selectedValues && selectedValues.length > 0) {
+			<div
+				class="text-color-text-tertiary"
+				[ngClass]="{
+					'font-body-xs-regular':
+						selectedValues.length === options.length ||
+						selectedValues.length > 0,
+					'!text-color-text-disabled': isDisabled
+				}"
+				[attr.data-qa-id]="
+					dataQA +
+					componentSelector +
+					'no-filter-multiselection-placeholder'
+				"
+				pmdsTitle
+			>
+				{{ placeholder }}
+			</div>
+			} @if (selectedValues.length === options.length ||
+			selectedValues.length > 0) {
+			<div
+				class="font-body-m-regular text-color-text-primary whitespace-nowrap flex items-center"
+				[ngClass]="{ '!text-color-text-disabled': isDisabled }"
+			>
+				<span
+					[ngClass]="
+						selectedValues[0].icon &&
+						selectedValues[0].icon.length > 0
+							? selectedValues[0].icon
+							: ''
+					"
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						'no-filter-one-selection-placeholder'
+					"
+				></span>
+				@if (!multi && selectedValues[0].flagCode) {
+				<img
+					class="h-4 w-4 mr-2"
+					[src]="
+						assetsFolder +
+						'/img/flags/' +
+						selectedValues[0].flagCode +
+						'.svg'
+					"
+				/>
+				}
+				<span pmdsTitle>
+					{{
+						multi
+							? selectedValues.length === options.length &&
+							  options.length > 1
+								? literals.all
+								: options.length === 1
+								? selectedValues[0].label
+								: labelMulti
+							: selectedValues[0].label
+					}}
+				</span>
+			</div>
+			}
+		</div>
+		}
+		<div class="flex items-center justify-center">
+			<span
+				class="pmicons-chevron-down-small-bold text-2xl transition-all text-color-action-main-default"
+				[ngClass]="{
+					'rotate-180 border-color-border-active': showOptions,
+					'text-color-icon-disabled': isDisabled
+				}"
+			></span>
+			@if (tooltip?.length) {
+			<div
+				class="border-l border-color-border-default pl-4 text-2xl ml-2 text-color-icon-info flex justify-center"
+			>
+				<span
+					[pmdsTooltip]="tooltip"
+					[pmdsTooltipTitle]="tooltipTitle"
+					[pmdsTooltipPosition]="tooltipPosition"
+					class="pmicons-info-circle"
+				>
+				</span>
+			</div>
+			}
+		</div>
+	</section>
+	}
+	<!-- END NO FILTER VIEW -->
+	<!-- WARNING MESSAGE -->
+	@if (warningText && !showErrors && !showOptions) {
+	<section
+		class="relative pt-1 font-body-xs-regular text-color-text-warning"
+		[ngClass]="{
+			'pl-2': isFilter,
+			'pl-4': !isFilter
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'warning-text'"
+	>
+		<span class="absolute">
+			{{ warningText }}
+		</span>
+	</section>
+	}
+	<!-- END WARNING MESSAGE -->
+	<!-- ERROR MESSAGE -->
+	<pmds-cdk-form-error-message
+		[dataQA]="dataQA + componentSelector"
+		[controlName]="formControlName"
+		[control]="formControl"
+		[label]="label"
+		[hidden]="!showErrors || showOptions"
+		[literalsErrorFn]="literalsErrorFn"
+	/>
+	<!-- END ERROR MESSAGE -->
+	<!-- DROPDOWN OPTIONS -->
+	<section
+		#dropdownOptions
+		class="animate-fade-in_fast z-[11] absolute border border-color-border-default shadow-floating bg-color-surface-primary rounded-pmds mt-1 overflow-hidden overflow-y-auto"
+		[hidden]="!showOptions"
+		[ngClass]="{ 'right-0': positionRight }"
+		[style.top.px]="isPositionTop ? -top : null"
+		[attr.data-qa-id]="dataQA + componentSelector + 'prevent-close'"
+		(click)="preventClose($event)"
+	>
+		<div class="flex flex-col">
+			<!--  SEARCH INPUT -->
+			@if (enableSearch) {
+			<div #inputSearchElement class="font-body-m-bold px-4 py-4">
+				<div
+					class="flex items-center justify-between h-12 rounded-pmds border border-color-border-default w-full"
+				>
+					<div
+						class="flex ml-4 w-full font-body-m-regular text-color-text-tertiary"
+					>
+						<span
+							class="pmicons-magnifying-glass text-color-icon-default text-2xl mr-2"
+						></span>
+						<input
+							#inputSearch
+							class="focus:outline-none w-full"
+							[(ngModel)]="currentFilter"
+							(ngModelChange)="getFilteredOptions()"
+							[placeholder]="literals.searchPlaceholder"
+							[attr.data-qa-id]="
+								dataQA + componentSelector + 'oc-input'
+							"
+						/>
+					</div>
+				</div>
+			</div>
+			}
+			<!--  END SEARCH INPUT -->
+			<!--  OPTIONS -->
+			<div
+				#optionsElement
+				class="max-h-[288px] overflow-auto min-h-12 shrink"
+			>
+				@for (option of enableSearch ? filteredOptions : options; track
+				i; let i = $index) {
+				<ng-container>
+					@if (showCategory && option.showCategory && option.category)
+					{
+					<div class="p-3 font-body-m-bold text-color-text-primary">
+						{{ option.category }}
+					</div>
+					}
+					<div
+						tabindex="0"
+						class="flex flex-row items-center justify-between m-1 p-2 cursor-pointer text-color-text-primary hover:!bg-color-surface-hover hover:!text-color-text-primary rounded-pmds"
+						[ngClass]="{
+							'bg-color-surface-selected':
+								option.value === value && !multi,
+							'!py-1': option.sublabel,
+							'text-color-text-secondary':
+								option.value === value && !multi,
+							'hover:bg-color-surface-hover':
+								!provisionalSelectedValues.includes(option) ||
+								multi
+						}"
+						[attr.data-qa-id]="
+							dataQA + componentSelector + 'select-option-' + i
+						"
+						(click)="selectOption(option, $event)"
+					>
+						<div class="flex flex-row items-center" pmdsTitle>
+							@if (multi) {
+							<div
+								class="flex justify-center items-center border w-6 h-6 rounded-pmds mr-2"
+								[ngClass]="
+									checkOptionSelected(
+										provisionalSelectedValues,
+										option
+									)
+										? 'border-2 border-color-border-focus bg-color-action-alternative-default'
+										: 'border-color-border-default'
+								"
+							>
+								@if
+								(checkOptionSelected(provisionalSelectedValues,option))
+								{
+								<span
+									class="pmicons-checkmark !font-extrabold text-color-action-on-alternative-default"
+								></span>
+								}
+							</div>
+							}
+							<div class="flex flex-col font-body-m-regular w-full">
+								<span
+									class="flex items-center"
+									[ngClass]="{
+										'font-body-s-bold': option.sublabel
+									}"
+									[attr.data-qa-id]="
+										dataQA +
+										componentSelector +
+										'oc-label-' +
+										i
+									"
+								>
+									@if (option.icon) {
+									<span
+										[ngClass]="
+											option.icon &&
+											option.icon.length > 0
+												? option.icon
+												: ''
+										"
+									></span>
+									} @if (option.flagCode) {
+									<img
+										class="h-4 w-4 mr-2"
+										[src]="
+											assetsFolder +
+											'/img/flags/' +
+											option.flagCode +
+											'.svg'
+										"
+									/>
+									}
+									<span pmdsTitle>
+										{{ option?.label }}
+									</span>
+								</span>
+								@if (option.sublabel) {
+								<span
+									class="font-body-xs-regular"
+									[attr.data-qa-id]="
+										dataQA +
+										componentSelector +
+										'oc-sublabel-' +
+										i
+									"
+								>
+									{{ option.sublabel }}
+									@if (option.sublabelIcon) {
+									<span
+										[ngClass]="
+											option.sublabelIcon &&
+											option.sublabelIcon.length > 0
+												? option.sublabelIcon
+												: ''
+										"
+									></span>
+									}
+								</span>
+								}
+							</div>
+						</div>
+						@if (option?.value === value && !multi) {
+						<span
+							class="pmicons-checkmark text-2xl leading-6"
+						></span>
+						}
+					</div>
+				</ng-container>
+				}
+			</div>
+			<!--  OPTIONS -->
+			<!-- DROPDOWN OPTIONS FOOTER -->
+			@if (multi) {
+			<footer
+				[class]="
+					'w-full border-t flex justify-between items-center border-color-border-decorative px-4 py-3.5 h-[' +
+					footerHeight +
+					'px]'
+				"
+			>
+				<pmds-cdk-button
+					class="mr-2"
+					[buttonSize]="'small'"
+					[smallFit]="true"
+					[label]="literals.accept!"
+					[dataQA]="dataQA + componentSelector + 'accept-button-'"
+					(buttonClick)="onSelect()"
+				/>
+				<pmds-cdk-button
+					[buttonType]="'tertiary'"
+					[buttonSize]="'small'"
+					[smallFit]="true"
+					[label]="literals.clear!"
+					[dataQA]="dataQA + componentSelector + 'clear-button-'"
+					(buttonClick)="clear()"
+				/>
+			</footer>
+			}
+			<!-- END DROPDOWN OPTIONS FOOTER -->
+		</div>
+	</section>
+	<!-- DROPDOWN OPTIONS -->
+</section>

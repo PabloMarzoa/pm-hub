@@ -1,0 +1,153 @@
+@if (skeleton) {
+	<pmds-cdk-file-downloader-info-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section>
+		@switch (file?.status) {
+			<!-- COMPLETED STATUS -->
+			@case ('COMPLETED') {
+				<div class="h-[90px] mobile:h-[72px] p-6 mobile:p-4 flex flex-row border border-color-border-default rounded-pmds bg-color-surface-primary items-center justify-between mobile:p-4 overflow-x-auto overflow-y-hidden">
+					<div class="flex flex-row items-center w-3/4">
+                    <span
+						[attr.data-qa-id]="dataQA + componentSelector + 'completed-info-icon'"
+						class="text-color-icon-info pmicons-file text-3xl mr-4">
+                    </span>
+						<div class="flex flex-col w-full pr-1 overflow-hidden">
+                        <span [attr.data-qa-id]="dataQA + componentSelector + 'completed-file-name'"
+							  class="font-body-s-bold text-color-text-primary w-full"
+							  pmdsTitle>
+                                {{ file?.fileName }}
+                        </span>
+							@if (literals?.subTitle) {
+								<span [attr.data-qa-id]="dataQA + componentSelector + 'completed-subtitle'"
+									  class="font-body-s-regular text-color-text-tertiary"
+									  pmdsTitle>
+                                	{{ literals?.subTitle }}
+                        		</span>
+							}
+						</div>
+					</div>
+					<div class="flex flex-row">
+						@for (button of buttons; track button.label; let i = $index) {
+							<pmds-cdk-button
+								class="mr-4"
+								[dataQA]="dataQA + componentSelector + 'completed-button-' + i"
+								buttonSize="small"
+								[smallFit]="true"
+								[hideLabelMobile]="true"
+								buttonType="tertiary"
+								[icon]="button.icon"
+								(buttonClick)="button.actionFn(file)"
+								[label]="button.label"
+							/>
+						}
+					</div>
+				</div>
+			}
+			<!-- END COMPLETED STATUS -->
+			<!-- PROCESSING STATUS -->
+			@default {
+				<div class="h-[90px] mobile:h-[72px] flex flex-col justify-between w-full border rounded-pmds border-color-border-default bg-color-surface-primary overflow-y-hidden">
+				<div class="flex flex-row justify-between w-full h-full px-6 mobile:px-4 items-center overflow-x-auto">
+					<div class="flex flex-row items-center w-3/4">
+                        <span
+							[attr.data-qa-id]="dataQA + componentSelector + 'processing-info-icon'"
+							class="text-color-icon-info pmicons-upload text-3xl mr-4">
+                        </span>
+						<div class="flex flex-row text-color-text-primary text-sm w-full pr-1">
+                            <span
+								[attr.data-qa-id]="dataQA + componentSelector + 'processing-generating-literal'"
+								class="font-body-s-bold mr-1">
+                                    {{ literals?.processing }}
+                            </span>
+							<span
+								[attr.data-qa-id]="dataQA + componentSelector + 'processing-file-name'"
+								class="font-body-s-regular" pmdsTitle>
+                                    {{ file?.fileName }}
+                            </span>
+						</div>
+					</div>
+					<pmds-cdk-button
+						[dataQA]="dataQA + componentSelector + 'cancel-button'"
+						buttonSize="small"
+						[smallFit]="true"
+						[hideLabelMobile]="true"
+						buttonType="tertiary"
+						icon="pmicons-close"
+						(buttonClick)="cancel()"
+						[label]="literals.cancel ? literals.cancel : ''"
+					/>
+				</div>
+				<div class="w-full h-1 bg-color-surface-primary overflow-hidden relative">
+					<div class="absolute h-1 w-1/5 animate-loader-animation bg-color-border-focus">
+					</div>
+				</div>
+			</div>
+			}
+			<!-- END PROCESSING STATUS -->
+			<!-- FAILURE STATUS -->
+			@case ('FAILURE') {
+				<div class="flex flex-col">
+				<div class="h-[90px] mobile:h-[72px] p-6 mobile:p-4 w-full border-color-border-error bg-color-surface-primary items-center overflow-x-auto overflow-y-hidden"
+					 [ngClass]="errorsDisplayed ? 'rounded-t-pmds border-t border-l border-r' : 'border rounded-pmds'">
+					<div class="flex flex-row">
+						<div class="flex flex-row w-full items-center w-3/4 overflow-hidden">
+                            <span
+								[attr.data-qa-id]="dataQA + componentSelector + 'failute-info-icon'"
+								class="text-color-icon-info pmicons-download-incomplete text-3xl mr-4">
+                            </span>
+							<div class="flex flex-col pr-1 overflow-hidden w-full">
+                                <span
+									[attr.data-qa-id]="dataQA + componentSelector + 'failure-file-name'"
+									class="font-body-s-bold text-color-text-primary w-full" pmdsTitle>
+                                        {{ file?.fileName }}
+                                </span>
+								<span
+									[attr.data-qa-id]="dataQA + componentSelector + 'failure-failedto-literal'"
+									class="font-body-s-regular text-color-text-error" pmdsTitle>
+                                        {{ literals?.failedTo }}
+                                </span>
+							</div>
+						</div>
+						<div class="flex flex-row items-center">
+							@for (button of buttons; track i; let i = $index) {
+								<pmds-cdk-button
+									class="mr-4"
+									[dataQA]="dataQA + componentSelector + 'failure-button-' + i"
+									buttonSize="small"
+									[smallFit]="true"
+									[hideLabelMobile]="true"
+									buttonType="tertiary"
+									[icon]="button.icon"
+									(buttonClick)="button.actionFn(file)"
+									[label]="button.label"
+								/>
+							}
+							@if (errorIncluded && literals.showErrors) {
+								<pmds-cdk-button
+									[dataQA]="dataQA + componentSelector + 'show-errors-button'"
+									buttonSize="small"
+									[smallFit]="true"
+									[hideLabelMobile]="true"
+									buttonType="tertiary"
+									[icon]="errorsDisplayed ? 'pmicons-chevron-up-small-bold' : 'pmicons-chevron-down-small-bold'"
+									(buttonClick)="errorsDisplayed = !errorsDisplayed"
+									[label]="literals.showErrors"
+								/>
+							}
+						</div>
+					</div>
+				</div>
+				<!--CONTENT-->
+				<div [ngClass]="{'overflow-hidden h-0 !m-0': !errorsDisplayed}">
+					<div [attr.data-qa-id]="dataQA + componentSelector + 'content'"
+						 class="pb-6 pl-6 pr-6 border-color-border-error bg-color-surface-primary border-b border-r border-l rounded-b-pmds">
+						<ng-content></ng-content>
+					</div>
+				</div>
+				<!-- END CONTENT -->
+			</div>
+			}
+			<!-- END FAILURE STATUS -->
+		}
+	</section>
+}

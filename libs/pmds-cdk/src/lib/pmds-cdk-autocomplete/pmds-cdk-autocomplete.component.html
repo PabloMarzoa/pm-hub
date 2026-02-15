@@ -1,0 +1,135 @@
+@if (!skeleton) {
+	<section
+		class="relative w-full font-body-m-regular h-[72px]"
+		[ngClass]="config.input?.customWidth || 'w-full'"
+	>
+		<div
+			class="flex items-center justify-center"
+			(click)="label = null; inputForm.focus()"
+		>
+			<!-- INPUT -->
+			<input
+				class="py-3 px-3 pr-12 h-12 border border-color-border-default w-full text-base outline-none pt-7 peer text-color-text-primary [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-pmds"
+				#inputForm
+				aria-label="autocomplete"
+				pmdsTitle
+				[disabled]="isDisabled"
+				[value]="value"
+				[type]="config.input?.type"
+				(input)="onInput($event)"
+				(focusin)="onFocusIn(); this.updateClearButtonOnFocus(true)"
+				(focusout)="onFocusOut(); this.updateClearButtonOnFocus(false)"
+				(keyup.enter)="onEnter()"
+				[ngClass]="{
+				'border-color-border-default focus:border-color-border-focus':
+					!showError && !isDisabled && !focusin,
+				'border-color-border-error focus:border-color-border-error border-b-1':
+					(showError && !isDisabled && !focusin) ||
+					(label === null &&
+						value.length === 0 &&
+						!focusin &&
+						!showError &&
+						labelErrorNotSelected),
+				'border-color-border-focus': focusin,
+				'!pr-20': (value && !label && !isDisabled) || focusin,
+				'border-color-border-disabled text-color-text-disabled bg-color-surface-disabled pointer-event pointer-events-none':
+					isDisabled
+			}"
+				[attr.data-qa-id]="dataQA + componentSelector + 'input'"
+				placeholder=" "
+			/>
+			<!-- END INPUT -->
+			<!-- PLACEHOLDER -->
+			<label
+				class="absolute max-w-[80%] cursor-text font-body-xs-regular pt-1 top-0 left-3 transform duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:pt-0 peer-placeholder-shown:font-body-m-regular peer-focus:top-0 peer-focus:pt-1 peer-focus:font-body-xs-regular"
+				[ngClass]="{
+				'text-color-text-tertiary': !isDisabled,
+				'text-color-text-disabled pointer-event pointer-events-none':
+					isDisabled
+			}"
+				[attr.data-qa-id]="dataQA + componentSelector + 'placeholder'"
+				(click)="inputForm.focus()"
+				pmdsTitle
+			>
+				{{ config.input?.placeholder }}
+			</label>
+			<!-- END PLACEHOLDER -->
+			<!-- DYNAMIC LABEL -->
+			@if (config.input?.labelComponent) {
+				<pmds-cdk-autocomplete-dynamic-label
+					[autocompleteDynamicLabelComponent]="(config.input?.labelComponent)!.component"
+					[data]="label"
+					[ngClass]="{
+						'text-color-text-disabled pointer-event pointer-events-none':
+							isDisabled
+					}"
+					[attr.data-qa-id]="dataQA + componentSelector + 'selection-label'"
+					(setInput)="onSetInput($event)"
+				/>
+			}
+			<!-- END DYNAMIC LABEL -->
+			<!-- CLEAR -->
+			@if (value && !label && !isDisabled) {
+				<div class="absolute flex items-center justify-center text-[8px] w-4 h-4 top-4 cursor-pointer rounded-full text-color-text-secondary bg-color-text-primary animate-fade-in_fast"
+					 [ngClass]="{
+						'right-14': config.input?.icon,
+						'right-5': !config.input?.icon
+					}"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'button-clear'"
+					 (mousedown)="onClear()"
+					 (mouseup)="inputForm.focus()"
+				>
+					<div>&#10005;</div>
+				</div>
+			}
+
+			<!-- END CLEAR -->
+			<!-- ICON -->
+			@if (config.input?.icon) {
+				<div class="absolute flex items-center justify-center cursor-text top-3 right-[1rem] text-color-icon-info animate-fade-in_fast"
+					 [ngClass]="{
+						'text-color-icon-disabled pointer-events-none': isDisabled
+					}"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'icon'"
+					 (click)="focusin && inputForm.focus()"
+				>
+					<div [class]="config.input?.icon + ' text-2xl'"></div>
+				</div>
+			}
+			<!-- END ICON -->
+		</div>
+		<!-- FORM ERROR MESSAGES -->
+		<pmds-cdk-form-error-message
+			[control]="control"
+			[controlName]="formControlName"
+			[hidden]="!showError || focusin"
+			[label]="labelError"
+			[dataQA]="dataQA + componentSelector"
+			[literalsErrorFn]="literalsErrorFn"
+		/>
+		<!-- END FORM ERROR MESSAGES -->
+		@if (label === null && value.length === 0 && !focusin && !showError && labelErrorNotSelected) {
+			<section class="h-5 pt-[2px]">
+				<div class="text-color-text-error font-body-xs-regular ml-3">
+					{{ labelErrorNotSelected }}
+				</div>
+			</section>
+		}
+		<!-- TABLE -->
+		<pmds-cdk-autocomplete-table
+			class="z-[11] absolute left-0 right-0"
+			(click)="omitClose = true"
+			[config]="config.table"
+			[data]="data"
+			[states]="states"
+			[suggestions]="suggestions"
+			[dataQA]="dataQA + componentSelector"
+			[paginationInfo]="paginationInfo"
+			(selectRow)="onSelectRow($event)"
+			(scrollEnd)="onScrollEnd()"
+		/>
+		<!-- END TABLE -->
+	</section>
+} @else {
+	<pmds-cdk-autocomplete-skeleton class="h-[72px]" [dataQA]="dataQA + componentSelector" />
+}

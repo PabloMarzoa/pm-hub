@@ -1,0 +1,77 @@
+<section
+	class="flex justify-center p-4 w-full flex-col-reverse"
+	[ngClass]="{
+		'desktop:flex-row desktop:items-center desktop:justify-between':
+			!isModule,
+		'rounded-pmds bg-color-surface-primary': isModule
+	}"
+>
+	<section
+		class="w-full text-center"
+		[ngClass]="{ 'desktop:w-1/2 desktop:text-left': !isModule }"
+	>
+		<p
+			[attr.data-qa-id]="dataQA + componentSelector + 'error'"
+			[ngClass]="{ 'desktop:w-1/2 desktop:text-left': !isModule }"
+			class="font-body-m-regular text-color-text-primary"
+		>
+			{{ literals[errorCode]?.error || literals['500']?.error }}
+		</p>
+		<h1
+			[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+			class="font-headline-desktop-m-bold mobile:font-headline-mobile-m-bold text-color-text-primary py-4"
+		>
+			{{ literals[errorCode]?.title || literals['500']?.title }}
+		</h1>
+		<p
+			[attr.data-qa-id]="dataQA + componentSelector + 'paragraph'"
+			class="font-body-m-regular text-color-text-primary"
+			[innerHTML]="
+				literals[errorCode]?.paragraph || literals['500']?.paragraph
+			"
+		></p>
+		<section
+			class="pt-10 flex justify-center mobile:flex-col"
+			[ngClass]="{
+				'desktop:justify-start': !isModule
+			}"
+		>
+			@for (button of buttons; track button.label) {			  
+				<pmds-cdk-button
+					class="ml-6 first:ml-0 mobile:ml-0 mobile:mt-4 first:mobile:mt-4"
+					[label]="button.label"
+					[dataQA]="dataQA + componentSelector + $index + '-action-'"
+					[disabled]="button.disabled || false"
+					[buttonType]="button.type"
+					(buttonClick)="button.action()"
+					[buttonSize]="isModule ? 'small' : 'medium'"
+				/>
+			}
+		</section>
+	</section>
+	<section
+		class="flex justify-center mobile:h-44 pb-6 desktop:pb-0"
+		[attr.data-qa-id]="dataQA + componentSelector + 'img'"
+		[ngClass]="{
+			'h-full tablet:h-[257px] desktop:justify-end pb-4 desktop:pb-0':
+				!isModule,
+			'h-44 pb-4': isModule
+		}"
+	>
+		@switch (errorCode) { @case ('401') {
+		<pmds-cdk-error-page-401-emi class="hidden-in-saas" />
+		<pmds-cdk-error-page-401-saas class="hidden-in-emi" />
+		} @case ('403') {
+		<pmds-cdk-error-page-403-emi class="hidden-in-saas" />
+		<pmds-cdk-error-page-403-saas class="hidden-in-emi" />
+		} @case ('404') {
+		<pmds-cdk-error-page-404-emi class="hidden-in-saas" />
+		<pmds-cdk-error-page-404-saas class="hidden-in-emi" />
+		} @case ('503') {
+		<pmds-cdk-error-page-503 />
+
+		} @default {
+		<pmds-cdk-error-page-500 />
+		} }
+	</section>
+</section>

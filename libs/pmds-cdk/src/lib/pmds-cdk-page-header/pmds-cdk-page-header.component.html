@@ -1,0 +1,116 @@
+@if (skeleton) {
+<pmds-cdk-page-header-skeleton [dataQA]="dataQA + componentSelector" />
+} @else {
+<section
+	class="py-8 flex mobile:flex-col justify-between items-center"
+	[ngClass]="{
+				'mobile:py-3' : !firstLevel,
+				'mobile:items-start mobile:py-4' : firstLevel,
+			}"
+>
+	<section
+		class="block"
+		[ngClass]="{
+			'mobile:flex mobile:w-full mobile:item-center': !firstLevel
+		}"
+	>
+		<!-- BACK BUTTON -->
+		<section
+			class="relative mb-2"
+			[ngClass]="{ 'mobile:absolute mobile:pt-0.5': !firstLevel }"
+		>
+			@if (showBackButton) {
+			<pmds-cdk-button
+				iconPosition="left"
+				buttonSize="small"
+				icon="pmicons-chevron-left"
+				buttonType="tertiary"
+				customStyle="!px-0 !justify-start !h-full"
+				[hideLabelMobile]="!firstLevel"
+				[smallFit]="true"
+				[label]="back"
+				(buttonClick)="emitBackButton()"
+				[dataQA]="dataQA + componentSelector + '-back-button-'"
+			/>
+			}
+		</section>
+		<!-- END BUTTON -->
+		<section
+			class="block min-h-8 text-color-text-primary font-headline-desktop-l-regular mobile:font-headline-mobile-m-regular mobile:min-h-6"
+			[ngClass]="{
+				'mobile:flex mobile:grow mobile:justify-center mobile:items-center':
+					!firstLevel,
+				'flex items-center mobile:flex-col mobile:items-start':
+					dropdownOptions
+			}"
+			[attr.data-qa-id]="dataQA + componentSelector + 'title'"
+		>
+			<!-- TITLE -->
+			<span [attr.data-qa-id]="dataQA + componentSelector + 'title'">
+				{{ title }}
+			</span>
+			<!-- END TITLE -->
+			<!-- DROPDOWN -->
+			<div class="inline" [formGroup]="dropdownForm">
+				@if (dropdownOptions) {
+				<pmds-cdk-dropdown
+					class="inline"
+					formControlName="dropdown"
+					[ngClass]="{ 'mobile:hidden': !firstLevel }"
+					[dataQA]="dataQA + componentSelector + '-dropdown-'"
+					[isTitle]="true"
+					[placeholder]="dropdownPlaceholder"
+					[options]="dropdownOptions"
+					(selectChange)="onSelectOption($event || '')"
+				/>
+				}
+			</div>
+			<!-- END DROPDOWN -->
+		</section>
+		<!-- SUBTITLE -->
+		@if (!dropdownOptions) {
+		<p
+			class="flex items-center font-body-s-regular text-color-text-primary pt-2"
+			[ngClass]="{ 'mobile:hidden': !firstLevel }"
+			[attr.data-qa-id]="dataQA + componentSelector + 'subtitle'"
+		>
+			<span [class]="iconSubtitle + ' text-2xl'"></span>{{ subtitle }}
+		</p>
+		}
+		<!-- END SUBTITLE -->
+		<!-- CLOSE BUTTON -->
+		<section
+			class="hidden"
+			[ngClass]="{
+				'mobile:block mobile:absolute mobile:pt-0.5 mobile:right-6':
+					!firstLevel
+			}"
+		>
+			@if (showCloseButton) {
+			<pmds-cdk-button
+				iconPosition="left"
+				buttonSize="small"
+				icon="pmicons-close1"
+				buttonType="tertiary"
+				customStyle="!px-0 !justify-end !h-full"
+				[hideLabelMobile]="!firstLevel"
+				[smallFit]="true"
+				[dataQA]="dataQA + componentSelector + '-button-close-'"
+				(buttonClick)="emitCloseButton()"
+			/>
+			}
+			<ng-content></ng-content>
+		</section>
+		<!-- CLOSE BUTTON -->
+	</section>
+	<ng-content></ng-content>
+</section>
+<!-- DIVIDER -->
+@if (showDivider) {
+<pmds-cdk-divider
+	class="w-full"
+	[dataQA]="dataQA + componentSelector"
+></pmds-cdk-divider>
+}
+<!-- END DIVIDER -->
+}

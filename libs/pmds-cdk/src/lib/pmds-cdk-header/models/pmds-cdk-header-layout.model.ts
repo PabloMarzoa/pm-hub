@@ -1,0 +1,1 @@
+export type TPmdsCdkHeaderLayout = 'operational' | 'backoffice';

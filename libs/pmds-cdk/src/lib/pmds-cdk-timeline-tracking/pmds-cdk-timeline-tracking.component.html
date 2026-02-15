@@ -1,0 +1,349 @@
+@if (skeleton) {
+<pmds-cdk-timeline-tracking-skeleton [dataQA]="dataQA + componentSelector" />
+} @else { @for (step of steps; track (step.title + '-' + $index); let stepIndex = $index) {
+<section
+	class="flex flex-col font-body-m-regular"
+	[attr.data-qa-id]="dataQA + componentSelector + stepIndex + '-container'"
+>
+	<!-- STEPS -->
+	<div class="flex mb-2">
+		<div
+			[ngClass]="{
+				'bg-tints-storm-70 rounded-[40px]':
+					step.status === stepStatus.Current,
+				'border-color.primary-07': step.status === stepStatus.UpComing
+			}"
+			class="flex flex-col"
+		>
+			@if (step.status === stepStatus.Completed || step.status ===
+			stepStatus.LastComplete) {
+			<span
+				[ngClass]="{
+					'bg-color-icon-success border-color-icon-success':
+						step.status === stepStatus.LastComplete
+				}"
+				[attr.data-qa-id]="
+					dataQA + componentSelector + stepIndex + '-icon'
+				"
+				class="flex items-center justify-center text-[16px] !font-[800] pmicons-checkmark w-5 h-5 rounded-[20px] border-[5px] border-color-icon-default text-color-icon-alternative bg-color-icon-default"
+			></span>
+			} @if (step.status === stepStatus.Error || (step.status ===
+			stepStatus.Current && step.colorCode === 'red')) {
+			<span
+				[attr.data-qa-id]="
+					dataQA + componentSelector + stepIndex + '-icon-error'
+				"
+				class="flex items-center justify-center pmicons-warning w-5 h-5 rounded-[20px] border-[5px] border-color-icon-error text-color-icon-alternative text-[16px] bg-color-icon-error"
+			></span>
+			} @if ((step.status === stepStatus.Current && step.colorCode !==
+			'red') || step.status === stepStatus.UpComing) {
+
+			<div
+				[ngClass]="{
+								'border-color-icon-default': step.status === stepStatus.Current,
+								'border-color-icon-disabled': step.status === stepStatus.UpComing,
+							}"
+				class="w-5 h-5 p-[5px] rounded-[20px] border-[5px] {{
+					!!step.colorCode ? colorSet[step.colorCode] : ''
+				}}"
+			></div>
+			}
+			<div
+				[ngClass]="{
+					'ml-[10.5px] border-color-icon-default':
+						step.status === stepStatus.Current &&
+						step.colorCode === 'red',
+					hidden: stepIndex + 1 === steps.length
+				}"
+				class="bg-color-icon-default w-[2px] mt-2 ml-[9px] min-h-[16px] h-full"
+			></div>
+		</div>
+		<div class="flex flex-col w-full">
+			<div
+				class="step-title flex float-left ml-4 mb-1 font-body-s-bold text-color-text-primary"
+				[ngClass]="{
+					'text-color-primary-07': step.status === stepStatus.UpComing
+				}"
+				[attr.data-qa-id]="
+					dataQA + componentSelector + stepIndex + '-title'
+				"
+			>
+				{{ step.title }}
+			</div>
+			@if (step.status !== stepStatus.UpComing && step.observations) {
+			<div class="flex flex-col items-start">
+				@for (observation of step.observations; track
+				(observation.message + '-' + $index); let observationIndex = $index) {
+				<div class="ml-4 mb-0 font-body-s-regular">
+					@if ((observationIndex === 0 &&
+					!attributesList[stepIndex].readMore) ||
+					attributesList[stepIndex].readMore) {
+					<div
+						[attr.data-qa-id]="
+							dataQA +
+							componentSelector +
+							stepIndex +
+							'-observations-' +
+							observationIndex
+						"
+					>
+						@if (observation.date) {
+						<span
+							class="text-color-text-tertiary"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								stepIndex +
+								'-observations-date-' +
+								observationIndex
+							"
+							>{{
+								(observation.date | pmdsTypeOf) === 'string'
+									? observation.date
+									: observation.date.toLocaleString(
+											dateLocale,
+											{
+												year: 'numeric',
+												month: '2-digit',
+												day: '2-digit',
+												hour: '2-digit',
+												minute: '2-digit'
+											}
+									  )
+							}}
+							@if (observation.message || observation.agent) {
+							<span> - </span>
+							}
+						</span>
+						}
+						<span
+							class="text-color-text-tertiary"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								stepIndex +
+								'-observations-message-' +
+								observationIndex
+							"
+							>{{ observation.message }}</span
+						>
+						<span
+							class="font-body-s-bold"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								stepIndex +
+								'-observations-agent-' +
+								observationIndex
+							"
+							>{{ observation.agent }}</span
+						>
+					</div>
+					}
+				</div>
+				}
+			</div>
+			} @if (step.observations && step.observations.length > 1) {
+			<section class="ml-4 pt-2">
+				<pmds-cdk-button
+					[dataQA]="
+						dataQA + componentSelector + stepIndex + '-more-button'
+					"
+					[buttonType]="'tertiary'"
+					[label]="attributesList[stepIndex].readContent"
+					(buttonClick)="readChange(true, stepIndex)"
+					[icon]="
+						attributesList[stepIndex].collapse
+							? 'pmicons-chevron-down-small-bold'
+							: 'pmicons-chevron-down-small-bold rotate-180'
+					"
+				/>
+			</section>
+			} @if (step.alert) {
+			<pmds-cdk-alert
+				class="mt-4 mr-0 mb-2 ml-4 min-w-[504] max-w-[1008px]"
+				[dataQA]="dataQA + componentSelector + stepIndex"
+				[data]="{
+					cancelAutoClose: false,
+					content: step.alert.alertSubtitle,
+					hideClose: true,
+					title: step.alert.alertTitle,
+					type: attributesList[stepIndex].alertType
+				}"
+			/>
+			}
+		</div>
+	</div>
+	<!-- END STEPS -->
+	<!-- SUB STEPS -->
+	@if (step.subSteps && subAttributesList.length > 0) {
+	<div class="flex flex-col">
+		@for (subStep of step.subSteps; track (subStep.title + '-' + $index); let subStepIndex =
+		$index) {
+		<div class="flex">
+			<div
+				class="flex flex-col w-5 pb-2 mb-0.5 items-center rounded-full"
+				[ngClass]="{
+					'bg-color-surface-tertiary':
+						subStep.status === stepStatus.Current &&
+						!$last &&
+						step.subSteps.length > 1
+				}"
+			>
+				<div
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						stepIndex +
+						'-subStep-' +
+						subStepIndex +
+						'icon'
+					"
+					[ngClass]="{
+						'rounded-t-0 rounded-r-0 rounded-b-[40px] rounded-l-[40px]':
+							$last || step.subSteps.length === 1
+					}"
+				>
+					<div
+						[ngClass]="
+							!!subStep.colorCode
+								? colorSet[subStep.colorCode]
+								: ''
+						"
+						class="h-3 w-3 bg-color-icon-default rounded-[50%] inline-block"
+					></div>
+				</div>
+				<div
+					class="bg-color-icon-default w-[2px] mt-1 min-h-[16px] h-full"
+				></div>
+			</div>
+			<div class="flex flex-col mb-2">
+				<div
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						stepIndex +
+						'-subStep-' +
+						subStepIndex +
+						'-title'
+					"
+					class="step-title flex ml-4 mb-1 mt-[1px] font-body-s-bold"
+				>
+					{{ subStep.title }}
+				</div>
+				@if (subStep.observations) { @for (subObservation of
+				subStep.observations; track (subObservation.message + '-' + $index); let
+				subObservationIndex = $index) {
+				<div class="ml-4 mb-0 font-body-s-regular">
+					@if ((subObservationIndex === 0 &&
+					!subAttributesList[subStepIndex].readMore) ||
+					subAttributesList[subStepIndex].readMore) {
+
+					<div>
+						@if (subObservation.date) {
+						<span
+							class="text-color-text-tertiary"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								stepIndex +
+								'-substep-' +
+								subStepIndex +
+								'-observation-date-' +
+								subObservationIndex
+							"
+							>{{
+								(subObservation.date | pmdsTypeOf) === 'string'
+									? subObservation.date
+									: subObservation.date.toLocaleString(
+											dateLocale,
+											{
+												year: 'numeric',
+												month: '2-digit',
+												day: '2-digit',
+												hour: '2-digit',
+												minute: '2-digit'
+											}
+									  )
+							}}
+							-
+						</span>
+						}
+						<span
+							class="text-color-text-tertiary"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								stepIndex +
+								'-subStep-' +
+								subStepIndex +
+								'-observation-message-' +
+								subObservationIndex
+							"
+							>{{ subObservation.message }}</span
+						>
+						<span
+							class="font-body-s-bold"
+							[attr.data-qa-id]="
+								dataQA +
+								componentSelector +
+								stepIndex +
+								'-subStep-' +
+								subStepIndex +
+								'-observation-agent-' +
+								subObservationIndex
+							"
+							>{{ subObservation.agent }}</span
+						>
+					</div>
+					}
+				</div>
+				} @if (subStep.observations && subStep.observations.length > 1)
+				{
+				<section class="ml-4 pt-2">
+					<pmds-cdk-button
+						[dataQA]="
+							dataQA +
+							componentSelector +
+							stepIndex +
+							'-substep-' +
+							subStepIndex +
+							'-observation-read-more-button'
+						"
+						[buttonType]="'tertiary'"
+						[label]="subAttributesList[subStepIndex].readContent"
+						(buttonClick)="readChange(false, subStepIndex)"
+						[icon]="
+							subAttributesList[subStepIndex].collapse
+								? 'pmicons-chevron-down-small-bold'
+								: 'pmicons-chevron-down-small-bold rotate-180'
+						"
+					/>
+				</section>
+				} @if (subStep.alert) {
+				<pmds-cdk-alert
+					class="mt-4 mr-0 mb-2 ml-4 min-w-[504] max-w-[1008px]"
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						stepIndex +
+						'-subStep-' +
+						subStepIndex +
+						'-alert'
+					"
+					[data]="{
+						cancelAutoClose: false,
+						content: subStep.alert.alertSubtitle,
+						hideClose: true,
+						title: subStep.alert.alertTitle,
+						type: subAttributesList[subStepIndex].alertType
+					}"
+				/>
+				} }
+			</div>
+		</div>
+		}
+	</div>
+	}
+</section>
+} }

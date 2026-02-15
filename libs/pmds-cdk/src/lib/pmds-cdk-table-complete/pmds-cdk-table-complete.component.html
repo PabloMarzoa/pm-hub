@@ -1,0 +1,118 @@
+@if (skeleton) {
+<pmds-cdk-table-complete-skeleton [dataQA]="dataQA + componentSelector" />
+} @else {
+<!-- TABLE HEADER INFO -->
+@if (tableConfiguration.tableInfoHeader !== null && tableConfig !== null &&
+!initialLoading) {
+<section
+	class="mobile:hidden whitespace-nowrap flex w-full justify-between pb-2 pr-2 items-center"
+>
+	@if (tableConfiguration.tableInfoHeader) {
+	<section
+		[attr.data-qa-id]="dataQA + componentSelector + 'displaying-info'"
+		class="h-full w-full font-body-xs-regular text-color-text-tertiary flex"
+	>
+		{{ tableConfiguration.tableInfoHeader.literals.displaying }}&nbsp;
+		<span class="font-body-xs-bold">
+			{{
+				data.length +
+					' ' +
+					(data.length === 1
+						? tableConfiguration.tableInfoHeader.literals.item
+						: tableConfiguration.tableInfoHeader.literals.items)
+			}}
+		</span>
+		&nbsp; @if (filteredFields.length > 0) {
+		<p
+			[attr.data-qa-id]="dataQA + componentSelector + 'filter-info'"
+			class="inline-block"
+		>
+			{{ tableConfiguration.tableInfoHeader.literals.searchedBy }}&nbsp;
+			<span class="font-body-xs-bold">
+				{{ filteredFieldsString }}
+			</span>
+		</p>
+		}
+	</section>
+	} @if (tableConfiguration.tableInfoHeader?.actions) {
+	<section
+		class="flex flex-row font-body-m-regular text-color-action-main-default gap-4"
+	>
+		@for (action of infoHeaderActions; track action.actionLabel) {
+		<pmds-cdk-button
+			buttonType="tertiary"
+			[smallFit]="true"
+			[label]="action.actionLabel"
+			(buttonClick)="action.actionFn()"
+			[icon]="action.actionIcon"
+			buttonSize="small"
+			[dataQA]="dataQA + componentSelector + 'action-button-' + $index"
+			[disabled]="data.length === 0"
+		></pmds-cdk-button>
+		}
+	</section>
+	}
+</section>
+}
+<!-- END TABLE HEADER INFO -->
+@if (tableConfig !== null) {
+<section
+	[ngClass]="{
+		'rounded-b-pmds': !showPagination
+	}"
+>
+	<!-- TABLE COMPONENT -->
+	@if (!initialLoading) {
+	<pmds-cdk-table
+		class="block"
+		[tableConfig]="tableConfig"
+		[showSelectRow]="!!tableConfiguration.showSelectRow"
+		[tableData]="data"
+		[dataQA]="dataQA"
+		[paginationInfo]="paginationInfo"
+		[showBottomBorder]="!!showPagination"
+		[showOnlyHeader]="
+			(tableConfiguration.resService.loading | async) ||
+			loadingOnViewChange ||
+			loadingOnFilterChange
+		"
+		[filteredFields]="filteredFields"
+		(clearFilters)="clearFilters.next()"
+		(scrollEnd)="tableScrollEnd()"
+		(changeView)="tableChangeView($event)"
+	>
+		<ng-content></ng-content>
+	</pmds-cdk-table>
+	}
+	<!-- END TABLE COMPONENT -->
+	<!-- TABLE LOADER -->
+	@if ((tableConfiguration.resService.loading | async) && (actualView ===
+	'table' || initialLoading)) {
+	<section
+		class="w-full h-[640px] flex justify-center items-center animate-fade-in_fast"
+	>
+		<pmds-cdk-loader
+			[isPrimary]="false"
+			[bgClass]="'bg-color-surface-primary'"
+			[dataQA]="dataQA + componentSelector"
+		>
+		</pmds-cdk-loader>
+	</section>
+	}
+	<!-- END TABLE LOADER -->
+	<!-- TABLE PAGINATOR -->
+	<section class="pt-4">
+		<pmds-cdk-paginator
+			class="w-full md:block hidden"
+			[dataQA]="dataQA + componentSelector"
+			[literals]="tableConfiguration.paginatorLiterals"
+			[paginationInfo]="paginationInfo"
+			[itemsPage]="itemsPage"
+			[forceTabletView]="forceTabletView"
+			(itemChangedPerPage)="onItemChangedPerPage($event)"
+			(changePage)="onChangePage($event)"
+		/>
+	</section>
+	<!-- END TABLE PAGINATOR -->
+</section>
+} }

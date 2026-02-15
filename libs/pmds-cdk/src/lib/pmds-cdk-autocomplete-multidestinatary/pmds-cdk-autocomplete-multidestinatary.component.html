@@ -1,0 +1,167 @@
+@if (!skeleton) {
+	<section class="relative h-[72px]" (focusout)="onFocusOut()">
+		<!-- INPUT -->
+		<section
+			(click)="omitClose = true"
+			class="h-[72px] w-full"
+			[attr.data-qa-id]="dataQA + componentSelector + 'section'"
+		>
+			<pmds-cdk-text-input
+				#input
+				[ngClass]="{
+				'[&_input]:border-color-border-error': showError
+			}"
+				[placeholder]="config.placeholder"
+				[helperText]="showError ? '' : config.helperText"
+				[icon]="config.icon"
+				[dataQA]="dataQA + componentSelector + 'input'"
+				[showClear]="true"
+				[isDisabled]="isDisabled"
+				(inputChange)="searchValue($event)"
+				(inputFocus)="onFocus()"
+				(inputFocusOut)="onFocusOut()"
+			/>
+			<!-- ERROR MESSAGE -->
+			<pmds-cdk-form-error-message
+				[hideError]="!showError"
+				[dataQA]="dataQA + componentSelector"
+				[label]="config.placeholder"
+				[control]="formControl"
+				[controlName]="formControlName"
+				[literalsErrorFn]="literalsErrorFn"
+			/>
+			<!-- END ERROR MESSAGE -->
+		</section>
+		<!-- END INPUT -->
+		<!-- VALUE -->
+		@if (showValues && value?.length) {
+			<section (click)="omitClose = false; showValues = false"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'value-section'"
+					 class="absolute w-[calc(100%-84px)] overflow-y-auto top-5 h-6 ml-3 bg-color-surface-primary flex gap-2 cursor-text"
+			>
+				@if (value.length < 11 || show10Results) {
+					<ng-container>
+						@for (item of value; track item.id; let i = $index) {
+							<div (click)="$event.stopPropagation()"
+								 class="flex items-center gap-1 text-color-text-primary border border-color-border-default rounded-full h-full px-2 font-body-xs-regular cursor-default"
+							>
+								<span
+							[attr.data-qa-id]="
+						dataQA + componentSelector + i + 'value-label'
+					"
+						>
+					{{ item.label }}
+				</span>
+								<span
+									(click)="$event.stopPropagation(); removeValue(item)"
+									[attr.data-qa-id]="
+						dataQA + componentSelector + i + 'remove-button'
+					"
+									class="pmicons-close text-base cursor-pointer"
+								></span>
+							</div>
+						}
+					</ng-container>
+				}
+				@if (value.length > 10 && !show10Results) {}
+				<ng-container>
+					<div (click)="$event.stopPropagation()"
+						class="flex items-center gap-1 text-color-text-primary border border-color-border-default rounded-full h-full px-2 font-body-xs-regular cursor-default">
+						<span [attr.data-qa-id]="dataQA + componentSelector + 'value-label'">{{ value[0].label }}</span>
+						<span (click)="$event.stopPropagation(); removeValue(value[0])"
+							[attr.data-qa-id]="dataQA + componentSelector + 'remove-button'"
+							class="pmicons-close text-base cursor-pointer"
+						></span>
+					</div>
+					<div (click)="$event.stopPropagation(); show10Results = true"
+						[attr.data-qa-id]="dataQA + componentSelector + 'value-more-10'"
+						class="flex items-center gap-1 text-color-text-primary border border-color-border-default rounded-full h-full px-2 font-body-xs-regular cursor-pointer">
+						<span class="whitespace-nowrap">{{config.more10Literal}}</span>
+					</div>
+				</ng-container>
+			</section>
+		}
+		<!-- END VALUE -->
+		<!-- RESULTS -->
+		@if (showResults && input.value) {
+			<section [attr.data-qa-id]="dataQA + componentSelector + 'results-section'"
+					 (click)="omitClose = true"
+					 class="absolute w-full top-[52px] overflow-auto rounded-pmds border border-color-border-default bg-color-surface-primary max-h-[384px] animate-fade-in">
+				@if (!states?.isNoResults) {
+					<ng-container>
+						<!-- SUGGESTION LABEL -->
+						<div class="w-full h-12 text-color-text-primary flex items-center font-body-s-regular px-3">
+						<span
+							[attr.data-qa-id]="
+								dataQA + componentSelector + 'suggestions-label'
+							"
+							[innerHTML]="suggestionsLabel"
+						></span>
+						</div>
+						<!-- END SUGGESTION LABEL -->
+						<!-- LIST RESULTS -->
+						@for (result of results; track result.id; let i = $index) {
+							<div class="w-full h-14 px-3 flex items-center justify-between border-t border-color-border-default cursor-pointer hover:bg-color-surface-hover active:bg-color-surface-selected-alternative"
+								 (click)="selectResult(result)">
+							<span
+								class="font-body-s-bold text-color-text-primary"
+								[attr.data-qa-id]="
+								dataQA + componentSelector + i + 'result-label'
+							"
+							>
+							{{ result.label }}
+						</span>
+								<span
+									(click)="selectedValue($event, result)"
+									[attr.data-qa-id]="
+						dataQA + componentSelector + i + 'result-button'
+					"
+									[class]="
+						config.iconResults + ' text-2xl text-color-icon-action'
+					"
+								></span>
+							</div>
+						}
+						<!-- LIST RESULTS -->
+					</ng-container>
+				}
+				<!-- LOADER -->
+				@if (states?.isLoading) {
+					<section class="py-4 px-3 animate-fade-in">
+						<pmds-cdk-loader
+							[isFullscreen]="false"
+							[isPrimary]="false"
+							[subtitle]="config.loadingLiteral"
+							[dataQA]="dataQA + componentSelector"
+						/>
+					</section>
+				}
+				<!-- LOADER -->
+				<!-- NO RESULTS -->
+				@if (states?.isNoResults && !states?.isLoading) {
+					<section [attr.data-qa-id]="dataQA + componentSelector + 'no-result-section'"
+							 class="py-4 px-3 flex flex-col items-center justify-center bg-color-surface-primary animate-fade-in">
+					<span
+						class="text-color-text-primary font-body-s-bold"
+						[attr.data-qa-id]="
+					dataQA + componentSelector + 'no-result-section'
+				"
+					>{{ config.noResultsLiterals.noResult }}</span
+					>
+						<span
+							class="text-color-text-error font-body-s-regular"
+							[attr.data-qa-id]="
+					dataQA + componentSelector + 'no-result-instructions'
+				"
+						>{{ config.noResultsLiterals.instructions }}</span
+						>
+					</section>
+				}
+				<!-- NO RESULTS -->
+			</section>
+		}
+		<!-- END RESULTS -->
+	</section>
+} @else {
+	<pmds-cdk-autocomplete-multidestinatary-skeleton class="h-[72px]" [dataQA]="dataQA + componentSelector" />
+}

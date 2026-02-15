@@ -1,0 +1,1 @@
+export type TPmdsCdkTagLabelColor = 'red' | 'green' | 'yellow' | 'grey' | 'blue';

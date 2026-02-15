@@ -1,0 +1,94 @@
+<section
+	class="w-[424px] mobile:w-[320px] border border-color-border-default shadow-floating rounded-pmds bg-color-surface-primary"
+>
+	<!-- HEADER -->
+	<section class="flex justify-end">
+		<div
+			class="z-50 border border-color-border-default border-b-0 border-r-0 w-5 h-5 rotate-45 bg-color-surface-primary mr-[97px] tablet:mr-[100px] mobile:mr-[72px]"
+			style="margin-top: -11px"
+		></div>
+	</section>
+	<div class="h-14 flex flex-row items-center justify-between pl-6">
+		<span
+			[attr.data-qa-id]="
+				dataQA + componentSelector + 'notifications-literal'
+			"
+			class="font-headline-desktop-s-bold text-color-text-primary"
+		>
+			{{ literals.notifications }}
+		</span>
+		<pmds-cdk-button
+			class="mr-3"
+			[dataQA]="dataQA + 'input-button-'"
+			buttonType="tertiary"
+			[label]="button.label"
+			(buttonClick)="onButtonClick()"
+			[icon]="button.icon || ''"
+		/>
+	</div>
+	<!-- END HEADER -->
+	<!-- NOTIFICATIONS -->
+	<div class="max-h-[480px] overflow-auto custom-scroll-container">
+		@for (notification of notifications; track notification.id + '-' +
+		$index) {
+		<div tabindex="0">
+			<div
+				class="flex flex-col items-left border-t border-color-border-default py-4 cursor-pointer hover:bg-color-surface-hover"
+				[ngClass]="{ 'bg-color-surface-secondary': !notification.seen }"
+				(click)="
+					notificationClicked($index, notification.id);
+					notification?.action()
+				"
+			>
+				<span
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						'notification-' +
+						$index +
+						'-date'
+					"
+					class="font-body-xs-regular text-color-text-tertiary pl-6"
+				>
+					{{ notification.date }}
+				</span>
+				<div class="flex flex-row items-center">
+					@if (!notification.seen) {
+					<div class="flex items-center justify-center w-6">
+						<div class="text-color-action-main-default mt-2">
+							&#8226;
+						</div>
+					</div>
+					}
+					<span
+						[attr.data-qa-id]="
+							dataQA +
+							componentSelector +
+							'notification-' +
+							$index +
+							'-title'
+						"
+						class="font-body-m-bold text-color-text-primary mt-2 mb-1"
+						[ngClass]="{ 'pl-6': notification.seen }"
+					>
+						{{ notification.title }}
+					</span>
+				</div>
+				<span
+					[attr.data-qa-id]="
+						dataQA +
+						componentSelector +
+						'notification-' +
+						$index +
+						'-info'
+					"
+					class="font-body-s-regular text-color-text-primary pl-6"
+				>
+					{{ notification.info }}
+				</span>
+			</div>
+		</div>
+		}
+	</div>
+	<!-- END NOTIFICATIONS -->
+</section>

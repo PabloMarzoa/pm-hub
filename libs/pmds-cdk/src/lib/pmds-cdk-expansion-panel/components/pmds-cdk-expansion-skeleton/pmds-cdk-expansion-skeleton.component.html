@@ -1,0 +1,17 @@
+<!-- SKELETON -->
+<section
+	class="w-full flex flex-col gap-4 p-4"
+	[attr.data-qa-id]="dataQA + 'skeleton'"
+>
+	<section class="flex justify-between">
+		<section class="flex gap-2">
+			<pmds-cdk-skeleton [style]="'size-5'" />
+			<pmds-cdk-skeleton [style]="'h-5 w-[324px] mobile:w-16'" />
+		</section>
+		<pmds-cdk-skeleton [style]="'size-5'" />
+	</section>
+	@if (skeletonOpen) {
+		<pmds-cdk-skeleton [style]="'w-full h-[280px]'" />
+	}
+</section>
+<!-- SKELETON -->

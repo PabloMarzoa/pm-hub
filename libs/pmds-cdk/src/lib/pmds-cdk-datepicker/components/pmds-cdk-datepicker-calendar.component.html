@@ -1,0 +1,109 @@
+<section
+	class="font-body-s-regular w-[384px] mobile:w-[296px] text-color-text-primary border rounded-pmds shadow-lg p-3 bg-color-surface-primary absolute z-10"
+	[ngClass]="{'right-0': positionRight}"
+	[style]="customStyles"
+>
+	<!-- CONTROLS -->
+	<div class="flex items-center justify-between">
+		<!-- MONTH CONTROLS -->
+		<section class="flex items-center justify-between w-7/12">
+			<span
+				[attr.data-qa-id]="dataQA + componentSelector + 'pmds-cdk-calendar-subtract-month'"
+				(click)="changeMonth(-1)"
+				class="pmicons-chevron-left-small text-color-action-main-default text-2xl cursor-pointer"
+				[ngClass]="{'!text-color-action-disabled pointer-events-none': disabledPrev}"
+			></span>
+			<div
+				[attr.data-qa-id]="dataQA + componentSelector + 'label-month'"
+				class="calendar-month-year">
+				{{ literals.month[displayMonth] }}
+			</div>
+			<span
+				[attr.data-qa-id]="dataQA + componentSelector + 'add-month'"
+				(click)="changeMonth(+1)"
+				class="pmicons-chevron-right-small-bold text-color-action-main-default text-2xl cursor-pointer"
+				[ngClass]="{'!text-color-action-disabled pointer-events-none': disabledNext}"
+			></span>
+		</section>
+		<!-- END MONTH CONTROLS -->
+		<!-- YEAR CONTROLS -->
+		<section class="flex relative">
+			<input
+				[attr.data-qa-id]="dataQA + componentSelector + 'year-input'"
+				aria-label="datepicker year input"
+				#yearInput
+				type="number"
+				[(ngModel)]="displayYear"
+				(ngModelChange)="changeYear($event)"
+				class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none px-4 w-20 h-8 border pointer-events-none rounded-pmds"
+			/>
+			<section class="absolute right-1 h-8 flex flex-col justify-around pb-0">
+				<span
+					[attr.data-qa-id]="dataQA + componentSelector + 'add-year'"
+					(click)="changeYear(displayYear + 1)"
+					class="pmicons-chevron-up-small-bold text-color-action-main-default cursor-pointer"
+					[ngClass]="{'!text-color-action-disabled pointer-events-none': disabledNextYear || disabledNext}"
+				></span>
+				<span
+					[attr.data-qa-id]="dataQA + componentSelector + 'subtract-year'"
+					(click)="changeYear(displayYear - 1)"
+					class="pmicons-chevron-down-small-bold text-color-action-main-default cursor-pointer"
+					[ngClass]="{'!text-color-action-disabled pointer-events-none': disabledPrevYear || disabledPrev}"
+				></span>
+			</section>
+		</section>
+		<!-- END YEAR CONTROLS -->
+	</div>
+	<!-- END CONTROLS -->
+	<!-- WEEK DAYS -->
+	<div class="text-center grid grid-cols-7 py-4">
+		@for (weekDay of literals?.weekDay; track weekDay; let i = $index) {
+			<div [attr.data-qa-id]="dataQA + componentSelector + 'week-day-' + i">
+				{{ weekDay.substring(0, 3) }}
+			</div>
+		}
+	</div>
+	<!-- END WEEK DAYS -->
+	<!-- DAYS -->
+	<section class="min-h-[248px]">
+		<section class="text-center grid grid-rows-5 grid-cols-7">
+			@for (day of daysArray; track day; let i = $index) {
+				<div class="flex items-center justify-center"
+					 [style.gridColumn]="i === 0 ? firstDayOfMonthWeekday === 0 ? '7' : firstDayOfMonthWeekday : undefined">
+					<div
+						[attr.data-qa-id]="dataQA + componentSelector + 'day-' + i"
+						pmdsCdkDatepickerDayClass
+						[pmdsCdkDatepickerDayClassDay]="day"
+						[pmdsCdkDatepickerDayClassMonth]="displayMonth"
+						[pmdsCdkDatepickerDayClassYear]="displayYear"
+						[pmdsCdkDatepickerDayClassMin]="min"
+						[pmdsCdkDatepickerDayClassMax]="max"
+						[pmdsCdkDatepickerDayClassSelectedDate]="selectedDate"
+						[pmdsCdkDatepickerDayClassSelectableDates]="selectableDates"
+						[pmdsCdkDatepickerDayClassDateInfo]="dateInfo"
+						[pmdsCdkDatepickerDayClassFormat]="format"
+						class="w-8 h-8 mb-4 flex items-center justify-center cursor-pointer rounded-full"
+						(click)="clickDay(day)"
+					>
+						<span>{{ day }}</span>
+					</div>
+				</div>
+			}
+		</section>
+	</section>
+	<!-- DAYS -->
+	<!-- TODAY BUTTON -->
+	<section class="flex justify-center w-full">
+		<pmds-cdk-button
+			[dataQA]="dataQA + componentSelector + 'calendar'"
+			[label]="literals.today"
+			buttonType="tertiary"
+			[smallFit]="true"
+			buttonSize="small"
+			buttonSizeMobile="small"
+			[disabled]="enabledToday ? false : disabledToday"
+			(buttonClick)="setToday()"
+		></pmds-cdk-button>
+	</section>
+	<!-- END TODAY BUTTON -->
+</section>

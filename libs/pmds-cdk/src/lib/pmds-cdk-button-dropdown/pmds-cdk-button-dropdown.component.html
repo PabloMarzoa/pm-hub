@@ -1,0 +1,73 @@
+<section #optionsContent class="relative">
+	<!-- TERTIARY OPTION -->
+	@if (type === 'tertiary') {
+		<section (click)="showContent()"
+				 class="flex items-center gap-1 justify-center text-color-action-main-default hover:text-color-action-main-hover hover:text-color-action-main-selected w-[136px] rounded-pmds hover:bg-color-surface-hover cursor-pointer"
+				 [ngClass]="{'h-12': size === 'large',
+                    'h-8': size === 'small',
+                    'w-fit': smallFit}"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'button'">
+			@if (buttonLabel) {
+				<span [attr.data-qa-id]="dataQA + componentSelector + 'button-label'">
+                {{ buttonLabel }}
+            </span>
+			}
+			<span class="pmicons-dots3-vertical text-2xl"
+				  [attr.data-qa-id]="dataQA + componentSelector + 'button-icon'"
+			></span>
+		</section>
+	}
+	<!-- END TERTIARY OPTION -->
+	<!-- DOUBLE OPTION -->
+	@if (type.includes('double')) {
+		<div id="pmds-cdk-dropdown-button-doble"
+			 class="flex flex-row"
+			 [ngClass]="{'h-12': size === 'large',
+                    'h-8': size === 'small'}">
+			<div [attr.data-qa-id]="dataQA + componentSelector + 'doubleLabel'"
+				 (click)="doubleAction.emit()"
+				 [ngClass]="{'mr-[1px] bg-color-action-main-default text-color-action-on-main-default hover:bg-color-action-main-hover active:bg-color-action-main-selected': type === 'double',
+                    'bg-color-action-on-main-default hover:bg-color-action-on-main-default hover:text-color-action-main-hover hover:border-color-action-main-hover text-color-action-main-default border border-color-action-main-default active:bg-color-action-on-main-default active:text-color-action-main-selected active:border-color-action-main-selected': type === 'double-secondary'}"
+				 class="w-[136px] font-body-m-bold flex flex-row items-center justify-center cursor-pointer">
+				{{ buttonLabel }}
+			</div>
+			<div class="w-10 flex items-center justify-center cursor-pointer"
+				 (click)="showContent()"
+				 [ngClass]="{'bg-color-action-main-default text-color-action-on-main-default hover:bg-color-action-main-hover active:bg-color-action-main-selected': type === 'double',
+                    'border-l-0 bg-color-action-on-main-default hover:bg-color-action-on-main-default hover:text-color-action-main-hover hover:border-color-action-main-hover text-color-action-main-default border border-color-action-main-default active:bg-color-action-on-main-default active:text-color-action-main-selected active:border-color-action-main-selected': type === 'double-secondary'}"
+			>
+            <span class="pmicons-chevron-down-small-bold text-xl transition-transform duration-300"
+				  [ngClass]="{'rotate-180': showOptions}"></span>
+			</div>
+		</div>
+	}
+	<!-- END DOUBLE OPTION -->
+	<!-- SINGLE OPTION -->
+	@if (type.includes('single')) {
+		<pmds-cdk-button [buttonType]="type === 'single' ? 'primary' : 'secondary'"
+						  [buttonSize]="size === 'small' ? 'small' : 'medium'"
+						  [icon]="showOptions ? 'pmicons-chevron-up-small-bold transition-transform duration-300' : 'pmicons-chevron-up-small-bold rotate-180 transition-transform duration-300'"
+						  [label]="buttonLabel"
+						  [smallFit]="smallFit"
+						  [dataQA]="dataQA + componentSelector"
+						  (click)="showContent()">
+		</pmds-cdk-button>
+	}
+	<!-- END SINGLE OPTION -->
+	<!-- OPTIONS CONTENT -->
+	@if (showOptions) {
+		<div [ngClass]="{'right-0': !openLeft, 'left-0': openLeft}"
+			 class="absolute right-0 border shadow-floating rounded-pmds mt-1 w-[288px] max-h-[248px] overflow-auto p-1 bg-color-surface-primary text-color-text-primary">
+			@for (option of options; track option.label; let i = $index) {
+				<div class="flex flex-col">
+					<div [attr.data-qa-id]="dataQA + componentSelector + 'optionLabel-' + i" tabindex="0"
+						 class="font-body-m h-10 px-4 py-3 cursor-pointer hover:bg-color-surface-hover flex items-center rounded-pmds"
+						 (click)="option.actionFn()">
+						{{ option.label }}
+					</div>
+				</div>
+			}
+		</div>
+	}
+	<!-- END OPTIONS CONTENT -->
+</section>

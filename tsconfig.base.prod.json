@@ -1,0 +1,418 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["es2020", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@pmhub/pmds-cdk": ["dist/libs/pmds-cdk"],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-accordion"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-action-bar"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-action-row-bar"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-alert"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-amount-input"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-amount-input-double"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-autocomplete"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-autocomplete-multidestinatary"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-badget-numbers"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-banner"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-button"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-button-all-filters"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-button-dropdown"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-button-floating"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-button-modal"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-calendar"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-account"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-account-action"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-acount-action"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-advanced-minipricer"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-authorization"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-file-upload"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-global-position"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-information"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-minipricer"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-selection"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-selector"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cards-settings"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-checkbox"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-copy-clipboard"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-country-label"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-cta-button"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-currencies"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-datepicker"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-divider"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-download-id-app-buttons"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-dropdown"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-dropdown-range"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-editable-content"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-empty-state"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-error-page"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-expansion-panel"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-file-downloader-info"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-filter-dropdown-range"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-filter-featured"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-footer"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-form-error-message"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-graphs-line-chart"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-graphs-pie-chart"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-graphs-sequential-bar-chart"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-header"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-highlighted-info"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-loader"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-menu-and-submenu"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-message"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-modal"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-notifications-popover"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-option-buttons"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-page-controller"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-page-detail"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-page-header"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-page-hero"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-paginator"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-payment-summary"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-pending-task"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-phone-input"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-pin-input"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-process-header"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-profile-photo"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-radio-button"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-radio-buttons"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-search-input"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-segmented-controls"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-shortcut"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-sidebar-embedded"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-skeleton"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-stepper"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-sticky-button-bar"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-summary"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-swap"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-table"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-table-complete"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-table-group"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-tabs"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-tag-category"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-tag-label"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-text"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-text-field"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-text-input"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-textarea"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-time-input"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-timeline-tracking"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-timer"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-timer-fx"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-toast"
+			],
+			"@pmhub/pmds-cdk": [
+				"dist/libs/pmds-cdk-libs/pmds-cdk-toggle-switch"
+			],
+			"@pmhub/pmds-common": ["dist/libs/pmds-common"],
+			"@pmhub/pmds-common": ["dist/libs/pmds-core"],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-apigee"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-cache"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-constants"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-environment"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-geolocalization"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-language"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-salesforce"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-storage"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-core-libs/pmds-core-tealium"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-copy-confirm"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-decimal-number-format"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-mask-amount-input"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-no-leading-spaces-input"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-number-format-directive"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-title"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-tooltip"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-directive-libs/pmds-directive-viewport-overflow"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-account-format"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-account-hidden"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-amount-format"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-camelcase-to-snakecase-uppercase"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-date-time"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-exchange-decimals"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-only-decimals"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-relationship-format"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-salesforce-number-format"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-transaction-reference"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-truncate-ellipsis"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-pipe-libs/pmds-pipe-type-of"
+			],
+			"@pmhub/pmds-storybook/utils": [
+				"dist/apps/pmds-hub-storybook/utils"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-util-libs/pmds-util-history-routing"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-util-libs/pmds-util-img-flags"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-util-libs/pmds-util-img-svgs"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-util-libs/pmds-util-styles"
+			],
+			"@pmhub/pmds-common": [
+				"dist/libs/pmds-util-libs/pmds-util-validators"
+			]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
+}

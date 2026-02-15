@@ -1,0 +1,32 @@
+@if (skeleton) {
+	<pmds-cdk-tag-category-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<section class="flex items-center w-fit border font-body-s-regular focus:outline-none rounded-full py-1 text-center"
+		[ngClass]="{
+			'border-color-border-disabled text-color-text-disabled bg-color-surface-disabled pointer-event pointer-events-none':
+				isDisabled,
+			'text-color-text-primary bg-color-surface-primary border-color-border-default': !isDisabled
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'section'"
+		[pmdsTooltip]="tooltip"
+		[pmdsTooltipPosition]="tooltipPosition"
+	>
+		<!-- FLAG -->
+		@if (showIcon) {
+			<img class="h-4 w-4 ml-1" alt="tag flag"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'flag'"
+				 [ngClass]="{'opacity-40': isDisabled}"
+				 [src]="src"
+				 (error)="updateUrl()"
+			/>
+		}
+		<!-- END FLAG -->
+		<!-- LABEL -->
+		<span class="mx-2 font-body-xs-regular"
+			  [attr.data-qa-id]="dataQA + componentSelector + 'label'"
+			  [ngClass]="{'ml-1': showIcon}">
+			{{ label }}
+		</span>
+		<!-- END LABEL -->
+	</section>
+}

@@ -1,0 +1,12 @@
+@if (showSelectRow) {
+<td class="align-middle h-[64px] pl-4 bg-color-surface-primary">
+	<form [formGroup]="form">
+		<pmds-cdk-checkbox
+			label=""
+			formControlName="checkbox"
+			(click)="$event.stopPropagation()"
+		/>
+	</form>
+</td>
+}
+<ng-template #rowTemplate> </ng-template>

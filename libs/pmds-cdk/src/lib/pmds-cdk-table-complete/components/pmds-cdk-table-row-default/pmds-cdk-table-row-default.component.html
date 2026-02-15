@@ -1,0 +1,18 @@
+@for (key of keys; track key) {
+<td
+	class="pl-2 h-16 bg-color-surface-primary overflow-hidden {{
+		rowConfig['stylesConfig']
+	}}"
+>
+	@if (rowData) {
+	<div class="flex flex-col">
+		@if (!!rowData[key]['label']) {
+		<strong class="mr-2"> {{ rowData[key]['label'] }}: </strong>
+		}
+		<span>{{
+			!!rowData[key]['label'] ? rowData[key]['sublabel'] : rowData[key]
+		}}</span>
+	</div>
+	}
+</td>
+}

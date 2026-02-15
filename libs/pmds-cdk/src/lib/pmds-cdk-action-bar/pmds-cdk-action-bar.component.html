@@ -1,0 +1,131 @@
+<!-- ACTION BAR -->
+<div
+	class="flex items-center justify-between flex-wrap w-full px-7 h-20"
+	[attr.data-qa-id]="dataQA + componentSelector + 'container'"
+>
+	<div class="left-0 font-body-m-bold flex">
+		<!-- BUTTON ACTION LIST -->
+		@for (button of actionBarButtons | slice : 0 : maxActionBarButtons; track button.label; let i = $index) {
+			<ng-container>
+				<button
+					class="px-4 border-l border-color-border-alternative h-20 hover:bg-color-button-secondary-on-hover active:bg-color-action-main-selected"
+					[ngClass]="{ 'border-r': i === actionBarButtons.length - 1 }"
+					[attr.data-qa-id]="
+					dataQA + componentSelector + 'button-action-' + i
+				"
+					(click)="button.action(button); close()"
+				>
+				<span
+					class="flex items-center justify-center text-color-action-on-main-default"
+				>{{ button?.label }}</span
+				>
+				</button>
+			</ng-container>
+		}
+		<!-- END ACTION BUTTON -->
+		<!-- MORE BUTTON -->
+		@if (showMenuActionBarButtons) {
+			<ng-container>
+				<section class="relative inline h-20">
+					<!-- MORE BUTTON DOTS -->
+					<button
+						class="border-l-[1px] border-r border-color-border-alternative h-20 w-20 hover:bg-color-action-main-hover active:bg-color-action-main-selected"
+						[attr.data-qa-id]="
+						dataQA + componentSelector + 'button-more'
+					"
+						(click)="toggleShowMore()"
+					>
+					<span class="flex items-center justify-center">
+						<div class="flex flex-row">
+							@for (item of [0, 1, 2]; track item) {
+								<div class="border rounded-full border-color-border-alternative w-[5px] h-[5px] mr-1 last:mr-0">
+								</div>
+							}
+						</div>
+					</span>
+					</button>
+					<!-- END MORE BUTTON DOTS -->
+					<!-- MORE OPTIONS -->
+					@if (showMoreActions) {
+						<section
+							class="absolute z-10 rounded-pmds top-[{{
+						moreOptionsOffset
+					}}] w-[180px] left-[-45px] shadow-floating bg-color-surface-primary border border-color-border-default"
+							[style]="'top: ' + moreOptionsOffset "
+						>
+							<div class="relative">
+								<div class="overflow-auto max-h-[152px] h-full py-4">
+									@for (action of moreActionBarButtons; track action.label; let i = $index) {
+										<div
+											(click)="action.action(action); close()"
+											class="px-4 text-color-action-main-default font-body-m-regular h-6 cursor-pointer hover:text-color-action-main-hover active:text-color-action-main-selected"
+											[ngClass]="{
+									'mb-2': i !== moreActionBarButtons.length - 1}">
+											{{ action.label }}
+										</div>
+									}
+								</div>
+							</div>
+							<div class="left-[65px] bottom-[-14px] absolute z-11">
+								<svg
+									width="38"
+									height="15"
+									viewBox="0 0 38 15"
+									xmlns="http://www.w3.org/2000/svg"
+									style="fill: none; stroke: none"
+								>
+									<path
+										d="M21.2895 13.3588C19.9749 14.4958 18.0251 14.4958 16.7105 13.3588L1.84247 0.499997L36.1575 0.5L21.2895 13.3588Z"
+										style="fill:rgb(var(--color-surface-primary));stroke:rgb(var(--color-border-default))"
+										[class]="'shadow-floating'"
+									/>
+									<rect
+										stroke="transparent"
+										style="fill:rgb(var(--color-surface-primary))"
+										width="38"
+										height="1"
+										x="0"
+									></rect>
+								</svg>
+							</div>
+						</section>
+					}
+					<!-- END MORE OPTIONS -->
+				</section>
+			</ng-container>
+		}
+		<!-- END MORE BUTTON -->
+	</div>
+	<!-- END BUTTONS -->
+	<!-- RIGHT BUTTONS -->
+	<div class="right-0 font-body-m-regular text-color-action-on-main-default">
+		<!-- BUTTON SECONDARY -->
+		@if (secondaryBarButton) {
+			<button class="h-20 hover:text-color-action-main-hover active:text-color-action-main-selected"
+				[attr.data-qa-id]="dataQA + componentSelector + 'button-clear'"
+				(click)="secondaryBarButton.action(); close()"
+			>
+			<span class="flex items-center justify-center">
+				{{ secondaryBarButton.label
+				}}<span class="pmicons-close text-2xl mt-[1px] ml-1"></span>
+			</span>
+			</button>
+		}
+		<!-- END BUTTON SECONDARY -->
+		<!-- BUTTON CLEAR -->
+		@if (clearBarButton) {
+			<button
+				class="h-20 ml-4 hover:text-color-action-main-hover active:text-color-action-main-selected"
+				[attr.data-qa-id]="dataQA + componentSelector + 'button-clear'"
+				(click)="clear()"
+			>
+			<span class="flex items-center justify-center">
+				{{ clearBarButton.label
+				}}<span class="pmicons-close text-2xl mt-[1px] ml-1"></span>
+			</span>
+			</button>
+		}
+		<!-- END BUTTON CLEAR -->
+	</div>
+	<!-- RIGHT BUTTONS -->
+</div>

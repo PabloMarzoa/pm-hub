@@ -1,0 +1,17 @@
+<!-- SKELETON SECTION -->
+<section
+    #content
+    class="w-full">
+    <!-- SKELETON SHAPE -->
+    <div [attr.data-qa-id]="dataQA + componentSelector"
+       [class]="'bg-color-skeleton-01 overflow-hidden relative rounded-pmds ' + style">
+       <div
+            #line
+            [style.top]="top"
+            [style.left]="left"
+            [style.height]="height"
+            class="absolute w-[100px] pmds-skeleton" ></div>
+    </div>
+    <!-- SKELETON SHAPE -->
+</section>
+<!-- END SKELETON SECTION -->

@@ -1,0 +1,28 @@
+<!-- CIRCLE -->
+<div
+		class="border rounded-full border-color-border-default flex items-center justify-center w-fit"
+		[ngClass]="{
+			'min-w-[20px] h-5': size === 'small',
+			'min-w-[28px] h-7': size === 'medium',
+			'min-w-[32px] h-8': size === 'large',
+			'!border-color-icon-action': isActive,
+			'!border-color-icon-default': !isActive,
+			'bg-color-surface-primary': hasBackground
+		}"
+		[attr.data-qa-id]="dataQA + componentSelector + 'circle'">
+	<!-- LABEL -->
+	<div class="flex items-center text-color-icon-default">
+		<span
+				[ngClass]="{
+					'font-body-xs-bold mx-[4.5px]': size === 'small',
+					'font-body-m-bold mx-[7px]': size === 'medium',
+					'font-headline-desktop-s-bold pb-[2px] mx-[10px]': size === 'large',
+					'text-color-action-main-default': isActive,
+				}"
+				[attr.data-qa-id]="dataQA + componentSelector + 'label'">
+			{{ label }}
+		</span>
+	</div>
+	<!-- END LABEL -->
+</div>
+<!-- END CIRCLE -->

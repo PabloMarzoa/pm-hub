@@ -1,0 +1,134 @@
+	<ng-container>
+		@if (!!suggestions || !!data?.length || states?.isLoading) {
+			<div class="w-full mt-1 font-SantanderMicroText text-color-text-primary bg-color-surface-primary border border-color-border-default overflow-hidden animate-fade-in rounded-pmds">
+				<!-- SUGGESTIONS -->
+				<table class="w-full whitespace-nowrap block">
+					@if (!!suggestions) {
+						<thead class="block">
+						<tr class="block">
+							<p class="text-sm p-4 w-full text-wrap overflow-hidden break-all"
+							   [innerHTML]="suggestions"
+							   [attr.data-qa-id]="dataQA + componentSelector + 'table-suggestions'"
+							></p>
+						</tr>
+						</thead>
+					}
+				</table>
+				<!-- END SUGGESTIONS -->
+				<!-- NO RESULTS -->
+				@if (!data?.length && !states?.isLoading && config.noResultsLiterals) {
+					<section class="w-full flex flex-col p-4 border-t border-color-border-default items-center justify-center">
+						<span class="font-body-s-bold">{{ config.noResultsLiterals.title }}</span>
+						<span class="font-body-s-regular text-center text-color-text-error">{{ config.noResultsLiterals.msg }}</span>
+					</section>
+				}
+				<!-- NO RESULTS -->
+				<!-- TABLE -->
+				<div #scrollableDiv
+					 class="overflow-auto"
+					 (mouseenter)="updateTableHover(true)"
+					 (mouseleave)="updateTableHover(false)"
+					 [ngClass]="config.customHeight || 'max-h-[294px] mobile:max-h-[384px]'"
+					 (scroll)="onScroll()">
+					<table class="w-full whitespace-nowrap mobile:hidden">
+						@if (!states?.isError) {
+							<ng-container>
+								@if (data?.length) {
+									<tbody>
+									<!-- DYNAMIC ROWS -->
+										@for (item of data; track item; let i = $index) {
+											<tr class="relative py-4 text-sm border-t border-color-border-default bg-color-surface-primary"
+												[ngClass]="{
+													'hover:bg-color-surface-hover': rowComponentConfig.selectRowAction,
+													'first:bg-color-surface-selected-alternative' : !hoverOnTable
+												}"
+												(click)="onClick(item)">
+												<pmds-cdk-autocomplete-dynamic-row
+													[autocompleteDynamicRowComponent]="rowComponentConfig.component"
+													[data]="item"
+													[rowIndex]="i"
+													[stylesConfig]="rowComponentConfig.styles"
+													[ngClass]="{ 'cursor-pointer': rowComponentConfig.selectRowAction }"
+													[attr.data-qa-id]="dataQA + componentSelector + 'table-row-' + i"
+												/>
+											</tr>
+										}
+									<!-- END DYNAMIC ROWS -->
+									</tbody>
+								}
+							</ng-container>
+						} @else {
+							<ng-container [ngTemplateOutlet]="errorTmpl"></ng-container>
+						}
+						<!-- BUTTON -->
+						@if (config?.button?.show) {
+							<div class="h-16 w-full flex justify-center items-center border-t border-color-border-default">
+								<pmds-cdk-button
+									buttonType="tertiary"
+									[label]="config.button?.label!"
+									[dataQA]="dataQA + componentSelector + 'table-button-action'"
+									(click)="config.button?.action()"/>
+							</div>
+						}
+						<!-- END BUTTON -->
+					</table>
+					@for (item of data; track i; let i = $index) {
+						<div class="relative p-4 text-sm border-t border-color-border-default md:hidden bg-color-surface-primary"
+							 [ngClass]="{
+								'hover:bg-color-surface-hover': rowComponentConfig.selectRowAction,
+								'bg-color-surface-selected-alternative' : !hoverOnTable && i === 0
+								}"
+							 (click)="onClick(item)">
+
+							<pmds-cdk-autocomplete-dynamic-card
+								[autocompleteDynamicRowComponent]="rowComponentConfig.cardComponent || rowComponentConfig.component"
+								[data]="item"
+								[cardIndex]="i"
+								[stylesConfig]="rowComponentConfig.styles"
+								[ngClass]="{ 'cursor-pointer': rowComponentConfig.selectRowAction }"
+								[attr.data-qa-id]="dataQA + componentSelector + 'table-row-' + i"
+							/>
+						</div>
+					}
+					@if (states?.isError) {
+						<section class="md:hidden">
+							<ng-container *ngTemplateOutlet="errorTmpl"></ng-container>
+						</section>
+					}
+					<!-- END TABLE -->
+				</div>
+				<!-- LOADING -->
+				@if (states?.isLoading) {
+					<div class="flex items-center justify-center flex-col m-4">
+						<pmds-cdk-loader
+							class="w-full"
+							[isPrimary]="false"
+							[subtitle]="config.loadingLiterals"
+							[dataQA]="dataQA + componentSelector"
+						/>
+					</div>
+				}
+				<!-- END LOADING -->
+			</div>
+		}
+	</ng-container>
+	<!-- ERROR VIEW -->
+	<ng-template #errorTmpl>
+		@if (config?.error) {
+			<tr class="flex flex-col justify-center items-center h-[72px] border-t border-color-border-default"
+				[attr.data-qa-id]="dataQA + componentSelector + 'table-error-container'"
+			>
+				<p class="font-SantanderMicroTextBold text-sm leading-5"
+				   [attr.data-qa-id]="dataQA + componentSelector + 'table-error-title'"
+				>
+					{{ config.error?.title }}
+				</p>
+				<p class="text-sm leading-5 text-color-text-error"
+				   [attr.data-qa-id]="dataQA + componentSelector + 'table-error-body'"
+				>
+					{{ config.error?.body }}
+				</p>
+			</tr>
+		}
+	</ng-template>
+	<!-- END ERROR VIEW -->

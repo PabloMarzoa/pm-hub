@@ -1,0 +1,107 @@
+<section class="flex flex-col">
+	<!-- TITLE -->
+	<div
+		class="bg-color-surface-primary relative w-full flex justify-center items-center md:h-auto"
+		[attr.data-qa-id]="dataQA + componentSelector + '-title'"
+	>
+		@if (titleImg) {
+		<img
+			class="mr-2 h-12 mobile:h-10"
+			alt="process-header-title"
+			[src]="titleImg"
+		/>
+		}
+		<span
+			class="py-4 mobile:py-2.5 font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold text-color-text-primary"
+		>
+			{{ literals.title }}
+		</span>
+		@if (backButton) {
+		<div class="absolute left-0 flex flex-row">
+			<!-- BACK BUTTON -->
+			<pmds-cdk-button
+				class="mobile:pl-4 tablet:pl-8 desktop:pl-7"
+				(buttonClick)="backButton.actionFn()"
+				[label]="backButton.actionLabel"
+				[dataQA]="dataQA + componentSelector + 'back'"
+				buttonType="tertiary"
+				iconPosition="left"
+				[icon]="backButton.actionIcon"
+				[hideLabelMobile]="true"
+			/>
+			<!-- BACK BUTTON -->
+		</div>
+		}
+		<div
+			class="absolute mobile:right-1.5 tablet:right-8 desktop:right-7 flex flex-row"
+		>
+			<!-- ACTIONS -->
+			@if (actions.length) { @for (action of actions; track
+			action.actionLabel) {
+			<pmds-cdk-button
+				(buttonClick)="action.actionFn()"
+				[label]="action.actionLabel"
+				[ngClass]="{
+					'ml-4': $index !== 0
+				}"
+				buttonType="tertiary"
+				[icon]="action.actionIcon"
+				[dataQA]="dataQA + componentSelector + $index + '-action'"
+				[hideLabelMobile]="true"
+			/>
+			} }
+			<!-- END ACTIONS -->
+			<div class="flex items-center">
+				<ng-content></ng-content>
+			</div>
+		</div>
+	</div>
+	<!-- END TITLE -->
+	<!-- PROCESS HEADER -->
+	<div class="w-full bg-color-border-disabled h-1">
+		<div
+			[attr.data-qa-id]="dataQA + componentSelector + 'progress'"
+			class="h-1 w-full bg bg-color-border-active transition-width duration-150"
+			[ngStyle]="{ width: progress + '%' }"
+		></div>
+	</div>
+	<!-- END PROCESS HEADER -->
+	<!-- STEP SUBTITLE -->
+	<section class="flex justify-center w-full">
+		<div
+			class="tablet:px-8 mobile:px-4 {{ maxDesktopWidth }}"
+			[ngClass]="!!subtitleStyles ? subtitleStyles : 'flex-grow'"
+		>
+			<div
+				class="flex items-center mobile:mt-4 md:mt-10 text-color-text-primary"
+				[ngClass]="{ 'justify-center': centerSubtitle }"
+				[attr.data-qa-id]="dataQA + componentSelector + 'stepTitle'"
+			>
+				@if (literals.stepIndex) {
+				<span
+					class="flex justify-center items-center rounded-pmds bg-color-tooltip w-6 md:w-8 h-6 md:h-8 mr-3 mobile:mr-2"
+				>
+					<span
+						class="text-color-text-secondary font-headline-desktop-m-bold mobile:font-headline-mobile-m-bold"
+						>{{ literals.stepIndex }}</span
+					>
+				</span>
+				}
+				<span
+					class="font-headline-desktop-l-regular mobile:font-headline-mobile-l-regular"
+				>
+					{{ literals.stepTitle }}
+				</span>
+			</div>
+			@if (progress < 100 && literals.stepSubtitle) {
+			<p
+				class="flex items-center font-headline-desktop-s-regular mobile:font-body-s-regular mt-2 md:mt-4"
+				[attr.data-qa-id]="dataQA + componentSelector + 'stepSubtitle'"
+			>
+				{{ literals.stepSubtitle }}
+			</p>
+			}
+		</div>
+	</section>
+	<!-- END STEP SUBTITLE -->
+</section>

@@ -1,0 +1,27 @@
+<!-- TOAST -->
+<div
+    [@fadeAnimation]="{
+        value: animationState,
+        params: {
+            fadeIn: config.animation?.fadeIn,
+            fadeOut: config.animation?.fadeOut
+        }
+    }"
+    [attr.data-qa-id]="dataQA + componentSelector + 'container'"
+    (@fadeAnimation.done)="onFadeFinished($event)"
+>
+    @if (data && data.type) {     
+        <div class="w-[37.5rem] max-w-[90vw] rounded-pmds"
+            [ngClass]="{ 'shadow-floating': config.floating }"
+        >
+            <!-- ALERT CONTENT -->
+            <pmds-cdk-alert
+                [dataQA]="dataQA + componentSelector"
+                [data]="data"
+                (closeEmit)="close()" 
+            />
+            <!-- END ALERT CONTENT  -->
+        </div>
+    }
+</div>
+<!-- END TOAST -->

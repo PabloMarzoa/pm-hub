@@ -1,0 +1,64 @@
+@if (skeleton) {
+<pmds-cdk-stepper-skeleton
+	[steps]="steps"
+	[dataQA]="dataQA + componentSelector"
+/>
+} @else {
+<section
+	class="h-20 flex py-4 desktop:px-7 tablet:px-8 mobile:p-4 justify-center items-center overflow-auto"
+>
+	@for (step of steps; track step) {
+	<div
+		class="flex items-end mr-1 relative w-[146px] last:w-[20px] mobile:w-[66px] h-12 mobile:h-6"
+	>
+		<!-- STEP TITLE -->
+		<section
+			[attr.data-qa-id]="
+				dataQA + componentSelector + 'step-name-' + $index
+			"
+			class="h-5 w-5 top-0 flex items-center justify-center whitespace-nowrap mobile:hidden absolute"
+			[ngClass]="{
+				'font-body-s-bold': $index === +current - 1,
+				'text-color-text-primary': $index <= +current - 1,
+				'font-body-s-regular': $index !== +current - 1,
+				'text-color-text-disabled': $index > +current - 1
+			}"
+		>
+			{{ step }}
+		</section>
+		<!-- END STEP TITLE -->
+		<!-- STEPS -->
+		<div
+			class="h-6 flex items-center pr-0.5"
+			[ngClass]="{
+				'bg-color-surface-tertiary rounded-full mobile:mr-1':
+					$index === current - 1 && $index != steps.length - 1
+			}"
+		>
+			@if ($index === current - 1) {
+			<div
+				class="ml-[2px] h-5 w-5 rounded-full border-4 border-color-border-active"
+			></div>
+			} @if ($index < current - 1) {
+			<div
+				class="h-5 w-5 !font-extrabold pmicons-checkmark text-xl text-color-icon-alternative rounded-full bg-color-icon-default"
+			></div>
+			} @if ($index > current - 1) {
+			<div
+				class="h-5 w-5 rounded-full border-4 border-color-border-disabled"
+			></div>
+			} @if ($index !== steps.length - 1) {
+			<div
+				class="h-[2px] w-[108px] mobile:w-[28px] rounded-full mx-2"
+				[ngClass]="{
+					'bg-color-border-disabled': $index > current - 1,
+					'bg-color-icon-default': $index <= current - 1
+				}"
+			></div>
+			}
+		</div>
+		<!-- END STEPS -->
+	</div>
+	}
+</section>
+}

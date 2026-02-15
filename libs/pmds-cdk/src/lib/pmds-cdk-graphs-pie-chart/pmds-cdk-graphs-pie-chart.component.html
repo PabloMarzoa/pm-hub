@@ -1,0 +1,107 @@
+@if (data || isLoading) {
+	@if (data || isLoading) {
+		<section class="p-4"
+				 [ngClass]="{'bg-color-surface-primary rounded-pmds': !config.onlyChart}"
+				 (click)="selectPie(false)">
+			<!-- TITLE -->
+			@if (config?.title && !config.onlyChart) {
+				<section class="pb-4 flex justify-between flex-wrap">
+					<section class="flex flex-col gap-2">
+						<h2 class="font-headline-desktop-s-bold mobile:font-headline-mobile-s-bold text-color-text-primary"
+							[attr.data-qa-id]="dataQA + componentSelector + 'title'">
+							{{ config?.title }}
+						</h2>
+						@if (config?.subtitle) {
+							<h3 class="font-body-s-regular text-color-text-tertiary"
+								[attr.data-qa-id]="dataQA + componentSelector + 'subtitle'">
+								{{ config?.subtitle }}
+							</h3>
+						}
+					</section>
+					<ng-content></ng-content>
+				</section>
+			}
+			<!-- END TITLE -->
+			@if (!isLoading) {
+				<ng-container>
+					<!-- GRAPH -->
+					<section class="animate-fade-in flex justify-center items-center">
+						<svg [attr.width]="this.radio * 2"
+							[attr.height]="this.radio * 2"
+							xmlns="http://www.w3.org/2000/svg">
+							@for (pie of pies; track i; let i = $index) {
+								<path (click)="$event.stopPropagation(); selectPie(true, i)"
+									  [class]="pie.class + ' cursor-pointer transition-all'"
+									  [ngClass]="{
+						'opacity-25': !pieActive[i]
+					}"
+									  [attr.d]="pie.d"
+									  [attr.stroke]="pie.stroke"
+									  [pmdsTooltip]="pie.tooltip"
+									  [pmdsTooltipPosition]="'middle-center'"
+									  [pmdsTooltipActivate]="pieShow[i]"
+									  delay="0"
+									  [attr.data-qa-id]="
+						dataQA + componentSelector + i + '-pie'
+					"
+								></path>
+							}
+						</svg>
+					</section>
+					<!-- END GRAPH -->
+					<!-- SOURCE -->
+					@if (graphicLegend?.length) {
+						<section class="flex flex-wrap gap-4 pt-4 w-full"
+								 [ngClass]="{'justify-center': config.onlyChart}">
+							@for (label of graphicLegend; track i; let i = $index) {
+								<div class="flex gap-1 items-center cursor-pointer transition-all"
+									 (click)="$event.stopPropagation(); selectPie(true, i)"
+									 [ngClass]="{'opacity-25': !pieActive[i]}"
+									 [attr.data-qa-id]="dataQA + componentSelector + i + '-legend'"
+								>
+									<div
+										class="w-3 h-3 rounded-tl-[4px] rounded-br-[4px]"
+										[attr.data-qa-id]="
+						dataQA + componentSelector + i + '-legend-line'
+					"
+										[class]="label.color"
+									></div>
+									<span
+										class="text-color-text-tertiary font-body-xs-regular"
+										[attr.data-qa-id]="
+						dataQA + componentSelector + i + '-legend-value'
+					"
+									>{{ label.label }}</span
+									>
+								</div>
+							}
+						</section>
+					}
+					<!-- END SOURCE -->
+				</ng-container>
+			} @else {
+				<ng-container [ngTemplateOutlet]="loading"></ng-container>
+			}
+		</section>
+	} @else {
+		<ng-container [ngTemplateOutlet]="noData"></ng-container>
+	}
+} @else {
+	<ng-container [ngTemplateOutlet]="noData"></ng-container>
+}
+<!-- NO DATA -->
+<ng-template #noData>
+	<!-- Empty state removed -->
+</ng-template>
+<!-- END NO DATA -->
+<!-- LOADING -->
+<ng-template #loading>
+	<section class="flex items-center justify-center h-[258px]">
+		<pmds-cdk-loader
+			[dataQA]="dataQA + componentSelector"
+			[isPrimary]="false"
+			[isFullscreen]="false"
+		/>
+	</section>
+</ng-template>
+<!-- END LOADING -->

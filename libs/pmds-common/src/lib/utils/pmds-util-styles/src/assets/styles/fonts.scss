@@ -1,0 +1,106 @@
+// DISPLAY DESKTOP
+@layer components {
+	.font-display-desktop-xl-bold {
+		@apply font-PmHeadlineBold font-bold text-[54px] leading-[64px];
+	}
+	.font-display-desktop-l-bold {
+		@apply font-PmHeadlineBold font-bold text-[48px] leading-[60px];
+	}
+	.font-display-desktop-m-bold {
+		@apply font-PmHeadlineBold font-bold text-[42px] leading-[52px];
+	}
+	.font-display-desktop-s-bold {
+		@apply font-PmHeadlineBold font-bold text-[32px] leading-[36px];
+	}
+	.font-display-desktop-xl-regular {
+		@apply font-PmHeadlineRegular text-[54px] leading-[64px];
+	}
+	.font-display-desktop-l-regular {
+		@apply font-PmHeadlineRegular text-[48px] leading-[60px];
+	}
+	.font-display-desktop-m-regular {
+		@apply font-PmHeadlineRegular text-[42px] leading-[52px];
+	}
+	.font-display-desktop-s-regular {
+		@apply font-PmHeadlineRegular text-[32px] leading-[36px];
+	}
+	// DISPLAY MOBILE
+	.font-display-mobile-l-bold {
+		@apply font-PmHeadlineBold font-bold text-[42px] leading-[52px];
+	}
+	.font-display-mobile-m-bold {
+		@apply font-PmHeadlineBold font-bold text-[28px] leading-[32px];
+	}
+	.font-display-mobile-s-bold {
+		@apply font-PmHeadlineBold font-bold text-[24px] leading-[32px];
+	}
+	.font-display-mobile-l-regular {
+		@apply font-PmHeadlineRegular text-[42px] leading-[52px];
+	}
+	.font-display-mobile-m-regular {
+		@apply font-PmHeadlineRegular text-[28px] leading-[32px];
+	}
+	.font-display-mobile-s-regular {
+		@apply font-PmHeadlineRegular text-[24px] leading-[32px];
+	}
+	// HEADLINE DESKTOP
+	.font-headline-desktop-l-bold {
+		@apply font-PmHeadlineBold font-bold text-[28px] leading-[32px];
+	}
+	.font-headline-desktop-m-bold {
+		@apply font-PmHeadlineBold font-bold text-[24px] leading-[32px];
+	}
+	.font-headline-desktop-s-bold {
+		@apply font-PmHeadlineBold font-bold text-[20px] leading-[24px];
+	}
+	.font-headline-desktop-l-regular {
+		@apply font-PmHeadlineRegular text-[28px] leading-[32px];
+	}
+	.font-headline-desktop-m-regular {
+		@apply font-PmHeadlineRegular text-[24px] leading-[32px];
+	}
+	.font-headline-desktop-s-regular {
+		@apply font-PmHeadlineRegular text-[20px] leading-[24px];
+	}
+	// HEADLINE MOBILE
+	.font-headline-mobile-l-bold {
+		@apply font-PmHeadlineBold font-bold text-[24px] leading-[32px];
+	}
+	.font-headline-mobile-m-bold {
+		@apply font-PmHeadlineBold font-bold text-[20px] leading-[24px];
+	}
+	.font-headline-mobile-s-bold {
+		@apply font-PmHeadlineBold font-bold text-[18px] leading-[24px];
+	}
+	.font-headline-mobile-l-regular {
+		@apply font-PmHeadlineRegular text-[24px] leading-[32px];
+	}
+	.font-headline-mobile-m-regular {
+		@apply font-PmHeadlineRegular text-[20px] leading-[24px];
+	}
+	.font-headline-mobile-s-regular {
+		@apply font-PmHeadlineRegular text-[18px] leading-[24px];
+	}
+	// BODY MOBILE & DESKTOP
+	.font-body-m-bold {
+		@apply font-PmMicroTextBold font-bold text-[16px] leading-[24px];
+	}
+	.font-body-s-bold {
+		@apply font-PmMicroTextBold font-bold text-[14px] leading-[20px];
+	}
+	.font-body-xs-bold {
+		@apply font-PmMicroTextBold font-bold text-[12px] leading-[16px];
+	}
+	.font-body-m-regular {
+		@apply font-PmMicroText text-[16px] leading-[24px];
+	}
+	.font-body-s-regular {
+		@apply font-PmMicroText text-[14px] leading-[20px];
+	}
+	.font-body-xs-regular {
+		@apply font-PmMicroText text-[12px] leading-[16px];
+	}
+	strong {
+		@apply font-PmMicroTextBold font-bold;
+	}
+}

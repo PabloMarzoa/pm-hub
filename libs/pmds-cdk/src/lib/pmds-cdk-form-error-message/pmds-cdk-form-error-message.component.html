@@ -1,0 +1,12 @@
+<!-- ERROR MESSAGES -->
+<section class="h-5 absolute w-max contents">
+	@if (formError) {
+		<div class="text-color-text-error pt-0.5 font-body-xs-regular ml-3"
+			 [hidden]="hideError"
+			 [attr.data-qa-id]="dataQA + componentSelector + 'pmds-cdk-form-error-message-text'"
+			 pmdsTitle>
+			{{ (errorLiterals$ | async)?.toString()?.replace(',', ', ') }}
+		</div>
+	}
+</section>
+<!-- END ERROR MESSAGES -->

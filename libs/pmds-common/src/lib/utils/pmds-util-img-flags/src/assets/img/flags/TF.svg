@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title> FLA000 | GS french southern and antarctic lands</title>
+    <defs>
+        <circle id="path-1" cx="256" cy="256" r="256"></circle>
+    </defs>
+    <g id="-FLA000-|-GS-french-southern-and-antarctic-lands" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-7">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#002395" transform="translate(256.000000, 256.000000) scale(-1, 1) translate(-256.000000, -256.000000) " xlink:href="#path-1"></use>
+            <g mask="url(#mask-2)" fill-rule="nonzero" id="Rectangle">
+                <rect stroke="#FFFFFF" stroke-width="21.3333333" fill="#FFFFFF" x="0" y="0" width="298.666667" height="234.666667"></rect>
+                <rect fill="#002395" x="0" y="0" width="106.666667" height="234.666667"></rect>
+                <rect fill="#ED2939" x="192" y="0" width="106.666667" height="234.666667"></rect>
+            </g>
+        </g>
+        <g id="Flag_of_the_French_Southern_and_Antarctic_Lands" transform="translate(256.000000, 298.666667)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M35.1064327,0 L45.7076023,15.1851852 L75.8643275,15.1851852 L75.8643275,68.1481481 L53.2210526,36.2962963 L22.7555556,80 L37.5766082,80 L53.2210526,54.8148148 L85.3333333,106.666667 L117.445614,54.8148148 L133.090058,80 L147.911111,80 L117.445614,36.2962963 L94.8023392,68.1481481 L94.8023392,38.8888889 L108.388304,38.8888889 L118.474854,24.4444444 L94.8023392,24.4444444 L94.8023392,15.1851852 L124.959064,15.1851852 L135.560234,0 L35.1064327,0 Z M70.5122807,64.8148148 L37.5766082,64.8148148 L37.5766082,75.1851852 L70.5122807,75.1851852 L70.5122807,64.8148148 Z M133.090058,64.8148148 L100.154386,64.8148148 L100.154386,75.1851852 L133.090058,75.1851852 L133.090058,64.8148148 Z" id="Shape"></path>
+            <g id="s-link" transform="translate(68.266667, 117.333333)">
+                <polygon id="s" points="17.0666667 0 27.6144933 32 0 12.2228389 34.1333333 12.2228389 6.51884003 32"></polygon>
+            </g>
+            <g id="s-link" transform="translate(34.133333, 96.000000)">
+                <polygon id="s" points="17.0666667 0 27.6144933 32 0 12.2228389 34.1333333 12.2228389 6.51884003 32"></polygon>
+            </g>
+            <g id="s-link" transform="translate(102.400000, 96.000000)">
+                <polygon id="s" points="17.0666667 0 27.6144933 32 0 12.2228389 34.1333333 12.2228389 6.51884003 32"></polygon>
+            </g>
+            <g id="s-link" transform="translate(0.000000, 10.666667)">
+                <polygon id="s" points="17.0666667 0 27.6144933 32 0 12.2228389 34.1333333 12.2228389 6.51884003 32"></polygon>
+            </g>
+            <g id="s-link" transform="translate(136.533333, 10.666667)">
+                <polygon id="s" points="17.0666667 0 27.6144933 32 0 12.2228389 34.1333333 12.2228389 6.51884003 32"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

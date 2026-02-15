@@ -1,0 +1,53 @@
+@if (skeleton) {
+	<pmds-cdk-shortcut-skeleton [shortcutItems]="shortcutItems" [dataQA]="dataQA + componentSelector" />
+} @else {
+	@if (shortcutItems) {	 
+		<section
+			#scrollSection
+			class="mobile:grid mobile:gap-2 tablet:gap-4 desktop:gap-6 mobile:grid-cols-2 flex overflow-x-auto scroll-smooth"
+			[ngClass]="{ 'grid desktop:grid-cols-4 tablet:grid-cols-4': flexWidth }"
+		>
+			<!-- ITEM -->
+			@for (item of shortcutItems; track item.label) {			  
+				<div
+					[attr.data-qa-id]="dataQA + componentSelector + $index + '-item'"
+					(click)="item.actionFn()"
+					class="flex flex-col shrink-0 font-body-m-regular text-color-action-main-default items-center justify-center h-[88px] p-4 gap-2 rounded-pmds border border-color-border-default mobile:w-full mobile:h-[52px] mobile:p-2 mobile:gap-1 hover:border-color-border-active active:text-color-action-main-selected active:font-body-m-bold active:border-color-action-main-selected active:bg-color-surface-primary"
+					[ngClass]="{
+						'desktop:w-[184px] tablet:w-[184px]': !flexWidth,
+						'cursor-pointer bg-color-surface-primary': !item.isDisabled,
+						'text-color-text-disabled cursor-none pointer-events-none bg-color-surface-disabled': item.isDisabled,
+					}"
+				>
+					<!-- ICON -->
+					<div
+						[attr.data-qa-id]="dataQA + componentSelector + $index + '-icon'"
+						[class]="item.icon + ' text-2xl mobile:text-base'"
+					></div>
+					<!-- END ICON -->
+					<!-- LABEL -->
+					<div
+						[attr.data-qa-id]="dataQA + componentSelector + $index + '-label'"
+						class="w-auto font-body-s-regular mobile:font-body-xs-regular text-center contents"
+					>
+						<span pmdsTitle class="w-full">{{ item.label }}</span>
+					</div>
+					<!-- END LABEL -->
+				</div>
+			}
+			<!-- END ITEM -->
+		</section>
+	}
+	<!-- PAGINATOR -->
+	@if (!flexWidth && shortcutItems.length > 4) {	 
+		<section
+			class="w-full flex items-center justify-center mt-6 mobile:hidden desktop:hidden"
+		>
+			<pmds-cdk-page-controller 
+				[totalItems]="2"
+				(changePage)="scrollSectionAction($event === 2)"
+				/>
+		</section>
+	}
+	<!-- END PAGINATOR -->
+}

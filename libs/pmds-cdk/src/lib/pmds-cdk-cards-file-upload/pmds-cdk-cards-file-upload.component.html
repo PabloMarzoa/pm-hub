@@ -1,0 +1,78 @@
+@if (skeleton) {
+	<pmds-cdk-cards-file-upload-skeleton [dataQA]="dataQA + componentSelector"/>
+} @else {
+	<!-- INITIAL AND ERROR STATE -->
+	@if (state !== 'loading') {
+		<section (drop)="onDrop($event)"
+				 (dragover)="onDragOver($event)"
+				 (dragenter)="isDragover = true"
+				 (dragleave)="isDragover = false"
+				 [ngClass]="{
+			'border-color-border-default': isDragover && state !== 'error',
+			'border-color-border-default border-dashed':
+				!isDragover && state !== 'error',
+			'!border-color-border-error': state === 'error'
+		}"
+				 class="transition-all border bg-color-surface-primary w-full flex items-center justify-center flex-col p-6 gap-6 mobile:gap-4 mobile:p-4 rounded-pmds"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'drop-area'"
+		>
+			<!-- ICON -->
+			<span class="pmicons-upload text-5xl text-color-icon-info"></span>
+			<!-- ICON END -->
+			<!-- TEXT -->
+			<section class="flex items-center flex-col justify-center gap-2">
+				<div class="font-headline-desktop-s-bold text-color-text-primary text-center"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'title'">
+					{{ literals.chooseFileTitle }}
+				</div>
+				<div class="font-body-xs-regular text-color-text-tertiary text-center"
+					 [attr.data-qa-id]="dataQA + componentSelector + 'sub-title'" [innerHTML]="literals.chooseFileSubtitle">
+				</div>
+			</section>
+			<!-- TEXT END -->
+			<!-- BUTTON -->
+			<pmds-cdk-button
+				class="transition-opacity"
+				[ngClass]="{ 'opacity-0': isDragover }"
+				buttonSize="small"
+				buttonType="secondary"
+				[label]="literals.button"
+				[dataQA]="dataQA + componentSelector"
+				(buttonClick)="selectFilesInput.click()"
+			/>
+			<!-- BUTTON END -->
+		</section>
+	}
+	<!-- END INITIAL AND ERROR STATE -->
+		<!-- ERROR MSG -->
+	@if (state === 'error') {
+		<section class="text-color-text-error pt-2 pl-4 font-body-xs-regular"
+				 [attr.data-qa-id]="dataQA + componentSelector + 'error'"
+		>
+			{{ errorText || literals.errorText }}
+		</section>
+	}
+	<!-- END ERROR MSG -->
+		<!-- LOADING STATE -->
+	@if (state === 'loading') {
+		<div class="rounded-pmds border border-color-border-default w-full bg-color-surface-primary flex items-center justify-center py-4 flex-col h-[226px]"
+			 [attr.data-qa-id]="dataQA + componentSelector + 'loading'">
+			<pmds-cdk-loader
+				[title]="literals.loadingTitle"
+				[subtitle]="literals.loadingSubtitle"
+				[isFullscreen]="false"
+				[dataQA]="dataQA"
+			/>
+		</div>
+	}
+	<!-- HIDE FILE INPUT -->
+	<input #selectFilesInput
+		[attr.data-qa-id]="dataQA + componentSelector + 'input'"
+		class="hidden"
+		type="file"
+		[accept]="accept"
+		(change)="selectFile($event)"
+		[multiple]="multiFiles"
+	/>
+	<!-- END HIDE FILE INPUT -->
+}
