@@ -40,8 +40,8 @@ export default {
 2 - Add your style.scss this code:
 
 ~~~
-@use '../../../index/src/assets/styles/emi-colors.scss';
-@use '../../../index/src/assets/styles/emi-shapes.scss';
+@use '../../../index/src/assets/styles/pm-colors.scss';
+@use '../../../index/src/assets/styles/pm-shapes.scss';
 ~~~
 
 3 - For use it only copy the class (add prefix **text-**(for apply the color to text), **bg-**(for apply the color to background) or **border-**(for apply the color to border)))

@@ -1,4 +1,4 @@
-const theme = require('./libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/tailwind.base.config');
+const theme = require('./libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/tailwind.base.config');
 
 const withOpacity =
 	(variableName) =>

@@ -55,7 +55,7 @@ A comprehensive set of UI components:
 Includes core design tokens:
 - **Fonts**: `@use 'pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/fonts.scss';`
 - **Icons**: `@use 'pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/icons.scss';`
-- **Colors**: `@use 'pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/emi-colors.scss';`
+- **Colors**: `@use 'pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/pm-colors.scss';`
 
 ## Usage
 
