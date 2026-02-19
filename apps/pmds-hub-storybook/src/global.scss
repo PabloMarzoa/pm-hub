@@ -1,7 +1,7 @@
 @use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/icons.scss';
 @use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/fonts.scss';
-@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/emi-colors.scss';
-@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/emi-shapes.scss';
+@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/pm-colors.scss';
+@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/pm-shapes.scss';
 
 @tailwind base;
 @tailwind components;
