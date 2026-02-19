@@ -1,0 +1,24 @@
+export const componentInfo = `
+
+
+Import: **../../../index**
+
+~~~~
+import { PmdsCdkLoaderComponent } from '../pmds-cdk-loader.component';
+~~~~
+
+Add to import array the **PmdsCdkLoaderComponent** in your component
+
+~~~~
+imports: [
+	PmdsCdkLoaderComponent
+]
+~~~~
+
+Selector: **pmds-cdk-loader**
+
+~~~~
+<pmds-cdk-loader>
+</pmds-cdk-loader>
+~~~~
+`

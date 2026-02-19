@@ -1,7 +1,7 @@
-@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/icons.scss';
-@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/fonts.scss';
-@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/emi-colors.scss';
-@use 'libs/pmds-common/src/lib/utils/pmds-util-styles/src/assets/styles/emi-shapes.scss';
+@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/icons.scss';
+@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/fonts.scss';
+@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/emi-colors.scss';
+@use 'libs/pm-fuel/src/lib/utils/pmds-util-styles/src/assets/styles/emi-shapes.scss';
 
 @tailwind base;
 @tailwind components;
@@ -24,17 +24,17 @@ body {
 	.sbdocs.sbdocs-preview.sb-unstyled {
 		padding-top: 0;
 	}
-	.rejt-value{
+	.rejt-value {
 		max-width: 256px;
 		overflow: scroll;
 	}
-	.rejt-function-value-node{
+	.rejt-function-value-node {
 		max-height: 256px;
 		overflow: scroll;
 	}
 
 	.sbdocs-content {
-		max-width:1450px!important;
+		max-width: 1450px !important;
 	}
 }
 
@@ -49,8 +49,6 @@ body {
 	font-style: normal;
 	font-display: block;
 }
-
-
 
 body {
 	font-family: 'Helvetica Neue', Arial, sans-serif;

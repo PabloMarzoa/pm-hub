@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "nx serve pmds-hub-storybook",
 		"build": "nx build --project=pmds-hub-storybook",
-		"build:libs": "NODE_TLS_REJECT_UNAUTHORIZED=1 nx reset && nx run-many -t build -p pmds-common pmds-cdk",
+		"build:libs": "NODE_TLS_REJECT_UNAUTHORIZED=1 nx reset && nx run-many -t build -p pm-fuel",
 		"build:storybook": " nx build-storybook pmds-hub-storybook",
 		"storybook": "NODE_TLS_REJECT_UNAUTHORIZED=1 && nx storybook pmds-hub-storybook",
 		"graph": "nx graph",
@@ -13,7 +13,9 @@
 		"update:deps": "tsx ./scripts/update-dependencies.ts",
 		"update:deps:dry": "tsx ./scripts/update-dependencies.ts --dry-run",
 		"deps:graph": "tsx ./scripts/dependency-graph.ts",
-		"deps:check": "tsx ./scripts/check-dependencies.ts"
+		"deps:check": "tsx ./scripts/check-dependencies.ts",
+		"publish:libs": "./scripts/publish-libs.sh",
+		"publish:libs:dry": "./scripts/publish-libs.sh --dry-run"
 	},
 	"private": true,
 	"workspaces": [

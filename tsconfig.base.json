@@ -19,16 +19,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pmhub/pmds-cdk": [
-        "libs/pmds-cdk/src/index.ts"
+      "pm-fuel": [
+        "libs/pm-fuel/src/index.ts"
       ],
-      "@pmhub/pmds-common": [
-        "libs/pmds-common/src/index.ts"
-      ],
-      "@pmhub/pmds-libs-plugin": [
+      "@pmarzoa/pmds-libs-plugin": [
         "plugins/pmds-libs-plugin/src/index.ts"
       ],
-      "@pmhub/pmds-storybook/utils": [
+      "@pmarzoa/pmds-storybook/utils": [
         "apps/pmds-hub-storybook/src/utils/index.ts"
       ]
     }

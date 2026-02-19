@@ -10,11 +10,11 @@ const config: StorybookConfig = {
 	staticDirs: [
 		{ from: '../../../apps/pmds-hub-storybook/src/assets', to: '/assets' },
 		{
-			from: '../../../libs/pmds-common/src/lib/utils/pmds-util-img-flags/src/assets',
+			from: '../../../libs/pm-fuel/src/lib/utils/pmds-util-img-flags/src/assets',
 			to: '/assets',
 		},
 		{
-			from: '../../../libs/pmds-common/src/lib/utils/pmds-util-img-svgs/src/assets',
+			from: '../../../libs/pm-fuel/src/lib/utils/pmds-util-img-svgs/src/assets',
 			to: '/assets',
 		},
 	],

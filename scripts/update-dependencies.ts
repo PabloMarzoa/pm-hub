@@ -23,7 +23,7 @@ interface DependencyGraph {
 class DependencyUpdater {
   private graph: DependencyGraph = {};
   private updatedPackages = new Set<string>();
-  private organizationPrefix = '@pmhub/';
+  private organizationPrefix = '@pmarzoa/';
 
   constructor(private workspaceRoot: string) {}
 
@@ -156,16 +156,28 @@ class DependencyUpdater {
    */
   private normalizeComponentNames(components: string[]): string[] {
     return components.map(comp => {
-      if (comp.startsWith(this.organizationPrefix)) {
+      // 1. If it already has the prefix and exists in the graph, return it
+      if (this.graph[comp]) {
         return comp;
       }
 
-      // If you don't have the prefix, try to find it
+      // 2. Try adding the prefix directly
+      const withPrefix = `${this.organizationPrefix}${comp}`;
+      if (this.graph[withPrefix]) {
+        return withPrefix;
+      }
+
+      // 3. Try adding pmds- prefix (e.g. pmds-cdk -> @pmhub/pmds-cdk)
+      const withPmdsPrefix = `${this.organizationPrefix}pmds-${comp}`;
+      if (this.graph[withPmdsPrefix]) {
+        return withPmdsPrefix;
+      }
+
+       // 4. Try adding pmds-cdk/common/etc prefix if the user just passes "button" or similar (Legacy support but safer)
       const possibleNames = [
         `${this.organizationPrefix}pmds-cdk-${comp}`,
+        `${this.organizationPrefix}pmds-common-${comp}`, // Added common
         `${this.organizationPrefix}pmds-core-${comp}`,
-        `${this.organizationPrefix}pmds-${comp}`,
-        `${this.organizationPrefix}${comp}`
       ];
 
       for (const name of possibleNames) {

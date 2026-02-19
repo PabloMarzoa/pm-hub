@@ -20,12 +20,12 @@
 					"apps/pmds-hub-storybook/src/assets",
 					{
 						"glob": "**/*",
-						"input": "dist/libs/pmds-util-libs/pmds-util-img-flags/src/assets",
+						"input": "libs/pm-fuel/src/lib/utils/pmds-util-img-flags/src/assets",
 						"output": "assets"
 					},
 					{
 						"glob": "**/*",
-						"input": "dist/libs/pmds-util-libs/pmds-util-img-svg/src/assets",
+						"input": "libs/pm-fuel/src/lib/utils/pmds-util-img-svgs/src/assets",
 						"output": "assets"
 					}
 				],
