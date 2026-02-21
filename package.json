@@ -1,6 +1,6 @@
 {
 	"name": "pmds-hub",
-	"version": "20.0.0",
+	"version": "20.0.1",
 	"license": "MIT",
 	"scripts": {
 		"start": "nx serve pmds-hub-storybook",
